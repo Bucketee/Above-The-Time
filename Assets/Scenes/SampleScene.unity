@@ -446,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25049331255484580, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.21
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 25049331255484580, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -488,19 +488,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterA
       objectReference: {fileID: 0}
-    - target: {fileID: 8499724268531182863, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
-      propertyPath: jumpPower
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8499724268531182863, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
-      propertyPath: walkSpeed
+    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: leftDisX
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 8499724268531182863, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: runSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: rightDisX
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
       propertyPath: stepableLayers.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 8499724268531182863, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: stepableLayers.Array.data[0].m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
       propertyPath: stepableLayers.Array.data[1].m_Bits
       value: 8
       objectReference: {fileID: 0}

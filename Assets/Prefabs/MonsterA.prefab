@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 25049331255484580}
   - component: {fileID: 3636175076887098346}
   - component: {fileID: 6098348792316447283}
-  - component: {fileID: 8499724268531182863}
+  - component: {fileID: 6110793988682446182}
   m_Layer: 3
   m_Name: MonsterA
   m_TagString: Untagged
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805a7075520c0a249bd02eadfa930b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8499724268531182863
+--- !u!114 &6110793988682446182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,20 +220,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 5481429218428560458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895246f32f1296148a0191c8b66ed87f, type: 3}
+  m_Script: {fileID: 11500000, guid: e4e37ee575e591b489c1dc78b25bac42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 0, y: 0}
   isOnAir: 0
+  timeLocked: 0
   input: {fileID: 11400000, guid: 3d802260277f01646af3668bd372417d, type: 2}
   walkSpeed: 6
-  runSpeed: 9
+  isMoving: 0
+  leftDisX: 0
+  rightDisX: 0
+  destinationX: 0
   jumpPower: 12
   currJumpTime: 0
   maxJumpTime: 0.2
   isJump: 0
   fallAcceleration: 75
   maxFallSpeed: -30
-  stepableLayers:
-  - serializedVersion: 2
-    m_Bits: 64
+  stepableLayers: []
