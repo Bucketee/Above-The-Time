@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerController", menuName = "inputController/PlayerController")]
-public class PlayerController : InputController
+[CreateAssetMenu(fileName = "PlayerInputController", menuName = "inputController/PlayerInputController")]
+public class PlayerInputController : InputController
 {
     public override float RetrieveMoveInput()
     {
@@ -12,7 +12,7 @@ public class PlayerController : InputController
 
     public override bool RetrieveRunningInput()
     {
-        return Input.GetKey(KeyCode.LeftShift); //help
+        return false;
     }
 
     public override bool RetrieveJumpInput()
@@ -32,6 +32,6 @@ public class PlayerController : InputController
 
     public override bool RetrieveAttackInput()
     {
-        return Input.GetKey(KeyCode.Z); //help
+        return false;
     }
 }

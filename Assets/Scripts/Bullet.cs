@@ -21,10 +21,10 @@ public class Bullet : MonoBehaviour
     {
         this.type = (BulletType)type;
         rigidbody2D.velocity = dir * speed;
-        StartCoroutine(bulletLength(life));
+        StartCoroutine(BulletLength(life));
     }
 
-    private IEnumerator bulletLength(float life)
+    private IEnumerator BulletLength(float life)
     {
         yield return new WaitForSeconds(life);
         Destroy(gameObject);
@@ -36,10 +36,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public new BulletType GetType()
-    {
-        return type;
     }
 }
