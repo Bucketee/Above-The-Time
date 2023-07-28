@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicController : MonoBehaviour
+public class MonsterAController : MonoBehaviour
 {
     private new Rigidbody2D rigidbody2D;
 
@@ -15,20 +15,33 @@ public class BasicController : MonoBehaviour
     [SerializeField] private InputController input = null;
 
     [Header("Move")]
-    [SerializeField] private float walkSpeed = 6f;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
+    [SerializeField] private bool isMoving = false;
+    [SerializeField] private bool movingCool = false;
+    private float originX;
+    [SerializeField] private float leftDisX;
+    [SerializeField] private float rightDisX;
+    [SerializeField] private float destinationX;
+    [SerializeField] private float horizontalDir;
 
     [Header("Jump")]
-    [SerializeField] private float jumpPower = 12f;
-    [SerializeField] private float currJumpTime = 0f;
-    [SerializeField] private float maxJumpTime = 0.2f;
+    [SerializeField] private float jumpPower;
+    [SerializeField] private float currJumpTime;
+    [SerializeField] private float maxJumpTime;
     [SerializeField] private bool isJump = false;
-    [SerializeField] private float fallAcceleration = 75f;
-    [SerializeField] private float maxFallSpeed = -30f;
+    [SerializeField] private float fallAcceleration;
+    [SerializeField] private float maxFallSpeed;
     [SerializeField] private List<LayerMask> stepableLayers = new List<LayerMask>();
+
+    [Header("Time Lock")]
+    [SerializeField] private float duration;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        leftDisX = transform.position.x - leftDisX;
+        rightDisX = transform.position.x + rightDisX;
     }
 
     private void Update()
@@ -49,9 +62,20 @@ public class BasicController : MonoBehaviour
     #region Move
     private void HandleMove()
     {
-        float inputHor = input.RetrieveMoveInput();
-        speed.x = inputHor * walkSpeed;
-        if (inputHor >= 0f)
+        if (isMoving && Mathf.Abs(transform.position.x - destinationX) <= 0.1)
+        {
+            isMoving = false;
+            speed.x = 0f;
+            StartCoroutine(MovingCoolCo());
+        }
+        if (isMoving || movingCool) return;
+
+        destinationX = Random.Range(leftDisX, rightDisX);
+        horizontalDir = destinationX < transform.position.x ? -1f : 1f;
+        speed.x = horizontalDir * walkSpeed;
+        isMoving = true;
+
+        if (horizontalDir >= 0f)
         {
             //right side
         }
@@ -59,6 +83,13 @@ public class BasicController : MonoBehaviour
         {
             //left side
         }
+    }
+
+    private IEnumerator MovingCoolCo()
+    {
+        movingCool = true;
+        yield return new WaitForSeconds(Random.Range(2f, 5f));
+        movingCool = false;
     }
     #endregion
 
@@ -160,15 +191,22 @@ public class BasicController : MonoBehaviour
         if (!timeLocked && collision.collider.GetComponentInParent<Bullet>() && collision.collider.GetComponentInParent<Bullet>().type == Bullet.BulletType.time)
         {
             GetTimeLocked();
-            Debug.Log("did it");
+            Debug.Log("Locked!!");
         }
     }
 
     private void GetTimeLocked()
     {
         timeLocked = true;
-        speed = new Vector2(0, 0);
         rigidbody2D.velocity = new Vector2(0, 0);
+        StartCoroutine(TimeLockDuration(duration));
+    }
+
+    private IEnumerator TimeLockDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        timeLocked = false;
+        Debug.Log("UnLocked!!");
     }
     #endregion
 }
