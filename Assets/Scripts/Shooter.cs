@@ -44,7 +44,7 @@ public class Shooter : MonoBehaviour
     private void PositionMove()
     {
         mousePoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-        transform.position = player.transform.position + (mousePoint - player.transform.position).normalized;
+        transform.localPosition = (mousePoint - player.transform.position).normalized;
     }
 
     /// <summary>

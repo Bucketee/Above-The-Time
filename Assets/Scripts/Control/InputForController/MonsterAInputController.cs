@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MonsterController", menuName = "inputController/MonsterAController")]
-public class MonsterAController : InputController
+[CreateAssetMenu(fileName = "MonsterInputController", menuName = "inputController/MonsterAInputController")]
+public class MonsterAInputController : InputController
 {
     public override float RetrieveMoveInput()
     {
-        if (1.5 < Mathf.PingPong(Time.time, 3))
+        if (1.5f < Mathf.PingPong(Time.time, 3f))
         {
-            return 1;
+            return 1f;
         }
-        return -1;
+        return -1f;
     }
 
     public override bool RetrieveJumpInput()

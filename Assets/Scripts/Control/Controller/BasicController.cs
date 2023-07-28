@@ -75,7 +75,7 @@ public class BasicController : MonoBehaviour
     private void CheckOnAir()
     {
         bool isFloor = CheckFloor();
-        if (!isFloor || (isFloor && !stepableLayers.Contains(1 << GetFloor().layer)))
+        if (!isFloor || !stepableLayers.Contains(1 << GetFloor().layer))
         {
             isOnAir = true;
         }
@@ -98,14 +98,14 @@ public class BasicController : MonoBehaviour
         }
         else if (input.RetrieveJumpHoldInput())
         {
-            if (currJumpTime < maxJumpTime) currJumpTime += Time.deltaTime;
+            if (currJumpTime < maxJumpTime) currJumpTime += Time.fixedDeltaTime;
             if (isOnAir && isJump && currJumpTime < maxJumpTime)
             {
 
             }
             else if (isOnAir && isJump && currJumpTime >= maxJumpTime)
             {
-                speed.y = Mathf.MoveTowards(speed.y, maxFallSpeed, fallAcceleration * Time.deltaTime);
+                speed.y = Mathf.MoveTowards(speed.y, maxFallSpeed, fallAcceleration * Time.fixedDeltaTime);
             }
             else if (!isOnAir && !isJump)
             {
@@ -118,7 +118,7 @@ public class BasicController : MonoBehaviour
         {
             if (isOnAir)
             {
-                speed.y = Mathf.MoveTowards(speed.y, maxFallSpeed, fallAcceleration * Time.deltaTime);
+                speed.y = Mathf.MoveTowards(speed.y, maxFallSpeed, fallAcceleration * Time.fixedDeltaTime);
             }
             else
             {
@@ -158,9 +158,8 @@ public class BasicController : MonoBehaviour
     #region Time Lock 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!timeLocked && collision.collider.GetComponentInParent<Bullet>() && collision.collider.GetComponentInParent<Bullet>().GetType() == Bullet.BulletType.time)
+        if (!timeLocked && collision.collider.GetComponentInParent<Bullet>() && collision.collider.GetComponentInParent<Bullet>().type == Bullet.BulletType.time)
         {
-            timeLocked = true;
             GetTimeLocked();
             Debug.Log("did it");
         }
@@ -168,6 +167,7 @@ public class BasicController : MonoBehaviour
 
     private void GetTimeLocked()
     {
+        timeLocked = true;
         speed = new Vector2(0, 0);
         rigidbody2D.velocity = new Vector2(0, 0);
     }
