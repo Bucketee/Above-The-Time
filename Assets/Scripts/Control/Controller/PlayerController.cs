@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private new Rigidbody2D rigidbody2D;
 
     [Header("State")]
     [SerializeField] private Vector2 speed;
     [SerializeField] private bool isOnAir = false;
-    [SerializeField] private bool timeLocked = false;
 
     [Header("Input")]
     [SerializeField] private InputController input = null;
@@ -33,14 +32,12 @@ public class BasicController : MonoBehaviour
 
     private void Update()
     {
-        if (timeLocked) return;
         CheckOnAir();
         CheckIsJump();
     }
 
     private void FixedUpdate()
     {
-        if (timeLocked) return;
         HandleMove();
         HandleJump();
         ApplyMovement();
@@ -151,24 +148,6 @@ public class BasicController : MonoBehaviour
     {
         var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, ~(1 << gameObject.layer));
         return hit.collider.gameObject;
-    }
-    #endregion
-
-    #region Time Lock 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!timeLocked && collision.collider.GetComponentInParent<Bullet>() && collision.collider.GetComponentInParent<Bullet>().type == Bullet.BulletType.time)
-        {
-            GetTimeLocked();
-            Debug.Log("did it");
-        }
-    }
-
-    private void GetTimeLocked()
-    {
-        timeLocked = true;
-        speed = new Vector2(0, 0);
-        rigidbody2D.velocity = new Vector2(0, 0);
     }
     #endregion
 }

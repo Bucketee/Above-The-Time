@@ -18,4 +18,13 @@ public abstract class InputController : ScriptableObject
     public abstract bool RetrieveJumpUpInput();
 
     public abstract bool RetrieveAttackInput();
+
+    /// <summary>
+    /// go to future if 1, past if -1, just stop (do nothing) if 0
+    /// </summary>
+    /// <returns></returns>
+    public virtual float RetrieveTimeDirInput()
+    {
+        return 0;
+    }
 }
