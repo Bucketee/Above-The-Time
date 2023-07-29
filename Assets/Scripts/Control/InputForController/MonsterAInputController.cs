@@ -18,6 +18,7 @@ public class MonsterAInputController : InputController
             return true;
         }
         */
+        return Input.GetKey(KeyCode.LeftShift);
         return false;
     }
 
@@ -34,5 +35,10 @@ public class MonsterAInputController : InputController
     public override bool RetrieveAttackInput()
     {
         return false;
+    }
+
+    public override float RetrieveTimeDirInput()
+    {
+        return Input.GetAxis("Mouse ScrollWheel");
     }
 }

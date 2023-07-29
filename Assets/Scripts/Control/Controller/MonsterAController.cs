@@ -8,8 +8,6 @@ public class MonsterAController : MonoBehaviour
 
     [Header("State")]
     [SerializeField] private Vector2 speed;
-    [SerializeField] private bool isOnAir = false;
-    [SerializeField] private bool timeLocked = false;
 
     [Header("Input")]
     [SerializeField] private InputController input = null;
@@ -30,30 +28,52 @@ public class MonsterAController : MonoBehaviour
     [SerializeField] private float currJumpTime;
     [SerializeField] private float maxJumpTime;
     [SerializeField] private bool isJump = false;
+    [SerializeField] private bool isOnAir = false;
     [SerializeField] private float fallAcceleration;
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private List<LayerMask> stepableLayers = new List<LayerMask>();
 
     [Header("Time Lock")]
+    [SerializeField] private bool timeLocked = false;
     [SerializeField] private float duration;
+    private List<PositionInTime> positions;
+    private List<PositionInTime> positionsTemp; //for future
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        positions = new List<PositionInTime>();
+        positionsTemp = new List<PositionInTime>();
         leftDisX = transform.position.x - leftDisX;
         rightDisX = transform.position.x + rightDisX;
     }
 
     private void Update()
     {
-        if (timeLocked) return;
+        if (timeLocked)
+        {
+            float timeAmount = input.RetrieveTimeDirInput();
+            if (timeAmount < 0)
+            {
+                for (int i = 0; i < (0.05 / Time.deltaTime); i++) Rewind();
+            }
+            else if (timeAmount > 0)
+            {
+                for (int i = 0; i < (0.05 / Time.deltaTime); i++) UnRewind();
+            }
+            return;
+        }
+        Record();
         CheckOnAir();
         CheckIsJump();
     }
 
     private void FixedUpdate()
     {
-        if (timeLocked) return;
+        if (timeLocked)
+        {
+            return;
+        }
         HandleMove();
         HandleJump();
         ApplyMovement();
@@ -126,24 +146,6 @@ public class MonsterAController : MonoBehaviour
                 currJumpTime = 0f;
             }
         }
-        else if (input.RetrieveJumpHoldInput())
-        {
-            if (currJumpTime < maxJumpTime) currJumpTime += Time.fixedDeltaTime;
-            if (isOnAir && isJump && currJumpTime < maxJumpTime)
-            {
-
-            }
-            else if (isOnAir && isJump && currJumpTime >= maxJumpTime)
-            {
-                speed.y = Mathf.MoveTowards(speed.y, maxFallSpeed, fallAcceleration * Time.fixedDeltaTime);
-            }
-            else if (!isOnAir && !isJump)
-            {
-                speed.y = jumpPower;
-                isJump = true;
-                currJumpTime = 0f;
-            }
-        }
         else
         {
             if (isOnAir)
@@ -186,27 +188,91 @@ public class MonsterAController : MonoBehaviour
     #endregion
 
     #region Time Lock 
+    /// <summary>
+    /// TimeLocked when collide with time bullet
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!timeLocked && collision.collider.GetComponentInParent<Bullet>() && collision.collider.GetComponentInParent<Bullet>().type == Bullet.BulletType.time)
         {
             GetTimeLocked();
-            Debug.Log("Locked!!");
         }
     }
 
+    /// <summary>
+    /// get time locked, stop
+    /// </summary>
     private void GetTimeLocked()
     {
+        Debug.Log("Locked!!");
         timeLocked = true;
         rigidbody2D.velocity = new Vector2(0, 0);
         StartCoroutine(TimeLockDuration(duration));
     }
 
+    private void GetTimeUnLocked()
+    {
+        Debug.Log("UnLocked!!");
+        timeLocked = false;
+        positionsTemp = new List<PositionInTime>();
+        isMoving = false; //prevent bugs
+        ApplyMovement();
+    }
+
+    /// <summary>
+    /// when time locked stop while duration
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     private IEnumerator TimeLockDuration(float duration)
     {
         yield return new WaitForSeconds(duration);
-        timeLocked = false;
-        Debug.Log("UnLocked!!");
+        GetTimeUnLocked();
+    }
+
+    private void Record()
+    {
+        if (timeLocked) return;
+        positions.Insert(0, new PositionInTime(transform.position, transform.rotation, speed));
+    }
+
+    /// <summary>
+    /// To Past
+    /// </summary>
+    private void Rewind()
+    {
+        if (positions.Count > 0)
+        {
+            PositionInTime positionInTime = positions[0];
+            transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
+            speed = positionInTime.speed;
+            positions.RemoveAt(0);
+            positionsTemp.Insert(0, positionInTime);
+        }        
+        else
+        {
+            Debug.Log("no more past");
+        }
+    }
+
+    /// <summary>
+    /// To Future
+    /// </summary>
+    private void UnRewind()
+    {
+        if (positionsTemp.Count > 0)
+        {
+            PositionInTime positionInTime = positionsTemp[0];
+            transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
+            speed = positionInTime.speed;
+            positionsTemp.RemoveAt(0);
+            positions.Insert(0, positionInTime);
+        }
+        else
+        {
+            Debug.Log("no more future");
+        }
     }
     #endregion
 }

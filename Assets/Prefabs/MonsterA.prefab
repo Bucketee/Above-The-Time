@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5847858726078441946}
   - component: {fileID: 3986500437059172060}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4830499980789032678}
   - component: {fileID: 2119618448533135878}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 3636175076887098346}
   - component: {fileID: 6098348792316447283}
   - component: {fileID: 6110793988682446182}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: MonsterA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,18 +224,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 0, y: 0}
-  isOnAir: 0
-  timeLocked: 0
   input: {fileID: 11400000, guid: 3d802260277f01646af3668bd372417d, type: 2}
-  walkSpeed: 6
+  walkSpeed: 2
+  runSpeed: 4
   isMoving: 0
-  leftDisX: 0
-  rightDisX: 0
+  movingCool: 0
+  leftDisX: 3
+  rightDisX: 3
   destinationX: 0
+  horizontalDir: 0
   jumpPower: 12
   currJumpTime: 0
   maxJumpTime: 0.2
   isJump: 0
+  isOnAir: 0
   fallAcceleration: 75
   maxFallSpeed: -30
-  stepableLayers: []
+  stepableLayers:
+  - serializedVersion: 2
+    m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 8
+  timeLocked: 0
+  isRewinding: 0
+  duration: 2
