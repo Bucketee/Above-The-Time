@@ -6,7 +6,7 @@ public abstract class InputController : ScriptableObject
 {
     public abstract float RetrieveMoveInput();
 
-    public virtual bool RetrieveRunningInput()
+    public virtual bool RetrieveDashInput()
     {
         return false;
     }

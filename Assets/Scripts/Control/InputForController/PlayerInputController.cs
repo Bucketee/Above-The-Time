@@ -10,7 +10,7 @@ public class PlayerInputController : InputController
         return Input.GetAxisRaw("Horizontal");
     }
 
-    public override bool RetrieveRunningInput()
+    public override bool RetrieveDashInput()
     {
         return false;
     }
