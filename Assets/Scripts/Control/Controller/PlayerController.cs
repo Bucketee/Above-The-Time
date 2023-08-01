@@ -26,16 +26,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isJump = false; //is jumping
     [SerializeField] private float fallAcceleration = 75f;
     [SerializeField] private float maxFallSpeed = -30f;
-    [SerializeField] private List<LayerMask> stepableLayers;
-    private int layers = 0;
+    [SerializeField] private LayerMask stepableLayers;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        foreach (LayerMask layer in stepableLayers)
-        {
-            layers += layer;
-        }
     }
 
     private void Update()
@@ -82,7 +77,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void CheckIsJump()
     {
-        if (isJump && !isOnAir) //add floor.layer to check floor type help
+        if (isJump && !isOnAir)
         {
             isJump = false;
         }
@@ -162,14 +157,14 @@ public class PlayerController : MonoBehaviour
     #region Floor
     private bool CheckFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, layers);
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, stepableLayers);
         Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.green, 0.1f);
         return hit.collider;
     }
 
     private GameObject GetFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, layers); //need revise to use
+        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, stepableLayers);
         return hit.collider.gameObject;
     }
     #endregion

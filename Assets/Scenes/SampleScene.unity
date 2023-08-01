@@ -480,22 +480,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: dashDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: stepableLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: stepableLayers.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: stepableLayers.Array.data[1].m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 1371126652627405043, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -539,42 +523,6 @@ PrefabInstance:
     - target: {fileID: 1371126652627405043, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: life
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: speed
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: Bullets.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: bullets.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: Bullets.Array.data[0]
-      value: 
-      objectReference: {fileID: 6383022994940815578, guid: d561c27a96ccf3140b7a35fc3e8112be, type: 3}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: Bullets.Array.data[1]
-      value: 
-      objectReference: {fileID: 6383022994940815578, guid: e73bbdc55a9cc6741880cab3f085e91a, type: 3}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: bullets.Array.data[0]
-      value: 
-      objectReference: {fileID: 6383022994940815578, guid: d561c27a96ccf3140b7a35fc3e8112be, type: 3}
-    - target: {fileID: 2056423750918390458, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: bullets.Array.data[1]
-      value: 
-      objectReference: {fileID: 6383022994940815578, guid: e73bbdc55a9cc6741880cab3f085e91a, type: 3}
-    - target: {fileID: 2389599000867019709, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: m_Constraints
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6867484223147920413, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: m_Name
