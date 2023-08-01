@@ -18,7 +18,7 @@ public class MonsterAInputController : InputController
             return true;
         }
         */
-        return Input.GetKey(KeyCode.LeftShift);
+        return Input.GetKey(KeyCode.LeftControl);
         return false;
     }
 

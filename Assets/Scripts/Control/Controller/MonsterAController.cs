@@ -8,6 +8,7 @@ public class MonsterAController : MonoBehaviour
 
     [Header("State")]
     [SerializeField] private Vector2 speed;
+    [SerializeField] private bool isOnAir = false;
 
     [Header("Input")]
     [SerializeField] private InputController input = null;
@@ -28,10 +29,10 @@ public class MonsterAController : MonoBehaviour
     [SerializeField] private float currJumpTime;
     [SerializeField] private float maxJumpTime;
     [SerializeField] private bool isJump = false;
-    [SerializeField] private bool isOnAir = false;
     [SerializeField] private float fallAcceleration;
     [SerializeField] private float maxFallSpeed;
-    [SerializeField] private List<LayerMask> stepableLayers = new List<LayerMask>();
+    [SerializeField] private List<LayerMask> stepableLayers;
+    private int layers = 0;
 
     [Header("Time Lock")]
     [SerializeField] private bool timeLocked = false;
@@ -46,6 +47,10 @@ public class MonsterAController : MonoBehaviour
         positionsTemp = new List<PositionInTime>();
         leftDisX = transform.position.x - leftDisX;
         rightDisX = transform.position.x + rightDisX;
+        foreach (LayerMask layer in stepableLayers)
+        {
+            layers += layer;
+        }
     }
 
     private void Update()
@@ -175,14 +180,14 @@ public class MonsterAController : MonoBehaviour
     #region Floor
     private bool CheckFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, ~(1 << gameObject.layer));
-        Debug.DrawRay(rigidbody2D.position, Vector2.down * rigidbody2D.transform.localScale.y / 2, Color.green, 0.1f);
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, layers);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.green, 0.1f);
         return hit.collider;
     }
 
     private GameObject GetFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, ~(1 << gameObject.layer));
+        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, layers); //need revise to use
         return hit.collider.gameObject;
     }
     #endregion
