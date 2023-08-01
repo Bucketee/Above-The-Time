@@ -16,18 +16,26 @@ public class PlayerController : MonoBehaviour
     [Header("Move")]
     [SerializeField] private float walkSpeed = 6f;
 
+    [Header("Dash")]
+    [SerializeField] private float dashDistance;
+
     [Header("Jump")]
     [SerializeField] private float jumpPower = 12f;
     [SerializeField] private float currJumpTime = 0f;
     [SerializeField] private float maxJumpTime = 0.2f;
-    [SerializeField] private bool isJump = false;
+    [SerializeField] private bool isJump = false; //is jumping
     [SerializeField] private float fallAcceleration = 75f;
     [SerializeField] private float maxFallSpeed = -30f;
-    [SerializeField] private List<LayerMask> stepableLayers = new List<LayerMask>();
+    [SerializeField] private List<LayerMask> stepableLayers;
+    private int layers = 0;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        foreach (LayerMask layer in stepableLayers)
+        {
+            layers += layer;
+        }
     }
 
     private void Update()
@@ -50,7 +58,7 @@ public class PlayerController : MonoBehaviour
         speed.x = inputHor * walkSpeed;
         if (inputHor >= 0f)
         {
-            //right side
+            //right side help
         }
         else
         {
@@ -59,7 +67,19 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    #region Dash
+    private void HandleDash()
+    {
+        float inputHor = input.RetrieveMoveInput();
+        bool dashInput = input.RetrieveDashInput();
+        return; //help
+    }
+    #endregion
+
     #region Jump
+    /// <summary>
+    /// make isJump to false from true when is on floor
+    /// </summary>
     private void CheckIsJump()
     {
         if (isJump && !isOnAir) //add floor.layer to check floor type help
@@ -68,10 +88,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// change state of isOnAir by CheckFloor()
+    /// </summary>
     private void CheckOnAir()
     {
         bool isFloor = CheckFloor();
-        if (!isFloor || !stepableLayers.Contains(1 << GetFloor().layer))
+        if (!isFloor)
         {
             isOnAir = true;
         }
@@ -139,14 +162,14 @@ public class PlayerController : MonoBehaviour
     #region Floor
     private bool CheckFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, ~(1 << gameObject.layer));
-        Debug.DrawRay(rigidbody2D.position, Vector2.down * rigidbody2D.transform.localScale.y / 2, Color.green, 0.1f);
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, layers);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.green, 0.1f);
         return hit.collider;
     }
 
     private GameObject GetFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, ~(1 << gameObject.layer));
+        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, layers); //need revise to use
         return hit.collider.gameObject;
     }
     #endregion

@@ -12,7 +12,7 @@ public class PlayerInputController : InputController
 
     public override bool RetrieveDashInput()
     {
-        return false;
+        return Input.GetKey(KeyCode.LeftShift);
     }
 
     public override bool RetrieveJumpInput()
