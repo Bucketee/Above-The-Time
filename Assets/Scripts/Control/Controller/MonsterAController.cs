@@ -31,26 +31,21 @@ public class MonsterAController : MonoBehaviour
     [SerializeField] private bool isJump = false;
     [SerializeField] private float fallAcceleration;
     [SerializeField] private float maxFallSpeed;
-    [SerializeField] private List<LayerMask> stepableLayers;
-    private int layers = 0;
+    [SerializeField] private LayerMask stepableLayers;
 
     [Header("Time Lock")]
     [SerializeField] private bool timeLocked = false;
     [SerializeField] private float duration;
-    private List<PositionInTime> positions;
-    private List<PositionInTime> positionsTemp; //for future
+    private Stack<PositionInTime> positions;
+    private Stack<PositionInTime> positionsTemp; //for future
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        positions = new List<PositionInTime>();
-        positionsTemp = new List<PositionInTime>();
+        positions = new Stack<PositionInTime>();
+        positionsTemp = new Stack<PositionInTime>();
         leftDisX = transform.position.x - leftDisX;
         rightDisX = transform.position.x + rightDisX;
-        foreach (LayerMask layer in stepableLayers)
-        {
-            layers += layer;
-        }
     }
 
     private void Update()
@@ -130,7 +125,7 @@ public class MonsterAController : MonoBehaviour
     private void CheckOnAir()
     {
         bool isFloor = CheckFloor();
-        if (!isFloor || !stepableLayers.Contains(1 << GetFloor().layer))
+        if (!isFloor)
         {
             isOnAir = true;
         }
@@ -180,14 +175,14 @@ public class MonsterAController : MonoBehaviour
     #region Floor
     private bool CheckFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, layers);
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, stepableLayers);
         Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.green, 0.1f);
         return hit.collider;
     }
 
     private GameObject GetFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, layers); //need revise to use
+        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, stepableLayers); //need revise to use
         return hit.collider.gameObject;
     }
     #endregion
@@ -220,7 +215,7 @@ public class MonsterAController : MonoBehaviour
     {
         Debug.Log("UnLocked!!");
         timeLocked = false;
-        positionsTemp = new List<PositionInTime>();
+        positionsTemp = new Stack<PositionInTime>();
         isMoving = false; //prevent bugs
         ApplyMovement();
     }
@@ -239,7 +234,7 @@ public class MonsterAController : MonoBehaviour
     private void Record()
     {
         if (timeLocked) return;
-        positions.Insert(0, new PositionInTime(transform.position, transform.rotation, speed));
+        positions.Push(new PositionInTime(transform.position, transform.rotation, speed));
     }
 
     /// <summary>
@@ -249,11 +244,10 @@ public class MonsterAController : MonoBehaviour
     {
         if (positions.Count > 0)
         {
-            PositionInTime positionInTime = positions[0];
+            PositionInTime positionInTime = positions.Pop();
             transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
             speed = positionInTime.speed;
-            positions.RemoveAt(0);
-            positionsTemp.Insert(0, positionInTime);
+            positionsTemp.Push(positionInTime);
         }        
         else
         {
@@ -268,11 +262,10 @@ public class MonsterAController : MonoBehaviour
     {
         if (positionsTemp.Count > 0)
         {
-            PositionInTime positionInTime = positionsTemp[0];
+            PositionInTime positionInTime = positionsTemp.Pop();
             transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
             speed = positionInTime.speed;
-            positionsTemp.RemoveAt(0);
-            positions.Insert(0, positionInTime);
+            positions.Push(positionInTime);
         }
         else
         {

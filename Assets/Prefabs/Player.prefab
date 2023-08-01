@@ -97,8 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c7e7a0574c23940b247c1a002f0dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalBullet: {fileID: 6383022994940815578, guid: d561c27a96ccf3140b7a35fc3e8112be, type: 3}
-  timeBullet: {fileID: 6383022994940815578, guid: e73bbdc55a9cc6741880cab3f085e91a, type: 3}
+  bullets:
+  - {fileID: 6383022994940815578, guid: d561c27a96ccf3140b7a35fc3e8112be, type: 3}
+  - {fileID: 6383022994940815578, guid: e73bbdc55a9cc6741880cab3f085e91a, type: 3}
+  speed: 80
+  life: 2
 --- !u!1 &3245892722807136237
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +301,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1107804302082702326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +330,7 @@ MonoBehaviour:
   isOnAir: 0
   input: {fileID: 11400000, guid: 8fb3d76fef94431458e9778259fcd6e8, type: 2}
   walkSpeed: 6
-  runSpeed: 9
+  dashDistance: 10
   jumpPower: 12
   currJumpTime: 0
   maxJumpTime: 0.2
@@ -335,5 +338,5 @@ MonoBehaviour:
   fallAcceleration: 75
   maxFallSpeed: -30
   stepableLayers:
-  - serializedVersion: 2
-    m_Bits: 64
+    serializedVersion: 2
+    m_Bits: 192
