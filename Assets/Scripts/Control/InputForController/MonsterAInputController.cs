@@ -19,7 +19,6 @@ public class MonsterAInputController : InputController
         }
         */
         return Input.GetKey(KeyCode.LeftControl);
-        return false;
     }
 
     public override bool RetrieveJumpHoldInput()

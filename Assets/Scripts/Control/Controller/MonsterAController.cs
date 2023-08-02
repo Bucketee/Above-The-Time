@@ -36,14 +36,14 @@ public class MonsterAController : MonoBehaviour
     [Header("Time Lock")]
     [SerializeField] private bool timeLocked = false;
     [SerializeField] private float duration;
-    private Stack<PositionInTime> positions;
-    private Stack<PositionInTime> positionsTemp; //for future
+    private Stack<PositionInTime> positions = new Stack<PositionInTime>();
+    private Stack<PositionInTime> positionsTemp = new Stack<PositionInTime>(); //for future
+
+    private Coroutine nowTimeLockCoroutine = null;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        positions = new Stack<PositionInTime>();
-        positionsTemp = new Stack<PositionInTime>();
         leftDisX = transform.position.x - leftDisX;
         rightDisX = transform.position.x + rightDisX;
     }
@@ -55,11 +55,11 @@ public class MonsterAController : MonoBehaviour
             float timeAmount = input.RetrieveTimeDirInput();
             if (timeAmount < 0)
             {
-                for (int i = 0; i < (0.05 / Time.deltaTime); i++) Rewind();
+                for (int i = 0; i < (0.05f / Time.deltaTime); i++) Rewind();
             }
             else if (timeAmount > 0)
             {
-                for (int i = 0; i < (0.05 / Time.deltaTime); i++) UnRewind();
+                for (int i = 0; i < (0.05f / Time.deltaTime); i++) UnRewind();
             }
             return;
         }
@@ -194,9 +194,22 @@ public class MonsterAController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!timeLocked && collision.collider.GetComponentInParent<Bullet>() && collision.collider.GetComponentInParent<Bullet>().type == Bullet.BulletType.time)
+        Bullet bullet = collision.collider.GetComponentInParent<Bullet>();
+        if (bullet && bullet.type == Bullet.BulletType.time)
         {
-            GetTimeLocked();
+            if (timeLocked)
+            {
+                if (nowTimeLockCoroutine != null)
+                {
+                    StopCoroutine(nowTimeLockCoroutine);
+                    nowTimeLockCoroutine = null;
+                }
+                GetTimeUnLocked();
+            }
+            else
+            {
+                GetTimeLocked();
+            }
         }
     }
 
@@ -208,7 +221,7 @@ public class MonsterAController : MonoBehaviour
         Debug.Log("Locked!!");
         timeLocked = true;
         rigidbody2D.velocity = new Vector2(0, 0);
-        StartCoroutine(TimeLockDuration(duration));
+        nowTimeLockCoroutine = StartCoroutine(TimeLockDuration(duration));
     }
 
     private void GetTimeUnLocked()
