@@ -33,44 +33,26 @@ public class MonsterAController : MonoBehaviour
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private LayerMask stepableLayers;
 
-    [Header("Time Lock")]
-    [SerializeField] private bool timeLocked = false;
-    [SerializeField] private float duration;
-    private Stack<PositionInTime> positions = new Stack<PositionInTime>();
-    private Stack<PositionInTime> positionsTemp = new Stack<PositionInTime>(); //for future
+    private TimeLockObject timeLockObject;
 
-    private Coroutine nowTimeLockCoroutine = null;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        timeLockObject = GetComponent<TimeLockObject>();
         leftDisX = transform.position.x - leftDisX;
         rightDisX = transform.position.x + rightDisX;
     }
 
     private void Update()
     {
-        if (timeLocked)
-        {
-            float timeAmount = input.RetrieveTimeDirInput();
-            if (timeAmount < 0)
-            {
-                for (int i = 0; i < (0.05f / Time.deltaTime); i++) Rewind();
-            }
-            else if (timeAmount > 0)
-            {
-                for (int i = 0; i < (0.05f / Time.deltaTime); i++) UnRewind();
-            }
-            return;
-        }
-        Record();
         CheckOnAir();
         CheckIsJump();
     }
 
     private void FixedUpdate()
     {
-        if (timeLocked)
+        if (timeLockObject.TimeLocked)
         {
             return;
         }
@@ -187,103 +169,4 @@ public class MonsterAController : MonoBehaviour
     }
     #endregion
 
-    #region Time Lock 
-    /// <summary>
-    /// TimeLocked when collide with time bullet
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Bullet bullet = collision.collider.GetComponentInParent<Bullet>();
-        if (bullet && bullet.type == Bullet.BulletType.time)
-        {
-            if (timeLocked)
-            {
-                if (nowTimeLockCoroutine != null)
-                {
-                    StopCoroutine(nowTimeLockCoroutine);
-                    nowTimeLockCoroutine = null;
-                }
-                GetTimeUnLocked();
-            }
-            else
-            {
-                GetTimeLocked();
-            }
-        }
-    }
-
-    /// <summary>
-    /// get time locked, stop
-    /// </summary>
-    private void GetTimeLocked()
-    {
-        Debug.Log("Locked!!");
-        timeLocked = true;
-        rigidbody2D.velocity = new Vector2(0, 0);
-        nowTimeLockCoroutine = StartCoroutine(TimeLockDuration(duration));
-    }
-
-    private void GetTimeUnLocked()
-    {
-        Debug.Log("UnLocked!!");
-        timeLocked = false;
-        positionsTemp = new Stack<PositionInTime>();
-        isMoving = false; //prevent bugs
-        ApplyMovement();
-    }
-
-    /// <summary>
-    /// when time locked stop while duration
-    /// </summary>
-    /// <param name="duration"></param>
-    /// <returns></returns>
-    private IEnumerator TimeLockDuration(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        GetTimeUnLocked();
-    }
-
-    private void Record()
-    {
-        if (timeLocked) return;
-        positions.Push(new PositionInTime(transform.position, transform.rotation, speed));
-    }
-
-    /// <summary>
-    /// To Past
-    /// </summary>
-    private void Rewind()
-    {
-        if (positions.Count > 0)
-        {
-            PositionInTime positionInTime = positions.Pop();
-            transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
-            speed = positionInTime.speed;
-            positionsTemp.Push(positionInTime);
-        }        
-        else
-        {
-            Debug.Log("no more past");
-        }
-    }
-
-    /// <summary>
-    /// To Future
-    /// </summary>
-    private void UnRewind()
-    {
-        if (positionsTemp.Count > 0)
-        {
-            PositionInTime positionInTime = positionsTemp.Pop();
-            transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
-            speed = positionInTime.speed;
-            positions.Push(positionInTime);
-        }
-        else
-        {
-            Debug.Log("no more future");
-        }
-    }
-    #endregion
 }

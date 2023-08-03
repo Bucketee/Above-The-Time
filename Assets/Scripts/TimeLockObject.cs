@@ -7,7 +7,8 @@ public class TimeLockObject : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     [Header("Time Lock")]
     [SerializeField] private bool timeLocked = false;
-    [SerializeField] private float duration;
+    public bool TimeLocked => timeLocked;
+    [SerializeField] private float duration = 10f;
     private Stack<PositionInTime> positions = new Stack<PositionInTime>();
     private Stack<PositionInTime> positionsTemp = new Stack<PositionInTime>(); //for future
 
@@ -76,6 +77,7 @@ public class TimeLockObject : MonoBehaviour
     private void GetTimeLocked()
     {
         Debug.Log("Locked!!");
+        GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
         timeLocked = true;
         rigidbody2D.velocity = new Vector2(0, 0);
         rigidbody2D.angularVelocity = 0f;
@@ -83,9 +85,10 @@ public class TimeLockObject : MonoBehaviour
         nowTimeLockCoroutine = StartCoroutine(TimeLockDuration(duration));
     }
 
-    private void GetTimeUnLocked()
+    public void GetTimeUnLocked()
     {
         Debug.Log("UnLocked!!");
+        GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
         positionsTemp = new Stack<PositionInTime>();
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
