@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimeLockObject : MonoBehaviour
 {
     private new Rigidbody2D rigidbody2D;
+
     [Header("Time Lock")]
     [SerializeField] private bool timeLocked = false;
     public bool TimeLocked => timeLocked;
@@ -13,6 +14,7 @@ public class TimeLockObject : MonoBehaviour
     private Stack<PositionInTime> positionsTemp = new Stack<PositionInTime>(); //for future
 
     private Vector2 speed;
+    private float angular;
     private Quaternion rotation;
     private Coroutine nowTimeLockCoroutine = null;
 
@@ -71,7 +73,7 @@ public class TimeLockObject : MonoBehaviour
     private void Record()
     {
         if (timeLocked) return;
-        positions.Push(new PositionInTime(transform.position, transform.rotation, speed));
+        positions.Push(new PositionInTime(transform.position, transform.rotation, rigidbody2D.velocity, rigidbody2D.angularVelocity));
     }
 
     private void GetTimeLocked()
@@ -102,6 +104,7 @@ public class TimeLockObject : MonoBehaviour
             PositionInTime positionInTime = positions.Pop();
             transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
             speed = positionInTime.speed;
+            angular = positionInTime.angular;
             positionsTemp.Push(positionInTime);
         }        
         else
@@ -117,6 +120,7 @@ public class TimeLockObject : MonoBehaviour
             PositionInTime positionInTime = positionsTemp.Pop();
             transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
             speed = positionInTime.speed;
+            angular = positionInTime.angular;
             positions.Push(positionInTime);
         }
         else
@@ -128,6 +132,6 @@ public class TimeLockObject : MonoBehaviour
     private void ApplyMovement()
     {
         rigidbody2D.velocity = speed;
-        rigidbody2D.rotation = rotation.z;
+        rigidbody2D.angularVelocity = angular;
     }
 }
