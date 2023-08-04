@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterAController : MonoBehaviour
 {
     private new Rigidbody2D rigidbody2D;
+    private SpriteRenderer spriteRenderer;
 
     [Header("State")]
     [SerializeField] private Vector2 speed;
@@ -16,12 +17,11 @@ public class MonsterAController : MonoBehaviour
     [Header("Move")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
-    [SerializeField] private bool isMoving = false;
     [SerializeField] private bool movingCool = false;
-    private float originX;
-    [SerializeField] private float leftDisX;
-    [SerializeField] private float rightDisX;
+    [SerializeField] private float leftX;
+    [SerializeField] private float rightX;
     [SerializeField] private float destinationX;
+    [SerializeField] private bool hasDestination = false;
     [SerializeField] private float horizontalDir;
 
     [Header("Jump")]
@@ -33,15 +33,16 @@ public class MonsterAController : MonoBehaviour
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private LayerMask stepableLayers;
 
+    [Header("Time Lock")]
     private TimeLockObject timeLockObject;
-
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         timeLockObject = GetComponent<TimeLockObject>();
-        leftDisX = transform.position.x - leftDisX;
-        rightDisX = transform.position.x + rightDisX;
+        leftX = transform.position.x - leftX;
+        rightX = transform.position.x + rightX;
     }
 
     private void Update()
@@ -64,26 +65,32 @@ public class MonsterAController : MonoBehaviour
     #region Move
     private void HandleMove()
     {
-        if (isMoving && Mathf.Abs(transform.position.x - destinationX) <= 0.1)
+        if (movingCool) return;
+        if (!hasDestination)
         {
-            isMoving = false;
-            speed.x = 0f;
-            StartCoroutine(MovingCoolCo());
-        }
-        if (isMoving || movingCool) return;
-
-        destinationX = Random.Range(leftDisX, rightDisX);
-        horizontalDir = destinationX < transform.position.x ? -1f : 1f;
-        speed.x = horizontalDir * walkSpeed;
-        isMoving = true;
-
-        if (horizontalDir >= 0f)
-        {
-            //right side
+            FindDestination();
         }
         else
         {
-            //left side
+            if (Mathf.Abs(transform.position.x - destinationX) <= 0.1)
+            {
+                hasDestination = false;
+                speed.x = 0f;
+                StartCoroutine(MovingCoolCo());
+            }
+            else
+            {
+                horizontalDir = destinationX < transform.position.x ? -1f : 1f;
+                if (horizontalDir >= 0f)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else
+                {
+                    spriteRenderer.flipX = true;
+                }
+                speed.x = horizontalDir * walkSpeed;
+            }
         }
     }
 
@@ -92,6 +99,12 @@ public class MonsterAController : MonoBehaviour
         movingCool = true;
         yield return new WaitForSeconds(Random.Range(2f, 5f));
         movingCool = false;
+    }
+
+    private void FindDestination()
+    {
+        destinationX = Random.Range(leftX, rightX);
+        hasDestination = true;
     }
     #endregion
 
@@ -168,5 +181,4 @@ public class MonsterAController : MonoBehaviour
         return hit.collider.gameObject;
     }
     #endregion
-
 }
