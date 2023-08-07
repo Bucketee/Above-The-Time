@@ -590,32 +590,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterA
       objectReference: {fileID: 0}
-    - target: {fileID: 6110793988682446182, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
-      propertyPath: duration
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6098348792316447283, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
---- !u!1 &1350095054 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5481429218428560458, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
-  m_PrefabInstance: {fileID: 1350095053}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1350095055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350095054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0a17c64223b70b478a36a11cbdee254, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeLocked: 0
-  duration: 10
 --- !u!1 &1356334640
 GameObject:
   m_ObjectHideFlags: 0
