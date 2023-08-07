@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TimeLockObject : MonoBehaviour
 {
@@ -10,12 +11,13 @@ public class TimeLockObject : MonoBehaviour
     [SerializeField] private bool timeLocked = false;
     public bool TimeLocked => timeLocked;
     [SerializeField] private float duration = 10f;
-    private Stack<PositionInTime> positions = new Stack<PositionInTime>();
-    private Stack<PositionInTime> positionsTemp = new Stack<PositionInTime>(); //for future
+    private LinkedList<PositionInTime> positions = new ();
+    private LinkedList<PositionInTime> positionsTemp = new (); //for future
+    private int maxRecordSize = 20;
+    public int Count => positions.Count;
 
     private Vector2 speed;
     private float angular;
-    private Quaternion rotation;
     private Coroutine nowTimeLockCoroutine = null;
 
 
@@ -73,7 +75,11 @@ public class TimeLockObject : MonoBehaviour
     private void Record()
     {
         if (timeLocked) return;
-        positions.Push(new PositionInTime(transform.position, transform.rotation, rigidbody2D.velocity, rigidbody2D.angularVelocity));
+        if (positions.Count >= maxRecordSize)
+        {
+            positions.RemoveFirst();
+        }
+        positions.AddLast(new PositionInTime(transform.position, transform.rotation, rigidbody2D.velocity, rigidbody2D.angularVelocity));
     }
 
     private void GetTimeLocked()
@@ -92,7 +98,7 @@ public class TimeLockObject : MonoBehaviour
         Debug.Log("UnLocked!!");
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
-        positionsTemp = new Stack<PositionInTime>();
+        positionsTemp.Clear();
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         ApplyMovement();
     }
@@ -101,11 +107,12 @@ public class TimeLockObject : MonoBehaviour
     {
         if (positions.Count > 0)
         {
-            PositionInTime positionInTime = positions.Pop();
+            PositionInTime positionInTime = positions.Last.Value;
+            positions.RemoveLast();
             transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
             speed = positionInTime.speed;
             angular = positionInTime.angular;
-            positionsTemp.Push(positionInTime);
+            positionsTemp.AddLast(positionInTime);
         }        
         else
         {
@@ -117,11 +124,12 @@ public class TimeLockObject : MonoBehaviour
     {
         if (positionsTemp.Count > 0)
         {
-            PositionInTime positionInTime = positionsTemp.Pop();
+            PositionInTime positionInTime = positionsTemp.Last.Value;
+            positionsTemp.RemoveLast();
             transform.SetPositionAndRotation(positionInTime.position, positionInTime.rotation);
             speed = positionInTime.speed;
             angular = positionInTime.angular;
-            positions.Push(positionInTime);
+            positions.AddLast(positionInTime);
         }
         else
         {
@@ -135,3 +143,4 @@ public class TimeLockObject : MonoBehaviour
         rigidbody2D.angularVelocity = angular;
     }
 }
+
