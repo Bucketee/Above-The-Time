@@ -9,11 +9,14 @@ public class TimeLockObject : MonoBehaviour
 
     [Header("Time Lock")]
     [SerializeField] private bool timeLocked = false;
+    public float timeLockCoolDown;
     public bool TimeLocked => timeLocked;
     [SerializeField] private float duration = 10f;
     private LinkedList<PositionInTime> positions = new ();
     private LinkedList<PositionInTime> positionsTemp = new (); //for future
     private int maxRecordSize = 20;
+    private float timeLockCoolDownTime = 0;
+    private bool canTimeLock = true;
     public int Count => positions.Count;
 
     private Vector2 speed;
@@ -29,7 +32,7 @@ public class TimeLockObject : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Bullet bullet = collision.collider.GetComponentInParent<Bullet>();
-        if (bullet && bullet.type == Bullet.BulletType.time)
+        if (bullet && bullet.type == Bullet.BulletType.time && canTimeLock)
         {
             if (timeLocked)
             {
@@ -62,6 +65,11 @@ public class TimeLockObject : MonoBehaviour
                 for (int i = 0; i < (0.05f / Time.deltaTime); i++) UnRewind();
             }
             return;
+        }
+        else 
+        {
+            if (timeLockCoolDownTime > 0) { timeLockCoolDownTime -= 1f * Time.deltaTime; canTimeLock = false; }
+            else { canTimeLock = true; }
         }
         Record();
     }
@@ -98,6 +106,7 @@ public class TimeLockObject : MonoBehaviour
         Debug.Log("UnLocked!!");
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
+        timeLockCoolDownTime = timeLockCoolDown;
         positionsTemp.Clear();
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         ApplyMovement();
