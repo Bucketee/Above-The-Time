@@ -8,6 +8,7 @@ public class WallFragment : TimeLockObject
     private bool rewinding = false;
     private Vector2 firstPos;
     private float rewindingSpeed;
+    public float rewindSize;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class WallFragment : TimeLockObject
             }
             else
             {
+                GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
                 wallObject.TimeLocked();
             }
         }
@@ -43,7 +45,8 @@ public class WallFragment : TimeLockObject
     {
         if (wallObject.timeLocked || gameObject.layer == LayerMask.NameToLayer("Wall") || rigidbody2D.velocity == new Vector2(0, 0)) return;
         positions.AddLast(new PositionInTime(transform.position, transform.rotation, rigidbody2D.velocity, rigidbody2D.angularVelocity));
-        Debug.Log("recording");
+        rewindSize += 1;
+        //Debug.Log("recording");
     }
 
     public void ExplosionEffect(Vector2 loc, float power)
@@ -86,24 +89,45 @@ public class WallFragment : TimeLockObject
     public override void GetTimeLocked()
     {
         //Debug.Log("Locked!!");
-        GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
         timeLocked = true;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        GetComponent<Rigidbody2D>().angularVelocity = 0f;
+        rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        rigidbody2D.velocity = new Vector2(0f, 0f);
+        rigidbody2D.angularVelocity = 0f;
     }
 
     public override void GetTimeUnLocked()
     {
         //Debug.Log("UnLocked!!");
+        if (wallObject.timeLocked)
+        {
+            wallObject.TimeUnLocked();
+            return;
+        }
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        if (gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        }
+        else if (gameObject.layer == LayerMask.NameToLayer("WallFragment"))
+        {
+            rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        }
+        if (positions.Count > 0)
+        {
+            speed = positions.Last.Value.speed;
+            angular = positions.Last.Value.angular;
+        }
         ApplyMovement();
     }
 
     public void SetRewindSpeed(float speed)
     {
         rewindingSpeed = speed;
+    }
+
+    public void SetTimeLock(bool state)
+    {
+        timeLocked = state;
     }
 }
