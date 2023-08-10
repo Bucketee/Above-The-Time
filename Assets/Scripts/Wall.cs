@@ -88,6 +88,7 @@ public class Wall : MonoBehaviour
 
     public void TimeLocked()
     {
+        if (timeLocked) return;
         count = 0;
         timeLocked = true;
         foreach (WallFragment fragment in fragments)
@@ -98,6 +99,7 @@ public class Wall : MonoBehaviour
 
     public void TimeUnLocked()
     {
+        if (!timeLocked) return;
         count = 0;
         timeLocked = false;
         foreach (WallFragment fragment in fragments)
