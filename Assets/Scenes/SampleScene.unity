@@ -211,13 +211,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4a7b0b5a1cf12438d574e0e7c31686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  broken: 1
+  broken: 0
   explosionLoc: {x: 0, y: 0}
   timeLocked: 0
   count: 0
-  amount: 80
+  amount: 10
   fragments: []
+  rewinding: 0
   power: 3
+  speed: 500
 --- !u!4 &384129232
 Transform:
   m_ObjectHideFlags: 0

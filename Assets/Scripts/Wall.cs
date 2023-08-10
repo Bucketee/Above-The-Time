@@ -13,7 +13,10 @@ public class Wall : MonoBehaviour
 
     [Header("Fragments")]
     [SerializeField] private List<WallFragment> fragments = new List<WallFragment>();
+    public bool rewinding = false;
+    private int rewindCount = 0;
     public float power; //power of breaking walls
+    [SerializeField] private float speed = 500;
 
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class Wall : MonoBehaviour
         foreach (WallFragment fragment in GetComponentsInChildren<WallFragment>())
         {
             fragments.Add(fragment);
+            fragment.SetRewindSpeed(speed);
         }
     }
 
@@ -42,7 +46,7 @@ public class Wall : MonoBehaviour
             if (count * timeAmount > 0) Vibrating();
             if (broken && count < -amount)
             {
-                FIxWall();
+                FixWall();
             }
             else if (!broken && count > amount)
             {
@@ -58,6 +62,7 @@ public class Wall : MonoBehaviour
     /// <param name="isQuiet">true to be used at start of the game</param>
     public void BreakWall(bool isQuiet, float power) //help sound
     {
+        TimeUnLocked();
         foreach (WallFragment fragment in fragments)
         {
             fragment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -67,14 +72,17 @@ public class Wall : MonoBehaviour
         broken = true;
     }
 
-    private void FIxWall()
+    private void FixWall()
     {
         TimeUnLocked();
         foreach (WallFragment fragment in fragments)
         {
-            fragment.GoToFirstPos();
+            fragment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             fragment.gameObject.layer = LayerMask.NameToLayer("Wall");
+            fragment.GoToFirstPos();
         }
+        rewindCount = 0;
+        rewinding = true;
         broken = false;
     }
 
@@ -90,6 +98,7 @@ public class Wall : MonoBehaviour
 
     public void TimeUnLocked()
     {
+        count = 0;
         timeLocked = false;
         foreach (WallFragment fragment in fragments)
         {
@@ -102,6 +111,15 @@ public class Wall : MonoBehaviour
         foreach (WallFragment fragment in fragments)
         {
             fragment.Vibrating();
+        }
+    }
+
+    public void AddRewindCount()
+    {
+        rewindCount += 1;
+        if (rewindCount == fragments.Count)
+        {
+            rewinding = false;
         }
     }
 }
