@@ -7,6 +7,7 @@ public class WallFragment : TimeLockObject
     private Wall wallObject;
     private bool rewinding = false;
     private Vector2 firstPos;
+    private float rewindingSpeed;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class WallFragment : TimeLockObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (rewinding || wallObject.rewinding) return;
         Bullet bullet = collision.collider.GetComponentInParent<Bullet>();
         if (bullet && bullet.type == Bullet.BulletType.time)
         {
@@ -32,7 +34,6 @@ public class WallFragment : TimeLockObject
             }
             else
             {
-                GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
                 wallObject.TimeLocked();
             }
         }
@@ -40,8 +41,9 @@ public class WallFragment : TimeLockObject
 
     protected override void Record()
     {
-        if (wallObject.timeLocked) return;
-        positions.AddLast(new PositionInTime(transform.position, transform.rotation, GetComponent<Rigidbody2D>().velocity, GetComponent<Rigidbody2D>().angularVelocity));
+        if (wallObject.timeLocked || gameObject.layer == LayerMask.NameToLayer("Wall") || rigidbody2D.velocity == new Vector2(0, 0)) return;
+        positions.AddLast(new PositionInTime(transform.position, transform.rotation, rigidbody2D.velocity, rigidbody2D.angularVelocity));
+        Debug.Log("recording");
     }
 
     public void ExplosionEffect(Vector2 loc, float power)
@@ -52,13 +54,12 @@ public class WallFragment : TimeLockObject
 
     public void Vibrating()
     {
-        Debug.Log("vibrate");
+        //Debug.Log("vibrate");
         //help
     }
 
     public void GoToFirstPos()
     {
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         StartCoroutine(GoToFirstPosCo());
         Debug.Log("go to first");
     }
@@ -66,32 +67,43 @@ public class WallFragment : TimeLockObject
     private IEnumerator GoToFirstPosCo()
     {
         rewinding = true;
+        rigidbody2D.velocity = new Vector2(0f, 0f);
+        rigidbody2D.angularVelocity = 0f;
         while (positions.Count > 0)
         {
-            Debug.Log("go to first");
             Rewind();
-            yield return new WaitForSeconds(1f / (50 * 300 * Time.deltaTime));
+            Debug.Log("rewinding");
+            yield return new WaitForSeconds(1f / (50 * rewindingSpeed * Time.deltaTime));
         }
         transform.position = firstPos;
+        speed = new Vector2(0f, 0f);
+        angular = 0f;
+        positions = new LinkedList<PositionInTime>();
         rewinding = false;
+        wallObject.AddRewindCount();
     }
 
     public override void GetTimeLocked()
     {
-        Debug.Log("Locked!!");
+        //Debug.Log("Locked!!");
+        GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
         timeLocked = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         GetComponent<Rigidbody2D>().angularVelocity = 0f;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
     }
 
     public override void GetTimeUnLocked()
     {
-        Debug.Log("UnLocked!!");
+        //Debug.Log("UnLocked!!");
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
-        positionsTemp.Clear();
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         ApplyMovement();
+    }
+
+    public void SetRewindSpeed(float speed)
+    {
+        rewindingSpeed = speed;
     }
 }

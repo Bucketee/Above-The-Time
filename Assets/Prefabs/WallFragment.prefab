@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 422768022015481884}
   - component: {fileID: 422768022015481885}
-  - component: {fileID: 422768022015481882}
   - component: {fileID: 379582967}
   - component: {fileID: -6606429611954195676}
+  - component: {fileID: 422768022015481882}
   m_Layer: 8
   m_Name: WallFragment
   m_TagString: Untagged
@@ -87,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &422768022015481882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422768022015481887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b9c4d2b8d227a4cbfdb50d6223bd3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeLocked: 0
-  timeLockCoolDown: 0
-  duration: 10
 --- !u!50 &379582967
 Rigidbody2D:
   serializedVersion: 4
@@ -152,3 +137,19 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.5}
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: 0.5}
+--- !u!114 &422768022015481882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422768022015481887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b9c4d2b8d227a4cbfdb50d6223bd3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLocked: 0
+  timeLockCoolDown: 0
+  duration: 0
+  maxRecordSize: 0
