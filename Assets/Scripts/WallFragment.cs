@@ -71,9 +71,9 @@ public class WallFragment : TimeLockObject
         rigidbody2D.angularVelocity = 0f;
         while (positions.Count > 0)
         {
+            yield return new WaitForSeconds((positions.Last.Value.position - rigidbody2D.position).magnitude / (50 * rewindingSpeed * Time.deltaTime));
             Rewind();
             Debug.Log("rewinding");
-            yield return new WaitForSeconds(1f / (50 * rewindingSpeed * Time.deltaTime));
         }
         transform.position = firstPos;
         speed = new Vector2(0f, 0f);
