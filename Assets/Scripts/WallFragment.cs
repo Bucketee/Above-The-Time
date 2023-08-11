@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class WallFragment : TimeLockObject
 {
-    private Wall wallObject;
-    private bool rewinding = false;
+    [Header("State")]
     private Vector2 firstPos;
+    private float firstRot;
+    private bool rewinding = false;
     private float rewindingSpeed;
-    public float rewindSize;
+    private float initialRot = 0;
+
+    [Header("Vibrate")]
+    private float vibration = 1.5f;
+    private Coroutine vibrateCo = null;
+
+    private Wall wallObject;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         wallObject = GetComponentInParent<Wall>();
         firstPos = rigidbody2D.position;
+        firstRot = rigidbody2D.rotation;
     }
 
     private void Update()
@@ -43,28 +51,53 @@ public class WallFragment : TimeLockObject
 
     protected override void Record()
     {
-        if (wallObject.timeLocked || gameObject.layer == LayerMask.NameToLayer("Wall") || rigidbody2D.velocity == new Vector2(0, 0)) return;
+        //if (wallObject.timeLocked || gameObject.layer == LayerMask.NameToLayer("Wall") || rigidbody2D.velocity == new Vector2(0, 0)) return; //337
+        if (wallObject.timeLocked || gameObject.layer == LayerMask.NameToLayer("Wall") || (positions.Count > 0 && (positions.Last.Value.position - rigidbody2D.position).magnitude <= 0.01f)) return; //73
+        //return nothing => 489
         positions.AddLast(new PositionInTime(transform.position, transform.rotation, rigidbody2D.velocity, rigidbody2D.angularVelocity));
-        rewindSize += 1;
         //Debug.Log("recording");
     }
 
     public void ExplosionEffect(Vector2 loc, float power)
     {
+        //Debug.Log("exploding");
         GetComponent<Rigidbody2D>().AddForceAtPosition((GetComponent<Rigidbody2D>().position - loc) * power / (GetComponent<Rigidbody2D>().position - loc).magnitude, loc, ForceMode2D.Impulse);
-        Debug.Log("exploding");
     }
 
     public void Vibrating()
     {
         //Debug.Log("vibrate");
-        //help
+        if (vibrateCo != null) return;
+        initialRot = rigidbody2D.rotation;
+        vibrateCo = StartCoroutine(VibratingCo());
+    }
+
+    public void StopVibrating()
+    {
+        //Debug.Log("vibrate");
+        if (vibrateCo != null) StopCoroutine(vibrateCo);
+        vibrateCo = null;
+        rigidbody2D.rotation = initialRot;
+    }
+
+    private IEnumerator VibratingCo()
+    {
+        while (timeLocked && !rewinding)
+        {
+            //Debug.Log("asd");
+            rigidbody2D.rotation = initialRot + Mathf.PingPong(Time.time * wallObject.count * 10, 2 * vibration) - vibration;
+            yield return null;
+        }
+        if (!timeLocked)
+        {
+            StopVibrating();
+        }
     }
 
     public void GoToFirstPos()
     {
         StartCoroutine(GoToFirstPosCo());
-        Debug.Log("go to first");
+        //Debug.Log("go to first");
     }
 
     private IEnumerator GoToFirstPosCo()
@@ -76,11 +109,13 @@ public class WallFragment : TimeLockObject
         {
             yield return new WaitForSeconds((positions.Last.Value.position - rigidbody2D.position).magnitude / (50 * rewindingSpeed * Time.deltaTime));
             Rewind();
-            Debug.Log("rewinding");
+            //Debug.Log("rewinding");
         }
         transform.position = firstPos;
+        transform.rotation = Quaternion.Euler(0f, 0f, firstRot);
         speed = new Vector2(0f, 0f);
         angular = 0f;
+        gameObject.layer = LayerMask.NameToLayer("Wall");
         positions = new LinkedList<PositionInTime>();
         rewinding = false;
         wallObject.AddRewindCount();
@@ -88,7 +123,7 @@ public class WallFragment : TimeLockObject
 
     public override void GetTimeLocked()
     {
-        //Debug.Log("Locked!!");
+        Debug.Log(positions.Count);
         timeLocked = true;
         rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         rigidbody2D.velocity = new Vector2(0f, 0f);
