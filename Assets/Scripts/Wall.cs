@@ -6,17 +6,19 @@ public class Wall : MonoBehaviour
 {
     [Header("State")]
     public bool broken;
-    [SerializeField] private Vector2 explosionLoc;
+    public bool rewinding = false;
     public bool timeLocked = false;
-    [SerializeField] private float count;
+    public float count;
     [SerializeField] private float amount;
 
     [Header("Fragments")]
     [SerializeField] private List<WallFragment> fragments = new List<WallFragment>();
-    public bool rewinding = false;
     private int rewindCount = 0;
+    [SerializeField] private float speed = 800f;
+
+    [Header("Explosion")]
+    [SerializeField] private Vector2 explosionLoc;
     public float power; //power of breaking walls
-    [SerializeField] private float speed = 500;
 
     private void Awake()
     {
@@ -33,7 +35,7 @@ public class Wall : MonoBehaviour
     {
         if (broken)
         {
-            BreakWall(true, power);
+            StartCoroutine(BreakWallCo(true, power));
         }
     }
 
@@ -42,14 +44,19 @@ public class Wall : MonoBehaviour
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
-            count += timeAmount;
-            if (count * timeAmount > 0) Vibrating();
+            if (count * timeAmount > 0)
+            {
+                Vibrating();
+                count += timeAmount;
+            }
             if (broken && count < -amount)
             {
+                StopVibrating();
                 FixWall();
             }
             else if (!broken && count > amount)
             {
+                StopVibrating();
                 BreakWall(true, power);
             }
             return;
@@ -72,13 +79,24 @@ public class Wall : MonoBehaviour
         broken = true;
     }
 
+    /// <summary>
+    /// only for starting of the game
+    /// </summary>
+    /// <param name="isQuiet"></param>
+    /// <param name="power"></param>
+    /// <returns></returns>
+    private IEnumerator BreakWallCo(bool isQuiet, float power)
+    {
+        yield return new WaitForSeconds(0.06f);
+        BreakWall(isQuiet, power);
+    }
+
     private void FixWall()
     {
         TimeUnLocked();
         foreach (WallFragment fragment in fragments)
         {
             fragment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            fragment.gameObject.layer = LayerMask.NameToLayer("Wall");
             fragment.GoToFirstPos();
         }
         rewindCount = 0;
@@ -88,7 +106,8 @@ public class Wall : MonoBehaviour
 
     public void TimeLocked()
     {
-        count = 0;
+        if (timeLocked) return;
+        count = broken ? -1 : 1;
         timeLocked = true;
         foreach (WallFragment fragment in fragments)
         {
@@ -98,7 +117,8 @@ public class Wall : MonoBehaviour
 
     public void TimeUnLocked()
     {
-        count = 0;
+        if (!timeLocked) return;
+        count = broken ? -1 : 1;
         timeLocked = false;
         foreach (WallFragment fragment in fragments)
         {
@@ -111,6 +131,14 @@ public class Wall : MonoBehaviour
         foreach (WallFragment fragment in fragments)
         {
             fragment.Vibrating();
+        }
+    }
+
+    private void StopVibrating()
+    {
+        foreach (WallFragment fragment in fragments)
+        {
+            fragment.StopVibrating();
         }
     }
 
