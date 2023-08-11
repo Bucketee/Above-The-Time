@@ -614,6 +614,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
+      propertyPath: stepableLayers.m_Bits
+      value: 448
+      objectReference: {fileID: 0}
     - target: {fileID: 1371126652627405043, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -718,6 +722,14 @@ PrefabInstance:
     - target: {fileID: 2242700652250834639, guid: 8567c66be67c68c49b202f688dc9d0bc, type: 3}
       propertyPath: m_Name
       value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242700652250834639, guid: 8567c66be67c68c49b202f688dc9d0bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242700652250834643, guid: 8567c66be67c68c49b202f688dc9d0bc, type: 3}
+      propertyPath: m_Constraints
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8567c66be67c68c49b202f688dc9d0bc, type: 3}
