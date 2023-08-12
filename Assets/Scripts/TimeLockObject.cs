@@ -53,7 +53,13 @@ public class TimeLockObject : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        GetComponent<SpriteRenderer>().sortingLayerName = "timelockable";
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        GetComponent<SpriteRenderer>().sortingLayerName = "default";
     }
 
     private void Update()

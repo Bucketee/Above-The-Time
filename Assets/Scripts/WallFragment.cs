@@ -123,7 +123,6 @@ public class WallFragment : TimeLockObject
 
     public override void GetTimeLocked()
     {
-        Debug.Log(positions.Count);
         timeLocked = true;
         rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         rigidbody2D.velocity = new Vector2(0f, 0f);
