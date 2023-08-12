@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallAcceleration = 75f;
     [SerializeField] private float maxFallSpeed = -30f;
     [SerializeField] private LayerMask stepableLayers;
+    [SerializeField] private LayerMask collidingLayers;
 
     private void Awake()
     {
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
             if (currJumpTime < maxJumpTime) currJumpTime += Time.fixedDeltaTime;
             if (isOnAir && isJump && currJumpTime < maxJumpTime)
             {
-
+                //long jump
             }
             else if (isOnAir && isJump && currJumpTime >= maxJumpTime)
             {
@@ -128,10 +129,15 @@ public class PlayerController : MonoBehaviour
                 currJumpTime = 0f;
             }
         }
+        else if (input.RetrieveJumpUpInput())
+        {
+            currJumpTime = maxJumpTime;
+        }
         else
         {
             if (isOnAir)
             {
+                if (currJumpTime < maxJumpTime) currJumpTime = maxJumpTime;
                 speed.y = Mathf.MoveTowards(speed.y, maxFallSpeed, fallAcceleration * Time.fixedDeltaTime);
             }
             else
@@ -140,9 +146,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (input.RetrieveJumpUpInput())
+        if (isJump && CheckHead())
         {
-            currJumpTime = maxJumpTime;
+            if (currJumpTime < maxJumpTime)
+            {
+                currJumpTime = maxJumpTime;
+                speed.y = 0;
+            }
         }
     }
     #endregion
@@ -166,6 +176,15 @@ public class PlayerController : MonoBehaviour
     {
         var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, stepableLayers);
         return hit.collider.gameObject;
+    }
+    #endregion
+
+    #region Head
+    private bool CheckHead()
+    {
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, -rigidbody2D.transform.localScale.y / 2 - 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, collidingLayers);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, -rigidbody2D.transform.localScale.y / 2 - 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.red, 0.1f);
+        return hit.collider;
     }
     #endregion
 }

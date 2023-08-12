@@ -50,6 +50,12 @@ public class TimeLockObject : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+
+    }
+
     private void Update()
     {
         
