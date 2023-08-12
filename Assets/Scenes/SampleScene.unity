@@ -1130,8 +1130,9 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!4 &1214482203
 Transform:
-  m_CorrespondingSourceObject: {fileID: 422768022015481884, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
-  m_PrefabInstance: {fileID: 1180835669}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214482199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1256,7 +1257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422768022015481884, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.11
+      value: 2.11
       objectReference: {fileID: 0}
     - target: {fileID: 422768022015481884, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1402,7 +1403,7 @@ MonoBehaviour:
   count: 0
   amount: 10
   fragments: []
-  speed: 800
+  speed: 80
   explosionLoc: {x: 0, y: 0}
   power: 3
 --- !u!4 &1656853419
