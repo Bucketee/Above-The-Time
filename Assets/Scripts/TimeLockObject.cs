@@ -94,7 +94,7 @@ public class TimeLockObject : MonoBehaviour
 
     protected virtual void Record()
     {
-        if (timeLocked) return;
+        if (timeLocked || (positions.Count > 0 && (positions.Last.Value.position - rigidbody2D.position).magnitude <= 0.01f)) return;
         if (positions.Count >= maxRecordSize)
         {
             positions.RemoveFirst();
