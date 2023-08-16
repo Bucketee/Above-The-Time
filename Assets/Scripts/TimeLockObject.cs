@@ -29,10 +29,10 @@ public class TimeLockObject : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void HandleTimeLock()
     {
-        Bullet bullet = collision.collider.GetComponentInParent<Bullet>();
-        if (bullet && bullet.type == Bullet.BulletType.time && canTimeLock)
+        Debug.Log("asd");
+        if (Input.GetMouseButtonDown(1))
         {
             if (timeLocked)
             {

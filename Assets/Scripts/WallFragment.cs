@@ -31,12 +31,11 @@ public class WallFragment : TimeLockObject
         Record();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void HandleTimeLock()
     {
-        if (rewinding || wallObject.rewinding) return;
-        Bullet bullet = collision.collider.GetComponentInParent<Bullet>();
-        if (bullet && bullet.type == Bullet.BulletType.time)
+        if (Input.GetMouseButtonDown(1))
         {
+            if (rewinding || wallObject.rewinding) return;
             if (timeLocked)
             {
                 wallObject.TimeUnLocked();
