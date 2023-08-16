@@ -13,8 +13,8 @@ TagManager:
   - UI
   - Floor
   - Monster
-  - Tree
-  - 
+  - Wall
+  - WallFragment
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: timelockable
+    uniqueID: 3025845747
     locked: 0

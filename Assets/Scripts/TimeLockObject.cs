@@ -5,23 +5,23 @@ using System;
 
 public class TimeLockObject : MonoBehaviour
 {
-    private new Rigidbody2D rigidbody2D;
+    protected new Rigidbody2D rigidbody2D;
 
     [Header("Time Lock")]
-    [SerializeField] private bool timeLocked = false;
+    [SerializeField] protected bool timeLocked = false;
     public float timeLockCoolDown;
     public bool TimeLocked => timeLocked;
     [SerializeField] private float duration = 10f;
-    private LinkedList<PositionInTime> positions = new ();
-    private LinkedList<PositionInTime> positionsTemp = new (); //for future
-    private int maxRecordSize = 20;
-    private float timeLockCoolDownTime = 0;
-    private bool canTimeLock = true;
+    protected LinkedList<PositionInTime> positions = new ();
+    protected LinkedList<PositionInTime> positionsTemp = new (); //for future
+    [SerializeField] protected int maxRecordSize = 20;
+    protected float timeLockCoolDownTime = 0;
+    protected bool canTimeLock = true;
     public int Count => positions.Count;
 
-    private Vector2 speed;
-    private float angular;
-    private Coroutine nowTimeLockCoroutine = null;
+    protected Vector2 speed;
+    protected float angular;
+    protected Coroutine nowTimeLockCoroutine = null;
 
 
     private void Awake()
@@ -29,10 +29,10 @@ public class TimeLockObject : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void HandleTimeLock()
     {
-        Bullet bullet = collision.collider.GetComponentInParent<Bullet>();
-        if (bullet && bullet.type == Bullet.BulletType.time && canTimeLock)
+        Debug.Log("asd");
+        if (Input.GetMouseButtonDown(1))
         {
             if (timeLocked)
             {
@@ -50,6 +50,23 @@ public class TimeLockObject : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        SetSortingLayer("timelockable");
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        SetSortingLayer("default");
+    }
+
+    public void SetSortingLayer(string layer)
+    {
+        GetComponent<SpriteRenderer>().sortingLayerName = layer;
+    }
+
     private void Update()
     {
         
@@ -58,11 +75,11 @@ public class TimeLockObject : MonoBehaviour
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
             if (timeAmount < 0)
             {
-                for (int i = 0; i < (0.05f / Time.deltaTime); i++) Rewind();
+                for (int i = 0; i < (0.08f / Time.deltaTime); i++) Rewind();
             }
             else if (timeAmount > 0)
             {
-                for (int i = 0; i < (0.05f / Time.deltaTime); i++) UnRewind();
+                for (int i = 0; i < (0.08f / Time.deltaTime); i++) UnRewind();
             }
             return;
         }
@@ -80,9 +97,9 @@ public class TimeLockObject : MonoBehaviour
         GetTimeUnLocked();
     }
 
-    private void Record()
+    protected virtual void Record()
     {
-        if (timeLocked) return;
+        if (timeLocked || (positions.Count > 0 && (positions.Last.Value.position - rigidbody2D.position).magnitude <= 0.01f)) return;
         if (positions.Count >= maxRecordSize)
         {
             positions.RemoveFirst();
@@ -90,7 +107,7 @@ public class TimeLockObject : MonoBehaviour
         positions.AddLast(new PositionInTime(transform.position, transform.rotation, rigidbody2D.velocity, rigidbody2D.angularVelocity));
     }
 
-    private void GetTimeLocked()
+    public virtual void GetTimeLocked()
     {
         Debug.Log("Locked!!");
         GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
@@ -101,7 +118,7 @@ public class TimeLockObject : MonoBehaviour
         nowTimeLockCoroutine = StartCoroutine(TimeLockDuration(duration));
     }
 
-    public void GetTimeUnLocked()
+    public virtual void GetTimeUnLocked()
     {
         Debug.Log("UnLocked!!");
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
@@ -112,7 +129,7 @@ public class TimeLockObject : MonoBehaviour
         ApplyMovement();
     }
 
-    private void Rewind()
+    protected virtual void Rewind()
     {
         if (positions.Count > 0)
         {
@@ -129,7 +146,7 @@ public class TimeLockObject : MonoBehaviour
         }
     }
 
-    private void UnRewind()
+    protected virtual void UnRewind()
     {
         if (positionsTemp.Count > 0)
         {
@@ -146,10 +163,9 @@ public class TimeLockObject : MonoBehaviour
         }
     }
 
-    private void ApplyMovement()
+    protected void ApplyMovement()
     {
         rigidbody2D.velocity = speed;
         rigidbody2D.angularVelocity = angular;
     }
 }
-

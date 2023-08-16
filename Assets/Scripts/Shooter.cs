@@ -27,10 +27,6 @@ public class Shooter : MonoBehaviour
         {
             ShootBullet(0, GetDirection(), speed, life);
         }
-        else if (mouseState[1])
-        {
-            ShootBullet(1, GetDirection(), speed, life);
-        }
         else
         {
 
