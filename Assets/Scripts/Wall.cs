@@ -5,7 +5,7 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     [Header("State")]
-    public bool broken;
+    public bool broken = false;
     public bool rewinding = false;
     public bool timeLocked = false;
     public float count;
@@ -14,11 +14,11 @@ public class Wall : MonoBehaviour
     [Header("Fragments")]
     [SerializeField] private List<WallFragment> fragments = new List<WallFragment>();
     private int rewindCount = 0;
-    [SerializeField] private float speed = 800f;
+    [SerializeField] private float recoveringSpeed = 80f;
 
     [Header("Explosion")]
     [SerializeField] private Vector2 explosionLoc;
-    public float power; //power of breaking walls
+    public float explosionPower; //power of breaking walls
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class Wall : MonoBehaviour
         foreach (WallFragment fragment in GetComponentsInChildren<WallFragment>())
         {
             fragments.Add(fragment);
-            fragment.SetRewindSpeed(speed);
+            fragment.SetRewindSpeed(recoveringSpeed);
         }
     }
 
@@ -35,7 +35,7 @@ public class Wall : MonoBehaviour
     {
         if (broken)
         {
-            StartCoroutine(BreakWallCo(true, power));
+            StartCoroutine(BreakWallCo(true, explosionPower));
         }
     }
 
@@ -57,7 +57,7 @@ public class Wall : MonoBehaviour
             else if (!broken && count > amount)
             {
                 StopVibrating();
-                BreakWall(true, power);
+                BreakWall(true, explosionPower);
             }
             return;
         }
@@ -148,6 +148,14 @@ public class Wall : MonoBehaviour
         if (rewindCount == fragments.Count)
         {
             rewinding = false;
+        }
+    }
+
+    public void SetFragSortingLayer(string layer)
+    {
+        foreach (WallFragment fragment in fragments)
+        {
+            fragment.SetSortingLayer(layer);
         }
     }
 }
