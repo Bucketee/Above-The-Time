@@ -116,3 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorSprites:
   - {fileID: 21300000, guid: 3736b2e35303752489cd8828b4e8b487, type: 3}
+  timelockLayers:
+    serializedVersion: 2
+    m_Bits: 2046

@@ -1824,18 +1824,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouse Cursor
       objectReference: {fileID: 0}
-    - target: {fileID: 4061118603832812933, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
-      propertyPath: timelockLayers.m_Bits
-      value: 1022
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061118603832812934, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4061118603832812934, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4061118603832812935, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
       propertyPath: m_RootOrder
       value: 1
