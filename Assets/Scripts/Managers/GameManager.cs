@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public GameStateManager GameStateManager { get; private set; }
     public TimeManager TimeManager { get; private set; }
+    public TimeZoneManager TimeZoneManager { get; private set; }
 
     private void Awake()
     {
@@ -20,5 +21,6 @@ public class GameManager : MonoBehaviour
 
         GameStateManager = GetComponentInChildren<GameStateManager>();
         TimeManager = GetComponentInChildren<TimeManager>();
+        TimeZoneManager = GetComponentInChildren<TimeZoneManager>();
     }
 }

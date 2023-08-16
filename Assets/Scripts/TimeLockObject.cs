@@ -169,4 +169,3 @@ public class TimeLockObject : MonoBehaviour
         rigidbody2D.angularVelocity = angular;
     }
 }
-
