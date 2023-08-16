@@ -305,9 +305,9 @@ MonoBehaviour:
   count: 0
   amount: 10
   fragments: []
-  speed: 80
+  recoveringSpeed: 80
   explosionLoc: {x: 0, y: 0}
-  power: 6
+  explosionPower: 3
 --- !u!4 &384129232
 Transform:
   m_ObjectHideFlags: 0
@@ -862,30 +862,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 422768022015481885, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 422768022015481885, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 422768022015481885, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 422768022015481885, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422768022015481885, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422768022015481885, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 422768022015481887, guid: 317aae506b062e640a65d5a66faaf1c0, type: 3}
       propertyPath: m_Name
       value: WallFragment
@@ -1461,9 +1437,9 @@ MonoBehaviour:
   count: 0
   amount: 10
   fragments: []
-  speed: 800
+  recoveringSpeed: 80
   explosionLoc: {x: 0, y: 0}
-  power: 3
+  explosionPower: 3
 --- !u!4 &1656853419
 Transform:
   m_ObjectHideFlags: 0
@@ -1472,7 +1448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656853417}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.17, y: 5.08, z: 0}
+  m_LocalPosition: {x: -5.54, y: 2.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1787,14 +1763,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1023904712637532753, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
-      propertyPath: stepableLayers.m_Bits
-      value: 456
-      objectReference: {fileID: 0}
     - target: {fileID: 1371126652627405043, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1855,6 +1823,14 @@ PrefabInstance:
     - target: {fileID: 4061118603832812932, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
       propertyPath: m_Name
       value: Mouse Cursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061118603832812934, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061118603832812934, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4061118603832812935, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
       propertyPath: m_RootOrder
