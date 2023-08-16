@@ -49,6 +49,18 @@ public class WallFragment : TimeLockObject
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        wallObject.SetFragSortingLayer("timelockable");
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        wallObject.SetFragSortingLayer("default");
+    }
+
     protected override void Record()
     {
         //if (wallObject.timeLocked || gameObject.layer == LayerMask.NameToLayer("Wall") || rigidbody2D.velocity == new Vector2(0, 0)) return; //337
