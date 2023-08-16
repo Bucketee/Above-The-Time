@@ -9,7 +9,6 @@ public class Bullet : MonoBehaviour
     public enum BulletType
     {
         normal,
-        time,
     };
 
     private void Awake()
