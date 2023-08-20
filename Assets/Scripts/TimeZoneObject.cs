@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,12 +15,12 @@ public class TimeZoneObject : MonoBehaviour
     [SerializeField] private TimeZoneObjectInfo timeZoneObjectInfo;
     private SpriteRenderer spriteRenderer;
     private PolygonCollider2D polygonCollider2D;
+    private TimeZoneManager timeZoneManager;
 
     public void Settting()
     {
         TimeZone timeZone = GameManager.Instance.TimeZoneManager.NowTimeZone;
-        Rigidbody2D rigidbody2D;
-        if (TryGetComponent<Rigidbody2D>(out rigidbody2D))
+        if (TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
         {
             rigidbody2D.velocity = new Vector2(0f, 0f);
             rigidbody2D.angularVelocity = 0f;
@@ -53,15 +54,56 @@ public class TimeZoneObject : MonoBehaviour
 
     private void Start()
     {
+        timeZoneManager = GameManager.Instance.TimeZoneManager;
+        
         foreach(TimeZoneV3Active t in timeZoneObjectInfo.timeZoneV3s)
         {
-            posDict.Add(t.timeZone, t.pos);
-            isTriggerDict.Add(t.timeZone, t.isTriggered);
-            spriteDict.Add(t.timeZone, t.sprite);
-            rotDict.Add(t.timeZone, t.rot);
+            if (!posDict.ContainsKey(t.timeZone))
+            {
+                posDict.Add(t.timeZone, t.pos);
+            }
+
+            if (!rotDict.ContainsKey(t.timeZone))
+            {
+                rotDict.Add(t.timeZone, t.rot);
+            }
+
+            if (!isTriggerDict.ContainsKey(t.timeZone))
+            {
+                isTriggerDict.Add(t.timeZone, t.isTriggered);
+            }
+
+            if (!spriteDict.ContainsKey(t.timeZone))
+            {
+                spriteDict.Add(t.timeZone, t.sprite);
+            }
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
         polygonCollider2D = GetComponent<PolygonCollider2D>();
+        Settting();
+    }
+
+    private void Record(TimeZone timeZone)
+    {
+        foreach(TimeZone t in Enum.GetValues(typeof(TimeZone)))
+        {
+            if ((int) t >= (int) timeZone)
+            {
+                posDict[t] = transform.position;
+                rotDict[t] = transform.rotation.eulerAngles.z;
+            }
+        }
+        //isTrigger, Sprite는 매번 기록할 필요 X
+    }
+
+    private void Update()
+    {
+        if (transform.hasChanged)
+        {
+            Record(timeZoneManager.NowTimeZone);
+            transform.hasChanged = false;
+            Debug.Log(1);
+        }
     }
 
     [Serializable]
