@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1700133965134122382}
   - component: {fileID: 8005498204767241573}
   - component: {fileID: 2056423750918390458}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 3504546063587120966}
   - component: {fileID: 8075931422496610568}
   - component: {fileID: 2354160697269229687}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4789581303939301773}
   - component: {fileID: 2597771387832409739}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5788995194905120433}
   - component: {fileID: 1023904712637532753}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
