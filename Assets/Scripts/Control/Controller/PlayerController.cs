@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallAcceleration = 75f;
     [SerializeField] private float maxFallSpeed = -30f;
     [SerializeField] private LayerMask stepableLayers;
-    [SerializeField] private LayerMask collidingLayers;
+    [SerializeField] private LayerMask collidingLayers; //head
 
     private void Awake()
     {

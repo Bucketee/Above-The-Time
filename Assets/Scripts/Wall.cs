@@ -12,12 +12,12 @@ public class Wall : MonoBehaviour
     [SerializeField] private float amount;
 
     [Header("Fragments")]
-    [SerializeField] private List<WallFragment> fragments = new List<WallFragment>();
-    private int rewindCount = 0;
-    [SerializeField] private float recoveringSpeed = 80f;
+    [SerializeField] protected  List<WallFragment> fragments = new List<WallFragment>();
+    protected int rewindCount = 0;
+    [SerializeField] protected float recoveringSpeed = 80f;
 
     [Header("Explosion")]
-    [SerializeField] private Vector2 explosionLoc;
+    [SerializeField] protected Vector2 explosionLoc;
     public float explosionPower; //power of breaking walls
 
     private void Awake()
@@ -67,7 +67,7 @@ public class Wall : MonoBehaviour
     /// break wall by explosion effect
     /// </summary>
     /// <param name="isQuiet">true to be used at start of the game</param>
-    public void BreakWall(bool isQuiet, float power) //help sound
+    public virtual void BreakWall(bool isQuiet, float power) //help sound
     {
         TimeUnLocked();
         foreach (WallFragment fragment in fragments)
@@ -91,7 +91,7 @@ public class Wall : MonoBehaviour
         BreakWall(isQuiet, power);
     }
 
-    private void FixWall()
+    protected virtual void FixWall()
     {
         TimeUnLocked();
         foreach (WallFragment fragment in fragments)
@@ -142,7 +142,7 @@ public class Wall : MonoBehaviour
         }
     }
 
-    public void AddRewindCount()
+    public virtual void AddRewindCount()
     {
         rewindCount += 1;
         if (rewindCount == fragments.Count)
