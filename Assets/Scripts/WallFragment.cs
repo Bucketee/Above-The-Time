@@ -5,17 +5,17 @@ using UnityEngine;
 public class WallFragment : TimeLockObject
 {
     [Header("State")]
-    private Vector2 firstPos;
-    private float firstRot;
-    private bool rewinding = false;
-    private float rewindingSpeed;
-    private float initialRot = 0;
+    protected Vector2 firstPos;
+    protected float firstRot;
+    protected bool rewinding = false;
+    protected float rewindingSpeed;
+    protected float initialRot = 0;
 
     [Header("Vibrate")]
-    private float vibration = 1.5f;
-    private Coroutine vibrateCo = null;
+    protected float vibration = 1.5f;
+    protected Coroutine vibrateCo = null;
 
-    private Wall wallObject;
+    protected Wall wallObject;
 
     private void Awake()
     {
@@ -111,7 +111,7 @@ public class WallFragment : TimeLockObject
         //Debug.Log("go to first");
     }
 
-    private IEnumerator GoToFirstPosCo()
+    protected virtual IEnumerator GoToFirstPosCo()
     {
         rewinding = true;
         rigidbody2D.velocity = new Vector2(0f, 0f);
