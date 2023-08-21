@@ -7,7 +7,7 @@ public class MouseCursor : MonoBehaviour
     [SerializeField] private Sprite[] cursorSprites;
 
     [Header("Time Lock")]
-    [SerializeField] private LayerMask timelockLayers;
+    private LayerMask timelockLayers;
 
     private SpriteRenderer spriteRenderer;
 
@@ -15,6 +15,7 @@ public class MouseCursor : MonoBehaviour
     {
         Cursor.visible = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        timelockLayers = ~ (1 << LayerMask.NameToLayer("Mouse") | (1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("UI")) | (1 << LayerMask.NameToLayer("Floor")) | (1 << LayerMask.NameToLayer("Default")));
     }
 
     private void Start()

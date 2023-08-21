@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 3504546063587120966}
   - component: {fileID: 8075931422496610568}
   - component: {fileID: 2354160697269229687}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
 --- !u!114 &2354160697269229687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6de38d93a3e2444b86e4fc85e5c777d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactList: []
+  interactObject: {fileID: 0}
 --- !u!1 &3245892722807136237
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +275,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

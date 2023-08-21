@@ -37,6 +37,12 @@ public class CeilingDecoFrag : WallFragment
             angular = positions.Last.Value.angular;
         }
         ApplyMovement();
+        if (nowTimeLockCoroutine != null)
+        {
+            StopCoroutine(nowTimeLockCoroutine);
+            nowTimeLockCoroutine = null;
+        }
+        SetSortingLayer("Default");
     }
 
     protected override IEnumerator GoToFirstPosCo()
