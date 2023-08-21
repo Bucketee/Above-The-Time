@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
+        Debug.Log("asd");
         if (input.RetrieveJumpInput() && !isJump)
         {
             if (!isOnAir)
