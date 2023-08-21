@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameStateManager GameStateManager { get; private set; }
+    public UIManager UIManager { get; private set; }
     public TimeManager TimeManager { get; private set; }
     public TimeZoneManager TimeZoneManager { get; private set; }
 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         GameStateManager = GetComponentInChildren<GameStateManager>();
+        UIManager = GetComponentInChildren<UIManager>();
         TimeManager = GetComponentInChildren<TimeManager>();
         TimeZoneManager = GetComponentInChildren<TimeZoneManager>();
     }

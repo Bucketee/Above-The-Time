@@ -33,31 +33,28 @@ public class WallFragment : TimeLockObject
 
     public override void HandleTimeLock()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (rewinding || wallObject.rewinding) return;
+        if (timeLocked)
         {
-            if (rewinding || wallObject.rewinding) return;
-            if (timeLocked)
-            {
-                wallObject.TimeUnLocked();
-            }
-            else
-            {
-                GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
-                wallObject.TimeLocked();
-            }
+            wallObject.TimeUnLocked();
+        }
+        else
+        {
+            GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
+            wallObject.TimeLocked();
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
-        wallObject.SetFragSortingLayer("timelockable");
+        if (!rewinding && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        wallObject.SetFragSortingLayer("Timelockable");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
-        wallObject.SetFragSortingLayer("default");
+        if (!rewinding && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        wallObject.SetFragSortingLayer("Default");
     }
 
     protected override void Record()
@@ -138,6 +135,7 @@ public class WallFragment : TimeLockObject
         rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         rigidbody2D.velocity = new Vector2(0f, 0f);
         rigidbody2D.angularVelocity = 0f;
+        nowTimeLockCoroutine = StartCoroutine(TimeLockDuration(duration));
     }
 
     public override void GetTimeUnLocked()
@@ -164,6 +162,12 @@ public class WallFragment : TimeLockObject
             angular = positions.Last.Value.angular;
         }
         ApplyMovement();
+        if (nowTimeLockCoroutine != null)
+        {
+            StopCoroutine(nowTimeLockCoroutine);
+            nowTimeLockCoroutine = null;
+        }
+        SetSortingLayer("Default");
     }
 
     public void SetRewindSpeed(float speed)

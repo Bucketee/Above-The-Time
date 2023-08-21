@@ -11,7 +11,7 @@ public class TimeLockObject : MonoBehaviour
     [SerializeField] protected bool timeLocked = false;
     public float timeLockCoolDown;
     public bool TimeLocked => timeLocked;
-    [SerializeField] private float duration = 10f;
+    [SerializeField] protected float duration = 10f;
     protected LinkedList<PositionInTime> positions = new ();
     protected LinkedList<PositionInTime> positionsTemp = new (); //for future
     [SerializeField] protected int maxRecordSize = 20;
@@ -31,35 +31,31 @@ public class TimeLockObject : MonoBehaviour
 
     public virtual void HandleTimeLock()
     {
-        Debug.Log("asd");
-        if (Input.GetMouseButtonDown(1))
+        if (timeLocked)
         {
-            if (timeLocked)
+            if (nowTimeLockCoroutine != null)
             {
-                if (nowTimeLockCoroutine != null)
-                {
-                    StopCoroutine(nowTimeLockCoroutine);
-                    nowTimeLockCoroutine = null;
-                }
-                GetTimeUnLocked();
+                StopCoroutine(nowTimeLockCoroutine);
+                nowTimeLockCoroutine = null;
             }
-            else
-            {
-                GetTimeLocked();
-            }
+            GetTimeUnLocked();
+        }
+        else
+        {
+            GetTimeLocked();
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
-        SetSortingLayer("timelockable");
+        if (!timeLocked && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        SetSortingLayer("Timelockable");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
-        SetSortingLayer("default");
+        if (!timeLocked && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        SetSortingLayer("Default");
     }
 
     public void SetSortingLayer(string layer)
@@ -67,9 +63,20 @@ public class TimeLockObject : MonoBehaviour
         GetComponent<SpriteRenderer>().sortingLayerName = layer;
     }
 
+    public void ChangeSortingLayer()
+    {
+        if (GetComponent<SpriteRenderer>().sortingLayerName.Equals("Default"))
+        {
+            GetComponent<SpriteRenderer>().sortingLayerName = "Timelockable";
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+        }
+    }
+
     private void Update()
     {
-        
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
@@ -91,9 +98,14 @@ public class TimeLockObject : MonoBehaviour
         Record();
     }
 
-    private IEnumerator TimeLockDuration(float duration)
+    protected virtual IEnumerator TimeLockDuration(float duration)
     {
-        yield return new WaitForSeconds(duration);
+        float time = Time.time + duration;
+        while (Time.time < time)
+        {
+            yield return new WaitForSeconds((time - Time.time) / 10);
+            ChangeSortingLayer();
+        }
         GetTimeUnLocked();
     }
 
@@ -109,7 +121,6 @@ public class TimeLockObject : MonoBehaviour
 
     public virtual void GetTimeLocked()
     {
-        Debug.Log("Locked!!");
         GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
         timeLocked = true;
         rigidbody2D.velocity = new Vector2(0, 0);
@@ -120,13 +131,18 @@ public class TimeLockObject : MonoBehaviour
 
     public virtual void GetTimeUnLocked()
     {
-        Debug.Log("UnLocked!!");
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
         timeLockCoolDownTime = timeLockCoolDown;
         positionsTemp.Clear();
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         ApplyMovement();
+        if (nowTimeLockCoroutine != null)
+        {
+            StopCoroutine(nowTimeLockCoroutine);
+            nowTimeLockCoroutine = null;
+        }
+        SetSortingLayer("Default");
     }
 
     protected virtual void Rewind()
