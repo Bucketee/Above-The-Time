@@ -562,8 +562,8 @@ MonoBehaviour:
     - timeZone: 2
       pos: {x: -2, y: 1, z: 0}
       rot: 0
-      isTriggered: 1
-      sprite: {fileID: 0}
+      isTriggered: 0
+      sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
 --- !u!60 &659853514
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -984,6 +984,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 649109105, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649109106, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 25049331255484580, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
       propertyPath: m_RootOrder
       value: 2
