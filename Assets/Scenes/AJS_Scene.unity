@@ -394,8 +394,8 @@ GameObject:
   - component: {fileID: 659853507}
   - component: {fileID: 659853511}
   - component: {fileID: 659853512}
-  - component: {fileID: 659853513}
   - component: {fileID: 659853514}
+  - component: {fileID: 659853515}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -523,9 +523,9 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 659853513}
-        m_TargetAssemblyTypeName: TimeZoneObject, Assembly-CSharp
-        m_MethodName: Settting
+      - m_Target: {fileID: 659853515}
+        m_TargetAssemblyTypeName: TimeZoneNormalObject, Assembly-CSharp
+        m_MethodName: Setting
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -535,35 +535,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &659853513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659853506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc495b25de035d4c9d6225a1e6eb384, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeZoneObjectInfo:
-    timeZoneV3s:
-    - timeZone: 0
-      pos: {x: -2, y: 1, z: 0}
-      rot: 45
-      isTriggered: 1
-      sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-    - timeZone: 1
-      pos: {x: -2, y: 1, z: 0}
-      rot: 0
-      isTriggered: 0
-      sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-    - timeZone: 2
-      pos: {x: -2, y: 1, z: 0}
-      rot: 0
-      isTriggered: 0
-      sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
 --- !u!60 &659853514
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -611,6 +582,35 @@ PolygonCollider2D:
       - {x: 0.40234375, y: 0.79296875}
       - {x: 0.29296875, y: 0.90234375}
       - {x: 0.15234375, y: 0.97265625}
+--- !u!114 &659853515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659853506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e2d4abb75e6ef4a8d9ffd6e030d141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeZoneObjectInfo:
+    timeZoneV3s:
+    - timeZone: 0
+      pos: {x: -2, y: 1, z: 0}
+      rot: 0
+      isTriggered: 0
+      sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+    - timeZone: 1
+      pos: {x: -2, y: 1, z: 0}
+      rot: 0
+      isTriggered: 0
+      sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+    - timeZone: 2
+      pos: {x: -2, y: 1, z: 0}
+      rot: 0
+      isTriggered: 0
+      sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
 --- !u!1 &870406964
 GameObject:
   m_ObjectHideFlags: 0
