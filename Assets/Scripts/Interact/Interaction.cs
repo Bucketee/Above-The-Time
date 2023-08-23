@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour
                     interactObject = gameObject;
                 }
             }
-            uiManager.AddText("Press E to interact with " + interactObject.name);
+            uiManager.AddText("<color=black><size=36>" + "Press E to interact with </size>" + "<size=42><b>" + interactObject.name + "</b></size></color>");
         }
         else
         {
