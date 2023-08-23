@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text tmpText;
+    [SerializeField] private TMP_Text statusText;
     private string frameText = "";
 
     private void LateUpdate()
     {
-        tmpText.text = frameText;
+        statusText.text = frameText;
         frameText = "";
     }
 
@@ -21,10 +21,10 @@ public class UIManager : MonoBehaviour
 
     public void AddText(string text, float time)
     {
-        StartCoroutine(textCo(text, time));
+        StartCoroutine(TextCo(text, time));
     }
 
-    IEnumerator textCo(string text, float time)
+    IEnumerator TextCo(string text, float time)
     {
         float due = Time.time + time;
         while (due > Time.time)
