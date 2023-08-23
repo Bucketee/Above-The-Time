@@ -94,7 +94,6 @@ public class TimeZoneNormalObject : MonoBehaviour, ITimeZoneInterface
         {
             Record(timeZoneManager.NowTimeZone);
             transform.hasChanged = false;
-            Debug.Log(1);
         }
     }
 
