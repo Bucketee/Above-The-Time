@@ -31,8 +31,15 @@ public class MouseCursor : MonoBehaviour
             var hit = Physics2D.Raycast(transform.position, Vector2.zero, 1, timelockLayers);
             if (hit.collider)
             {
-                TimeLockObject timelockObject = hit.collider.GetComponent<TimeLockObject>();
-                doTimelock(timelockObject);
+                try
+                {
+                    TimeLockObject timelockObject = hit.collider.GetComponent<TimeLockObject>();
+                    doTimelock(timelockObject);
+                }
+                catch
+                {
+                    Debug.Log("error");
+                }
             }
         }
     }
