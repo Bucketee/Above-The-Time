@@ -12,9 +12,11 @@ public class TimeLockObject : MonoBehaviour
     public float timeLockCoolDown;
     public bool TimeLocked => timeLocked;
     [SerializeField] protected float duration = 10f;
+    public float maxDuration, currentDuration;
     protected LinkedList<PositionInTime> positions = new ();
     protected LinkedList<PositionInTime> positionsTemp = new (); //for future
     [SerializeField] protected int maxRecordSize = 20;
+
     protected float timeLockCoolDownTime = 0;
     protected bool canTimeLock = true;
     public int Count => positions.Count;
@@ -23,6 +25,8 @@ public class TimeLockObject : MonoBehaviour
     protected float angular;
     protected Coroutine nowTimeLockCoroutine = null;
 
+    public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
+    public static event TimeLockDurationEvent timeLockDurationSend;
 
     private void Awake()
     {
@@ -77,6 +81,7 @@ public class TimeLockObject : MonoBehaviour
 
     private void Update()
     {
+        timeLockDurationSend(maxDuration, currentDuration);
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
@@ -100,12 +105,17 @@ public class TimeLockObject : MonoBehaviour
 
     protected virtual IEnumerator TimeLockDuration(float duration)
     {
+        maxDuration = duration;
+        currentDuration = duration;
         float time = Time.time + duration;
         while (Time.time < time)
         {
+            currentDuration = time - Time.time;
             yield return new WaitForSeconds((time - Time.time) / 10);
             ChangeSortingLayer();
         }
+        maxDuration = 0f;
+        currentDuration = 0f;
         GetTimeUnLocked();
     }
 
@@ -131,6 +141,8 @@ public class TimeLockObject : MonoBehaviour
 
     public virtual void GetTimeUnLocked()
     {
+        maxDuration = 0f;
+        currentDuration = 0f;
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
         timeLockCoolDownTime = timeLockCoolDown;
