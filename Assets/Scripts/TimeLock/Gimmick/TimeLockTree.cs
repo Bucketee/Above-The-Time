@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum TreeState
-{
-    seed,
-    sprout,
-    tree
-}
-
 public class TimeLockTree : TimeLockObject
 {
+    enum TreeState
+    {
+        seed,
+        sprout,
+        tree
+    }
+
     [SerializeField] private Sprite[] treeSprites;
     
     private SpriteRenderer spriteRenderer;
