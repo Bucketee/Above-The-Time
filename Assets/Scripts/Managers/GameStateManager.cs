@@ -9,13 +9,14 @@ public enum GameState // temp
     Pause,
     GameOver,
     Loading,
-    Talking
+    Talking,
+    TimeChanging
 }
 
 public class GameStateManager : MonoBehaviour
 {
     private GameState previousGameState;
-    private GameState nowGameState = GameState.Playing; //temp
+    [SerializeField] private GameState nowGameState = GameState.Playing; //temp
     public GameState NowGameState => nowGameState;
 
     private Dictionary<GameState, float> gameStateTimeScaleDict = new()
@@ -24,8 +25,10 @@ public class GameStateManager : MonoBehaviour
         {GameState.Pause, 0f},
         {GameState.Loading, 1f},
         {GameState.GameOver, 0f},
-        {GameState.Talking, 0f}
+        {GameState.Talking, 0f},
+        {GameState.TimeChanging, 0f}
     };
+
 
     public void ChangeGameState(GameState gameState)
     {

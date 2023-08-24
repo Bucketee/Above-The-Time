@@ -91,11 +91,14 @@ public class TimeLockObject : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (timeManager.NowTimeLockedObject)
-        {
+        if (timeManager?.NowTimeLockedObject)
+        { 
             TimeLockDurationSend(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
         }
-        else { TimeLockDurationSend(0f, 0f); }
+        else
+        {
+            TimeLockDurationSend(0f, 0f); 
+        }
     }
     private void Update()
     {

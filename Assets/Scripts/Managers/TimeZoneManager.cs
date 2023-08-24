@@ -15,17 +15,34 @@ public enum TimeZone
 
 public class TimeZoneManager : MonoBehaviour
 {
-    private TimeZone nowTimeZone = TimeZone.Present;
+
+    [SerializeField] private TimeZone nowTimeZone = TimeZone.Present;
     public TimeZone NowTimeZone => nowTimeZone;
     [SerializeField] private TMP_Text timeZoneText; //temp
     private Dictionary<TimeZone, bool> canTimeMoveDict = new() //Set by ChangeTimeMoveBool() method
     {
-        {TimeZone.Past, false},
+        {TimeZone.Past, true},
         {TimeZone.Present, true},
-        {TimeZone.Future, false}
+        {TimeZone.Future, true}
+    };
+
+    [SerializeField] private int nowYear;
+    private Dictionary<int, TimeZone> yearTimeZoneDict = new()
+    {
+        {1950, TimeZone.Past},
+        {1955, TimeZone.Present},
+        {2000, TimeZone.Future}
     };
 
     [SerializeField] private GameEvent timeZoneChangeEvent;
+
+    [SerializeField] private int hourHandPlus, minuteHandPlus;
+
+    private void Start()
+    {
+        nowYear = 2000;
+    }
+
     private void ChangeTime(TimeZone timeZone)
     {
         if (!canTimeMoveDict[timeZone]) 
@@ -56,6 +73,12 @@ public class TimeZoneManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R) && GameManager.Instance.GameStateManager.NowGameState == GameState.Playing)
+        {
+            GameManager.Instance.GameStateManager.ChangeGameState(GameState.TimeChanging);
+            StartCoroutine(TimeClockOperate());
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeTime(TimeZone.Past);
@@ -83,6 +106,35 @@ public class TimeZoneManager : MonoBehaviour
         {
             ChangeTimeMoveBool(TimeZone.Future);
         }
+    }
+
+    private IEnumerator TimeClockOperate()
+    {
+        hourHandPlus = 0;
+        minuteHandPlus = 0;
+        yield return new WaitForEndOfFrame();
+        while (!Input.GetKeyDown(KeyCode.R))
+        {
+            if (Input.GetKeyDown(KeyCode.I)) { hourHandPlus--; }
+            else if (Input.GetKeyDown(KeyCode.O)) { hourHandPlus++; }
+            else if (Input.GetKeyDown(KeyCode.K)) { minuteHandPlus--; }
+            else if (Input.GetKeyDown(KeyCode.L)) { minuteHandPlus++; }
+            yield return null;
+        }
+        int finalClockHandInput = hourHandPlus * 12 + minuteHandPlus;
+        if (yearTimeZoneDict.ContainsKey(nowYear + finalClockHandInput))
+        {
+            if (canTimeMoveDict[yearTimeZoneDict[nowYear + finalClockHandInput]])
+            {
+                nowYear += finalClockHandInput;
+                ChangeTime(yearTimeZoneDict[nowYear]);
+                Debug.Log("Time Travel Successed!");
+            }
+            else { Debug.Log("Time Travel Failed!"); }
+        }
+        else { Debug.Log("Time Travel Failed!"); }
+        GameManager.Instance.GameStateManager.RedoGameState();
+        yield return new WaitForEndOfFrame();
     }
 
     private void SceneInitialize()
