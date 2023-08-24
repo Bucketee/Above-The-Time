@@ -628,6 +628,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 562549621, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: timeLockedIcon
+      value: 
+      objectReference: {fileID: 117908275}
+    - target: {fileID: 562549621, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: timeLockDurationBar
+      value: 
+      objectReference: {fileID: 431636226}
     - target: {fileID: 6366005865632230208, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -678,25 +686,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
---- !u!1 &562549620 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1164381919661067630, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
-  m_PrefabInstance: {fileID: 562549619}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &562549621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 562549620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 755d979b3275631469eaa95faeb1a8ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeLockDurationBar: {fileID: 431636226}
-  timeLockedIcon: {fileID: 117908275}
 --- !u!1 &1102576352
 GameObject:
   m_ObjectHideFlags: 0
