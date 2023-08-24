@@ -19,6 +19,7 @@ public class Wall : MonoBehaviour
     [Header("Explosion")]
     [SerializeField] protected Vector2 explosionLoc;
     public float explosionPower; //power of breaking walls
+    private GameStateManager gameStateManager;
 
     private TimeZoneWall timeZoneWall;
     private void Awake()
@@ -39,10 +40,16 @@ public class Wall : MonoBehaviour
         {
             StartCoroutine(BreakWallCo(true, explosionPower));
         }
+        gameStateManager = GameManager.Instance.GameStateManager;
     }
 
     private void Update()
     {
+        if (gameStateManager.NowGameState != GameState.Playing)
+        {
+            return;
+        }
+        
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");

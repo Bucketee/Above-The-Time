@@ -31,6 +31,7 @@ public class TimeLockObject : MonoBehaviour
     public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
     public static event TimeLockDurationEvent TimeLockDurationSend;
     public float maxDuration, currentDuration;
+    private GameStateManager gameStateManager;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class TimeLockObject : MonoBehaviour
     private void Start()
     {
         timeManager = GameManager.Instance.TimeManager;
+        gameStateManager = GameManager.Instance.GameStateManager;
     }
 
     public virtual void HandleTimeLock()
@@ -97,7 +99,10 @@ public class TimeLockObject : MonoBehaviour
     }
     private void Update()
     {
-
+        if (gameStateManager.NowGameState != GameState.Playing)
+        {
+            return;
+        }
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");

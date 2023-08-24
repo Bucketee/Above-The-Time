@@ -20,6 +20,7 @@ public class ThugController : MonoBehaviour
     [SerializeField] private bool detectCliff;
     [SerializeField] private bool isAttacking = false;
     [SerializeField] private bool isComingBack = false;
+    [SerializeField] private bool isWalking;
 
     [Header("Input")]
     [SerializeField] private InputController input = null;
@@ -49,6 +50,7 @@ public class ThugController : MonoBehaviour
     [SerializeField] private float fallAcceleration;
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private LayerMask stepableLayers;
+    private bool resetting = false;
 
     private void Awake()
     {
@@ -92,6 +94,7 @@ public class ThugController : MonoBehaviour
 
         if (transform.position.x < chaseRangeLeftX || transform.position.x > chaseRangeRightX)
         {
+            isWalking = false;
             Debug.Log("Start Comeback");
             detectPlayer = false;
             isComingBack = true;
@@ -103,6 +106,7 @@ public class ThugController : MonoBehaviour
         if (detectPlayer && CheckDetectPlayerX())
         {
             detectPlayer = true;
+            isWalking = false;
             movingCool = false;
             FindDestination();
             if (CheckPlayerInAttackCollider())
@@ -119,6 +123,7 @@ public class ThugController : MonoBehaviour
         }
         else if (detectPlayer)
         {
+            isWalking = false;
             Debug.Log("Start Comeback");
             detectPlayer = false;
             isComingBack = true;
@@ -127,6 +132,7 @@ public class ThugController : MonoBehaviour
         }
         else if (!isComingBack && CheckDetectPlayer())
         {
+            isWalking = false;
             Debug.Log("Detect Player");
             detectPlayer = true;
             movingCool = false;
@@ -153,6 +159,7 @@ public class ThugController : MonoBehaviour
         }
         else
         {
+            isWalking = !isComingBack;
             if (CheckNearDestination())
             {
                 hasDestination = false;
@@ -215,17 +222,34 @@ public class ThugController : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-        speed.x = horizontalDir * walkSpeed;
+
+        if (isWalking)
+        {
+            speed.x = horizontalDir * walkSpeed;
+        }
+        else
+        {
+            speed.x = horizontalDir * runSpeed;
+        }
+        
     }
 
     private IEnumerator AttackCo()
     {
         Debug.Log("Start Attack");
         yield return new WaitForSeconds(attackBeforeWaitingTime);
+        if (resetting)
+        {
+            yield break;
+        }
         if (CheckPlayerInAttackCollider())
         {
             Debug.Log("GetAttacked");
             // player.getAttack();
+        }
+        if (resetting)
+        {
+            yield break;
         }
         yield return new WaitForSeconds(attackAfterWaitingTime);
         Debug.Log("End Attack");
@@ -346,4 +370,15 @@ public class ThugController : MonoBehaviour
         return hit.collider.gameObject;
     }
     #endregion
+
+    public void ResetMove()
+    {
+        movingCool = false;
+        resetting = true;
+        isAttacking = false;
+        isComingBack = false;
+        isWalking = true;
+        FindDestination();
+        resetting = false;
+    }
 }
