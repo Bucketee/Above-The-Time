@@ -18,8 +18,6 @@ public class TimeLockTree : TimeLockObject
     private bool timeLocked => TimeLocked;
     private bool canTransform;
 
-    private GameStateManager gameStateManager;
-
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

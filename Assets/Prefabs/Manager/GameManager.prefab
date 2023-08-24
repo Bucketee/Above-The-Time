@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee0d21652ef4184a9279d14907628e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowGameState: 0
 --- !u!1 &6366005866324619012
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,5 +294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb40cd4dfcc840042a5da352eb964325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowTimeZone: 1
   timeZoneText: {fileID: 0}
+  nowYear: 0
   timeZoneChangeEvent: {fileID: 11400000, guid: aae2fc121e33e3a4b83549419230456e, type: 2}
+  hourHandPlus: 0
+  minuteHandPlus: 0

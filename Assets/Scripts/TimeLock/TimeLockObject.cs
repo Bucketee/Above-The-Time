@@ -31,7 +31,7 @@ public class TimeLockObject : MonoBehaviour
     public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
     public static event TimeLockDurationEvent TimeLockDurationSend;
     public float maxDuration, currentDuration;
-    private GameStateManager gameStateManager;
+    protected GameStateManager gameStateManager;
 
     private void Awake()
     {
@@ -92,7 +92,7 @@ public class TimeLockObject : MonoBehaviour
     private void FixedUpdate()
     {
         if (timeManager?.NowTimeLockedObject)
-        { 
+        {
             TimeLockDurationSend(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
         }
         else
@@ -135,8 +135,7 @@ public class TimeLockObject : MonoBehaviour
         while (Time.time < time)
         {
             currentDuration = time - Time.time;
-            yield return new WaitForSeconds((time - Time.time) / 10);
-            ChangeSortingLayer();
+            yield return null;
         }
         maxDuration = 0f;
         currentDuration = 0f;

@@ -17,18 +17,12 @@ public class WallFragment : TimeLockObject
 
     protected Wall wallObject;
 
-    private GameStateManager gameStateManager;
-
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         wallObject = GetComponentInParent<Wall>();
         firstPos = rigidbody2D.position;
         firstRot = rigidbody2D.rotation;
-    }
-    private void Start()
-    {
-        gameStateManager = GameManager.Instance.GameStateManager;
     }
 
     private void Update()
