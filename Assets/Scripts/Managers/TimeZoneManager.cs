@@ -15,14 +15,15 @@ public enum TimeZone
 
 public class TimeZoneManager : MonoBehaviour
 {
+
     [SerializeField] private TimeZone nowTimeZone = TimeZone.Present;
     public TimeZone NowTimeZone => nowTimeZone;
     [SerializeField] private TMP_Text timeZoneText; //temp
     private Dictionary<TimeZone, bool> canTimeMoveDict = new() //Set by ChangeTimeMoveBool() method
     {
-        {TimeZone.Past, false},
+        {TimeZone.Past, true},
         {TimeZone.Present, true},
-        {TimeZone.Future, false}
+        {TimeZone.Future, true}
     };
 
     [SerializeField] private int nowYear;
@@ -127,12 +128,13 @@ public class TimeZoneManager : MonoBehaviour
             {
                 nowYear += finalClockHandInput;
                 ChangeTime(yearTimeZoneDict[nowYear]);
+                Debug.Log("Time Travel Successed!");
             }
-            Debug.Log("Time Travel Successed!");
+            else { Debug.Log("Time Travel Failed!"); }
         }
         else { Debug.Log("Time Travel Failed!"); }
         GameManager.Instance.GameStateManager.RedoGameState();
-        yield return null;
+        yield return new WaitForEndOfFrame();
     }
 
     private void SceneInitialize()
