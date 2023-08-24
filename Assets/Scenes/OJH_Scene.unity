@@ -1012,10 +1012,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1312,6 +1312,10 @@ PrefabInstance:
       propertyPath: timeLockCoolDown
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1350095055, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
+      propertyPath: timeManagerObject
+      value: 
+      objectReference: {fileID: 284998050}
     - target: {fileID: 25049331255484580, guid: d872cf7fef5309d48936d972894cc9dc, type: 3}
       propertyPath: m_RootOrder
       value: 3

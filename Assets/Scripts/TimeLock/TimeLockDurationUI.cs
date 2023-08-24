@@ -14,7 +14,7 @@ public class TimeLockDurationUI : MonoBehaviour
     private void Awake()
     {
         barImage = timeLockDurationBar.GetComponent<Image>();
-        TimeLockObject.timeLockDurationSend += TimeLockDurationUIHandle;
+        TimeLockObject.TimeLockDurationSend += TimeLockDurationUIHandle;
     }
 
     private void TimeLockDurationUIHandle(float mDuration, float cDuration)

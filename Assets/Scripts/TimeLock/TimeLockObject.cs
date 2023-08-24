@@ -25,11 +25,16 @@ public class TimeLockObject : MonoBehaviour
     protected float angular;
     protected Coroutine nowTimeLockCoroutine = null;
 
+    [Header("Time Lock Duration UI")]
+    private GameObject timeManagerObject;
+    private TimeManager timeManager;
     public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
-    public static event TimeLockDurationEvent timeLockDurationSend;
+    public static event TimeLockDurationEvent TimeLockDurationSend;
 
     private void Awake()
     {
+        timeManagerObject = GameObject.Find("TimeManager");
+        timeManager = timeManagerObject.GetComponent<TimeManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -81,7 +86,9 @@ public class TimeLockObject : MonoBehaviour
 
     private void Update()
     {
-        timeLockDurationSend(maxDuration, currentDuration);
+        if (timeManager.NowTimeLockedObject) { TimeLockDurationSend(maxDuration, currentDuration); }
+        else { TimeLockDurationSend(0f, 0f); }
+
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
