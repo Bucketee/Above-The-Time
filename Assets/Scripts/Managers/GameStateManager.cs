@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public enum GameState // temp
@@ -7,22 +8,48 @@ public enum GameState // temp
     Playing,
     Pause,
     GameOver,
+    Loading,
+    Talking
 }
 
 public class GameStateManager : MonoBehaviour
 {
-    private GameState nowGameState;
+    private GameState previousGameState;
+    private GameState nowGameState = GameState.Playing; //temp
     public GameState NowGameState => nowGameState;
 
-    public void Pause()
+    private Dictionary<GameState, float> gameStateTimeScaleDict = new()
     {
-        nowGameState = GameState.Pause;
-        Time.timeScale = 0f;
-    }
+        {GameState.Playing, 1f},
+        {GameState.Pause, 0f},
+        {GameState.Loading, 1f},
+        {GameState.GameOver, 0f},
+        {GameState.Talking, 0f}
+    };
 
-    public void Resume()
+    public void ChangeGameState(GameState gameState)
     {
-        nowGameState = GameState.Playing;
-        Time.timeScale = 1f;
+        previousGameState = nowGameState;
+        nowGameState = gameState;
+        Time.timeScale = gameStateTimeScaleDict[nowGameState];
     }
+    public void RedoGameState()
+    {
+        nowGameState = previousGameState;
+        previousGameState = GameState.Playing;
+        Time.timeScale = gameStateTimeScaleDict[nowGameState];
+    }
+    // public void Pause()
+    // {
+    //     previousGameState = nowGameState;
+    //     nowGameState = GameState.Pause;
+    //     Time.timeScale = 0f;
+    // }
+
+    // public void Resume()
+    // {
+    //     previousGameState = nowGameState;
+    //     nowGameState = GameState.Playing;
+    //     Time.timeScale = 1f;
+    // }
 }
