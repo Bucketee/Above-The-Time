@@ -11,6 +11,8 @@ public class MouseCursor : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private GameStateManager gameStateManager;
+
     private void Awake()
     {
         Cursor.visible = false;
@@ -21,11 +23,16 @@ public class MouseCursor : MonoBehaviour
     private void Start()
     {
         spriteRenderer.sprite = cursorSprites[0];
+        gameStateManager = GameManager.Instance.GameStateManager;
     }
 
     private void Update()
     {
         transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+        if (gameStateManager.NowGameState != GameState.Playing)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(1))
         {
             var hit = Physics2D.Raycast(transform.position, Vector2.zero, 1, timelockLayers);

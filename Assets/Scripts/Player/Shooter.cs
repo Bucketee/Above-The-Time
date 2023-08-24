@@ -13,14 +13,20 @@ public class Shooter : MonoBehaviour
 
     private GameObject player;
     private Vector3 mousePoint;
+    private GameStateManager gameStateManager;
 
     private void Start()
     {
         player = GetComponentInParent<Player>().gameObject;
+        gameStateManager = GameManager.Instance.GameStateManager;
     }
 
     private void Update()
     {
+        if (gameStateManager.NowGameState != GameState.Playing)
+        {
+            return;
+        }
         PositionMove();
         bool[] mouseState = GetMouseInput();
         if (mouseState[0])
