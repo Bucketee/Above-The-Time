@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 
-public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class TimeLockObject : MonoBehaviour
 {
     protected new Rigidbody2D rigidbody2D;
 
@@ -49,13 +49,13 @@ public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!timeLocked && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        if (!timeLocked && !(collision.gameObject.layer == LayerMask.NameToLayer("Mouse"))) return;
         SetSortingLayer("Timelockable");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!timeLocked && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        if (!timeLocked && !(collision.gameObject.layer == LayerMask.NameToLayer("Mouse"))) return;
         SetSortingLayer("Default");
     }
 
@@ -83,11 +83,11 @@ public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
             if (timeAmount < 0)
             {
-                for (int i = 0; i < (0.08f / Time.deltaTime); i++) Rewind();
+                for (int i = 0; i < (0.01f / Time.deltaTime); i++) Rewind();
             }
             else if (timeAmount > 0)
             {
-                for (int i = 0; i < (0.08f / Time.deltaTime); i++) UnRewind();
+                for (int i = 0; i < (0.01f / Time.deltaTime); i++) UnRewind();
             }
             return;
         }
@@ -184,15 +184,5 @@ public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         rigidbody2D.velocity = speed;
         rigidbody2D.angularVelocity = angular;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("enter");
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Debug.Log("exit");
     }
 }
