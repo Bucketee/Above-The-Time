@@ -13,7 +13,6 @@ public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public float timeLockCoolDown;
     public bool TimeLocked => timeLocked;
     [SerializeField] protected float duration = 10f;
-    public float maxDuration, currentDuration;
     protected LinkedList<PositionInTime> positions = new ();
     protected LinkedList<PositionInTime> positionsTemp = new (); //for future
     [SerializeField] protected int maxRecordSize = 20;
@@ -31,6 +30,7 @@ public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private TimeManager timeManager;
     public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
     public static event TimeLockDurationEvent TimeLockDurationSend;
+    public float maxDuration, currentDuration;
 
     private void Awake()
     {
@@ -84,11 +84,17 @@ public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             GetComponent<SpriteRenderer>().sortingLayerName = "Default";
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (timeManager.NowTimeLockedObject)
+        {
+            TimeLockDurationSend(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
+            Debug.Log("Sending");
+        }
+        else { TimeLockDurationSend(0f, 0f); Debug.Log("Not Sending"); }
+    }
     private void Update()
     {
-        if (timeManager.NowTimeLockedObject) { TimeLockDurationSend(maxDuration, currentDuration); }
-        else { TimeLockDurationSend(0f, 0f); }
 
         if (timeLocked)
         {
