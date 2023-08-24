@@ -42,7 +42,7 @@ public class Lever : InteractionObject
         }
         else
         {
-            GameManager.Instance.UIManager.AddText("<color=#EC591A>A broken lever cannot be controlled</color>", 3);
+            GameManager.Instance.UIManager.AddText("<color=#EC591A>A broken lever cannot be controlled!</color>", 3);
         }
     }
 
