@@ -5,6 +5,7 @@ using UnityEngine;
 public class Lever : InteractionObject
 {
     private TimeLockLever timeLockLever;
+    private TimeZoneLever timeZoneLever;
     public LeverState leverState;
 
     public enum LeverState
@@ -18,11 +19,17 @@ public class Lever : InteractionObject
     private void Awake()
     {
         timeLockLever = GetComponent<TimeLockLever>();
+        timeZoneLever = GetComponent<TimeZoneLever>();
     }
 
     private void Start()
     {
-        if ((int) leverState <= 1)
+        LeverInitialize();
+    }
+
+    public void LeverInitialize()
+    {
+        if ((int)leverState <= 1)
         {
 
         }
@@ -39,6 +46,7 @@ public class Lever : InteractionObject
             if (timeLockLever.TimeLocked) timeLockLever.GetTimeUnLocked();
             timeLockLever.Interacted();
             SetLeverState(1 - leverState);
+            OnStateChange();
         }
         else
         {
@@ -50,4 +58,9 @@ public class Lever : InteractionObject
     {
         leverState = state;
     }
+    
+    public void OnStateChange()
+    {
+        timeZoneLever.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
+    }    
 }

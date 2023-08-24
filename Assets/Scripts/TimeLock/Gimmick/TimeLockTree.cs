@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeLockTree : TimeLockObject
 {
-    enum TreeState
+    public enum TreeState
     {
         seed,
         sprout,
@@ -14,7 +14,7 @@ public class TimeLockTree : TimeLockObject
     [SerializeField] private Sprite[] treeSprites;
     
     private SpriteRenderer spriteRenderer;
-    private TreeState state;
+    public TreeState state;
     private bool timeLocked => TimeLocked;
     private bool canTransform;
 
@@ -25,6 +25,7 @@ public class TimeLockTree : TimeLockObject
         spriteRenderer = GetComponent<SpriteRenderer>();
         state = TreeState.seed;
         canTransform = true;
+        timeManager = GameManager.Instance.TimeManager;
         gameStateManager = GameManager.Instance.GameStateManager;
     }
 
