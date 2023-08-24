@@ -50,14 +50,10 @@ public class ThugController : MonoBehaviour
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private LayerMask stepableLayers;
 
-    [Header("Time Lock")]
-    private TimeLockObject timeLockObject;
-
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        timeLockObject = GetComponent<TimeLockObject>();
     
         float nowPositionX = transform.position.x;
         normalRangeLeftX = nowPositionX - normalLeftX;
@@ -76,11 +72,6 @@ public class ThugController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (timeLockObject.TimeLocked)
-        {
-            return;
-        }
-
         HandleMove();
         HandleJump();
         ApplyMovement();
