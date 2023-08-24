@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1055545842931081298}
   - component: {fileID: 1055545842931081308}
   - component: {fileID: 1055545842931081309}
-  - component: {fileID: 1055545842931081311}
   m_Layer: 7
   m_Name: Thug
   m_TagString: Untagged
@@ -111,8 +110,9 @@ MonoBehaviour:
   detectCliff: 0
   isAttacking: 0
   isComingBack: 0
+  isWalking: 0
   input: {fileID: 11400000, guid: 3d802260277f01646af3668bd372417d, type: 2}
-  walkSpeed: 6
+  walkSpeed: 2
   runSpeed: 6
   movingCool: 0
   normalLeftX: 3
@@ -181,22 +181,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1055545842931081311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055545842931081297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0a17c64223b70b478a36a11cbdee254, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeLocked: 0
-  timeLockCoolDown: 0
-  duration: 10
-  maxRecordSize: 2000
 --- !u!1 &1055545843072785659
 GameObject:
   m_ObjectHideFlags: 0
