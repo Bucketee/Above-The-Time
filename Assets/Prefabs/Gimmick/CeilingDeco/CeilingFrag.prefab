@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7532237019305306337}
   - component: {fileID: 1362459103}
   - component: {fileID: 411425764917858515}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: CeilingFrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,4 +172,6 @@ MonoBehaviour:
   timeLockCoolDown: 0
   duration: 10
   maxRecordSize: 20
+  maxDuration: 0
+  currentDuration: 0
   joint2D: {fileID: 0}

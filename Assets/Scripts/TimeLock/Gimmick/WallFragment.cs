@@ -129,6 +129,19 @@ public class WallFragment : TimeLockObject
         wallObject.AddRewindCount();
     }
 
+    public virtual void GoToFirstPosNow()
+    {
+        rigidbody2D.velocity = new Vector2(0f, 0f);
+        rigidbody2D.angularVelocity = 0f;
+        transform.position = firstPos;
+        transform.rotation = Quaternion.Euler(0f, 0f, firstRot);
+        speed = new Vector2(0f, 0f);
+        angular = 0f;
+        gameObject.layer = LayerMask.NameToLayer("Wall");
+        positions = new LinkedList<PositionInTime>();
+        wallObject.AddRewindCount();
+    }
+
     public override void GetTimeLocked()
     {
         timeLocked = true;

@@ -47,7 +47,7 @@ public class Interaction : MonoBehaviour
             interactObject = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && interactObject != null)
+        if (Input.GetKeyDown(KeyCode.F) && interactObject != null)
         {
             interactObject.GetComponent<InteractionObject>().Interact();
         }

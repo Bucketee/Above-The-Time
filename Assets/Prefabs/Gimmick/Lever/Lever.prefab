@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8914664192871646654}
   - component: {fileID: 8914664192871646655}
   - component: {fileID: 8914664192871646596}
+  - component: {fileID: 1436166452}
+  - component: {fileID: 1436166458}
   m_Layer: 13
   m_Name: Lever
   m_TagString: Untagged
@@ -119,7 +121,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -154,6 +156,8 @@ MonoBehaviour:
   timeLockCoolDown: 0
   duration: 10
   maxRecordSize: 20
+  maxDuration: 0
+  currentDuration: 0
   count: 0
   amount: 20
 --- !u!114 &8914664192871646596
@@ -169,3 +173,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leverState: 0
+--- !u!114 &1436166452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8914664192871646597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa987e0c1dfbdc84481c48cc351990b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeZoneObjectInfo:
+    timeZoneV3s:
+    - timeZone: 0
+      leverState: 0
+    - timeZone: 1
+      leverState: 1
+    - timeZone: 2
+      leverState: 3
+--- !u!114 &1436166458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8914664192871646597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f56825872c2b04c8c0edff0d9d945c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: aae2fc121e33e3a4b83549419230456e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1436166452}
+        m_TargetAssemblyTypeName: TimeZoneLever, Assembly-CSharp
+        m_MethodName: Setting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimeLockLever : TimeLockObject
 {
     private Lever lever;
+    private TimeZoneLever timeZoneLever;
     public LinkedList<Lever.LeverState> leverStates = new();
     public LinkedList<Lever.LeverState> leverStatesTemp = new();
 
@@ -15,6 +16,7 @@ public class TimeLockLever : TimeLockObject
     private void Awake()
     {
         lever = GetComponent<Lever>();
+        timeZoneLever = GetComponent<TimeZoneLever>();
     }
 
     private void Update()
@@ -110,6 +112,7 @@ public class TimeLockLever : TimeLockObject
         {
             Debug.Log("no more past");
         }
+        lever.OnStateChange();
         count = -1;
     }
 
@@ -131,6 +134,7 @@ public class TimeLockLever : TimeLockObject
         {
             Debug.Log("no more future");
         }
+        lever.OnStateChange();
         count = 1;
     }
 

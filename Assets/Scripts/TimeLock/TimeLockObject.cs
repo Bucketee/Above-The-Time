@@ -27,7 +27,7 @@ public class TimeLockObject : MonoBehaviour
 
     [Header("Time Lock Duration UI")]
     private GameObject timeManagerObject;
-    private TimeManager timeManager;
+    protected TimeManager timeManager;
     public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
     public static event TimeLockDurationEvent TimeLockDurationSend;
     public float maxDuration, currentDuration;
@@ -92,9 +92,8 @@ public class TimeLockObject : MonoBehaviour
         if (timeManager.NowTimeLockedObject)
         {
             TimeLockDurationSend(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
-            Debug.Log("Sending");
         }
-        else { TimeLockDurationSend(0f, 0f); Debug.Log("Not Sending"); }
+        else { TimeLockDurationSend(0f, 0f); }
     }
     private void Update()
     {
