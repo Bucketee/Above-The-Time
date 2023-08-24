@@ -18,15 +18,23 @@ public class TimeLockTree : TimeLockObject
     private bool timeLocked => TimeLocked;
     private bool canTransform;
 
+    private GameStateManager gameStateManager;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         state = TreeState.seed;
         canTransform = true;
+        gameStateManager = GameManager.Instance.GameStateManager;
     }
 
     private void Update()
     {
+        if (gameStateManager.NowGameState != GameState.Playing)
+        {
+            return;
+        }
+
         if (timeLocked && canTransform)
         {
             var scroll = Input.GetAxis("Mouse ScrollWheel");
