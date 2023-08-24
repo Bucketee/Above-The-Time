@@ -9,8 +9,6 @@ public class TimeLockLever : TimeLockObject
     public LinkedList<Lever.LeverState> leverStates = new();
     public LinkedList<Lever.LeverState> leverStatesTemp = new();
 
-    private GameStateManager gameStateManager;
-
     [Header("State")]
     public float count;
     public float amount = 20;

@@ -17,8 +17,6 @@ public class WallFragment : TimeLockObject
 
     protected Wall wallObject;
 
-    private GameStateManager gameStateManager;
-
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();

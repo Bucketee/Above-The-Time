@@ -22,7 +22,7 @@ public class TimeLockDurationUI : MonoBehaviour
         if(mDuration > 0)
         {
             timeLockedIcon.SetActive(true);
-            barImage.fillAmount = cDuration / mDuration;
+            barImage.fillAmount = (float) cDuration / mDuration;
         }
         else
         {
