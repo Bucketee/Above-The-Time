@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 683583263}
   - component: {fileID: 683583262}
   - component: {fileID: 683583261}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Fixed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 1597890970}
   - component: {fileID: 4477239343374563400}
   - component: {fileID: 3076349408809802781}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Parts0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,6 +308,8 @@ MonoBehaviour:
   timeLockCoolDown: 0
   duration: 10
   maxRecordSize: 20
+  maxDuration: 0
+  currentDuration: 0
   joint2D: {fileID: 0}
 --- !u!1 &1643443763
 GameObject:
@@ -323,7 +325,7 @@ GameObject:
   - component: {fileID: 1643443765}
   - component: {fileID: 7634093169988041224}
   - component: {fileID: 1233375527933738753}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Parts1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,6 +483,8 @@ MonoBehaviour:
   timeLockCoolDown: 0
   duration: 10
   maxRecordSize: 20
+  maxDuration: 0
+  currentDuration: 0
   joint2D: {fileID: 0}
 --- !u!1 &1855989213
 GameObject:
@@ -496,7 +500,7 @@ GameObject:
   - component: {fileID: 1855989215}
   - component: {fileID: 6276458756826573679}
   - component: {fileID: 2895066733168886134}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Parts2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,6 +658,8 @@ MonoBehaviour:
   timeLockCoolDown: 0
   duration: 10
   maxRecordSize: 20
+  maxDuration: 0
+  currentDuration: 0
   joint2D: {fileID: 0}
 --- !u!1 &1932922842902632341
 GameObject:
@@ -696,7 +702,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1932922842990268776}
   - component: {fileID: 2672777814233870144}
-  m_Layer: 8
+  - component: {fileID: 5003518868648981948}
+  - component: {fileID: 4911746551445803362}
+  m_Layer: 11
   m_Name: CeilingDeco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,8 +747,56 @@ MonoBehaviour:
   rewinding: 0
   timeLocked: 0
   count: 0
-  amount: 0
+  amount: 10
   fragments: []
   recoveringSpeed: 80
   explosionLoc: {x: 0, y: 0}
-  explosionPower: 0
+  explosionPower: 3
+--- !u!114 &5003518868648981948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932922842990268790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fcb390fa1d99e48a9d77f494e33352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeZoneObjectInfo:
+    timeZoneV3s:
+    - timeZone: 0
+      isBroken: 1
+    - timeZone: 1
+      isBroken: 0
+    - timeZone: 2
+      isBroken: 1
+--- !u!114 &4911746551445803362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932922842990268790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f56825872c2b04c8c0edff0d9d945c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: aae2fc121e33e3a4b83549419230456e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5003518868648981948}
+        m_TargetAssemblyTypeName: TimeZoneCeilingDeco, Assembly-CSharp
+        m_MethodName: Setting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "CharacterSprites", menuName = "CharacterSprites")]
+[CreateAssetMenu(fileName = "CharacterSprites", menuName = "Sprites/CharacterSprites")]
 public class CharacterSprites : ScriptableObject
 {
     public Sprite playerSprite;

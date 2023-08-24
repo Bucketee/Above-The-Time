@@ -9,7 +9,7 @@ public class Wall : MonoBehaviour
     public bool rewinding = false;
     public bool timeLocked = false;
     public float count;
-    [SerializeField] private float amount;
+    public float amount;
 
     [Header("Fragments")]
     [SerializeField] protected  List<WallFragment> fragments = new List<WallFragment>();
@@ -21,8 +21,10 @@ public class Wall : MonoBehaviour
     public float explosionPower; //power of breaking walls
     private GameStateManager gameStateManager;
 
+    private TimeZoneWall timeZoneWall;
     private void Awake()
     {
+        timeZoneWall = GetComponent<TimeZoneWall>();
         count = 0;
         explosionLoc = transform.GetChild(0).transform.position;
         foreach (WallFragment fragment in GetComponentsInChildren<WallFragment>())
@@ -59,11 +61,15 @@ public class Wall : MonoBehaviour
             if (broken && count < -amount)
             {
                 StopVibrating();
+                broken = false;
+                timeZoneWall.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
                 FixWall();
             }
             else if (!broken && count > amount)
             {
                 StopVibrating();
+                broken = true;
+                timeZoneWall.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
                 BreakWall(true, explosionPower);
             }
             return;
@@ -83,7 +89,6 @@ public class Wall : MonoBehaviour
             fragment.gameObject.layer = LayerMask.NameToLayer("WallFragment");
             fragment.ExplosionEffect(explosionLoc, power);
         }
-        broken = true;
     }
 
     /// <summary>
@@ -108,7 +113,15 @@ public class Wall : MonoBehaviour
         }
         rewindCount = 0;
         rewinding = true;
-        broken = false;
+    }
+
+    public virtual void InitializeWall()
+    {
+        foreach (WallFragment fragment in fragments)
+        {
+            fragment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            fragment.GoToFirstPosNow();
+        }
     }
 
     public void TimeLocked()
@@ -133,7 +146,7 @@ public class Wall : MonoBehaviour
         }
     }
 
-    private void Vibrating()
+    protected void Vibrating()
     {
         foreach (WallFragment fragment in fragments)
         {
@@ -141,7 +154,7 @@ public class Wall : MonoBehaviour
         }
     }
 
-    private void StopVibrating()
+    protected void StopVibrating()
     {
         foreach (WallFragment fragment in fragments)
         {
@@ -154,6 +167,7 @@ public class Wall : MonoBehaviour
         rewindCount += 1;
         if (rewindCount == fragments.Count)
         {
+            rewindCount = 0;
             rewinding = false;
         }
     }

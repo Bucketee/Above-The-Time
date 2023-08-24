@@ -27,7 +27,7 @@ public class TimeLockObject : MonoBehaviour
 
     [Header("Time Lock Duration UI")]
     private GameObject timeManagerObject;
-    private TimeManager timeManager;
+    protected TimeManager timeManager;
     public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
     public static event TimeLockDurationEvent TimeLockDurationSend;
     public float maxDuration, currentDuration;
