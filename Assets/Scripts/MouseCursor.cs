@@ -13,6 +13,8 @@ public class MouseCursor : MonoBehaviour
 
     private GameStateManager gameStateManager;
 
+    [SerializeField] private List<GameObject> timeLocks = new();
+
     private void Awake()
     {
         Cursor.visible = false;
@@ -35,17 +37,16 @@ public class MouseCursor : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            var hit = Physics2D.Raycast(transform.position, Vector2.zero, 1, timelockLayers);
-            if (hit.collider)
+            if (timeLocks.Count > 0)
             {
                 try
                 {
-                    TimeLockObject timelockObject = hit.collider.GetComponent<TimeLockObject>();
+                    TimeLockObject timelockObject = timeLocks[0].GetComponent<TimeLockObject>();
                     doTimelock(timelockObject);
                 }
                 catch
                 {
-                    Debug.Log("error");
+                    Debug.Log("wtf?");
                 }
             }
         }
@@ -55,5 +56,17 @@ public class MouseCursor : MonoBehaviour
     {
         if (timelockObject == null) return;
         timelockObject.HandleTimeLock();
+    }
+
+    public void AddThisObject(GameObject gameObject)
+    {
+        if (timeLocks.Contains(gameObject)) return;
+        timeLocks.Add(gameObject);
+    }
+
+    public void RemoveThisObject(GameObject gameObject)
+    {
+        if (!timeLocks.Contains(gameObject)) return;
+        timeLocks.Remove(gameObject);
     }
 }

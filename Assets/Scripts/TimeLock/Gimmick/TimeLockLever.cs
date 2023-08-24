@@ -63,18 +63,6 @@ public class TimeLockLever : TimeLockObject
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
-        SetSortingLayer("Timelockable");
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
-        SetSortingLayer("Default");
-    }
-
     protected override void Record()
     {
         leverStates.AddLast(lever.leverState);

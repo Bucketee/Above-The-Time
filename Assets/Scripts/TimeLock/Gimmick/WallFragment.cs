@@ -53,12 +53,14 @@ public class WallFragment : TimeLockObject
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!rewinding && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        collision.GetComponent<MouseCursor>()?.AddThisObject(gameObject);
         wallObject.SetFragSortingLayer("Timelockable");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!rewinding && !collision.TryGetComponent<MouseCursor>(out MouseCursor mouse)) return;
+        collision.GetComponent<MouseCursor>()?.RemoveThisObject(gameObject);
         wallObject.SetFragSortingLayer("Default");
     }
 
