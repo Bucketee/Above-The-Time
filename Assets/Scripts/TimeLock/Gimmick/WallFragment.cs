@@ -24,10 +24,6 @@ public class WallFragment : TimeLockObject
         firstPos = rigidbody2D.position;
         firstRot = rigidbody2D.rotation;
     }
-    private void Start()
-    {
-        gameStateManager = GameManager.Instance.GameStateManager;
-    }
 
     private void Update()
     {

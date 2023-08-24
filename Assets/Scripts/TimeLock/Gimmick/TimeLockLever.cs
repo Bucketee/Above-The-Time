@@ -19,11 +19,6 @@ public class TimeLockLever : TimeLockObject
         timeZoneLever = GetComponent<TimeZoneLever>();
     }
 
-    private void Start()
-    {
-        gameStateManager = GameManager.Instance.GameStateManager;
-    }
-
     private void Update()
     {
         if (gameStateManager.NowGameState != GameState.Playing)
