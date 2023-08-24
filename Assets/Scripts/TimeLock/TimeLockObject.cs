@@ -16,6 +16,7 @@ public class TimeLockObject : MonoBehaviour
     protected LinkedList<PositionInTime> positions = new ();
     protected LinkedList<PositionInTime> positionsTemp = new (); //for future
     [SerializeField] protected int maxRecordSize = 20;
+
     protected float timeLockCoolDownTime = 0;
     protected bool canTimeLock = true;
     public int Count => positions.Count;
@@ -24,9 +25,17 @@ public class TimeLockObject : MonoBehaviour
     protected float angular;
     protected Coroutine nowTimeLockCoroutine = null;
 
+    [Header("Time Lock Duration UI")]
+    private GameObject timeManagerObject;
+    private TimeManager timeManager;
+    public delegate void TimeLockDurationEvent(float mDuration, float cDuration);
+    public static event TimeLockDurationEvent TimeLockDurationSend;
+    public float maxDuration, currentDuration;
 
     private void Awake()
     {
+        timeManagerObject = GameObject.Find("TimeManager");
+        timeManager = timeManagerObject.GetComponent<TimeManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -75,9 +84,18 @@ public class TimeLockObject : MonoBehaviour
             GetComponent<SpriteRenderer>().sortingLayerName = "Default";
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (timeManager.NowTimeLockedObject)
+        {
+            TimeLockDurationSend(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
+            Debug.Log("Sending");
+        }
+        else { TimeLockDurationSend(0f, 0f); Debug.Log("Not Sending"); }
+    }
     private void Update()
     {
+
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
@@ -101,12 +119,17 @@ public class TimeLockObject : MonoBehaviour
 
     protected virtual IEnumerator TimeLockDuration(float duration)
     {
+        maxDuration = duration;
+        currentDuration = duration;
         float time = Time.time + duration;
         while (Time.time < time)
         {
+            currentDuration = time - Time.time;
             yield return new WaitForSeconds((time - Time.time) / 10);
             ChangeSortingLayer();
         }
+        maxDuration = 0f;
+        currentDuration = 0f;
         GetTimeUnLocked();
     }
 
@@ -132,6 +155,8 @@ public class TimeLockObject : MonoBehaviour
 
     public virtual void GetTimeUnLocked()
     {
+        maxDuration = 0f;
+        currentDuration = 0f;
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();
         timeLocked = false;
         timeLockCoolDownTime = timeLockCoolDown;
