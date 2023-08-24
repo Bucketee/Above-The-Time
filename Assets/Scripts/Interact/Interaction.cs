@@ -33,7 +33,14 @@ public class Interaction : MonoBehaviour
                     interactObject = gameObject;
                 }
             }
-            uiManager.AddText("<color=black><size=36>" + "Press E to interact with </size>" + "<size=42><b>" + interactObject.name + "</b></size></color>");
+            if (interactObject.name.Contains("Lever"))
+            {
+                uiManager.AddText("<color=black><size=36>" + "Press E to interact with </size>" + "<size=42><b>" + interactObject.name + "</b></size></color>");
+            }
+            else if (interactObject.name.Contains("Teleport"))
+            {
+                uiManager.AddText("<color=black><size=36>" + "Press E to go to </size>" + "<size=42><b>" + interactObject.GetComponent<Teleport>().sceneName + "</b></size></color>");
+            }
         }
         else
         {

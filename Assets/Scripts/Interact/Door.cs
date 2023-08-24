@@ -20,10 +20,22 @@ public class Door : MonoBehaviour
         if (password.Equals(cur))
         {
             open = true;
+            OnOpen();
         }
         else
         {
             open = false;
+            OnClose();
         }
+    }
+
+    private void OnOpen()
+    {
+        //help
+    }
+
+    private void OnClose()
+    {
+        //help
     }
 }
