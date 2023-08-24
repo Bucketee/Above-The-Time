@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System;
 
-public class TimeLockObject : MonoBehaviour
+public class TimeLockObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     protected new Rigidbody2D rigidbody2D;
 
@@ -202,5 +203,15 @@ public class TimeLockObject : MonoBehaviour
     {
         rigidbody2D.velocity = speed;
         rigidbody2D.angularVelocity = angular;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("enter");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("exit");
     }
 }
