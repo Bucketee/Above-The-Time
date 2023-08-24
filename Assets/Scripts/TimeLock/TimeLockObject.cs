@@ -34,9 +34,12 @@ public class TimeLockObject : MonoBehaviour
 
     private void Awake()
     {
-        timeManagerObject = GameObject.Find("TimeManager");
-        timeManager = timeManagerObject.GetComponent<TimeManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        timeManager = GameManager.Instance.TimeManager;
     }
 
     public virtual void HandleTimeLock()
