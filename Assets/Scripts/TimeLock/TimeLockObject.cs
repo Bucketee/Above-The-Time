@@ -113,11 +113,11 @@ public class TimeLockObject : MonoBehaviour
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
             if (timeAmount < 0)
             {
-                for (int i = 0; i < (0.01f / Time.deltaTime); i++) Rewind();
+                for (int i = 0; i < (0.2f * Time.deltaTime); i++) Rewind();
             }
             else if (timeAmount > 0)
             {
-                for (int i = 0; i < (0.01f / Time.deltaTime); i++) UnRewind();
+                for (int i = 0; i < (0.2f * Time.deltaTime); i++) UnRewind();
             }
             return;
         }
