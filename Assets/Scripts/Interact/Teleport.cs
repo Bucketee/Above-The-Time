@@ -13,7 +13,7 @@ public class Teleport : InteractionObject
         if (available)
         {
             Debug.Log(sceneName);
-            //SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(sceneName);
         }
         else
         {

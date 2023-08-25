@@ -403,7 +403,7 @@ MonoBehaviour:
   maxFallSpeed: -30
   stepableLayers:
     serializedVersion: 2
-    m_Bits: 5576
+    m_Bits: 103880
   collidingLayers:
     serializedVersion: 2
-    m_Bits: 5576
+    m_Bits: 103880
