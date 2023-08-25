@@ -33,7 +33,14 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        animator.SetBool("isDead", true);
+        Debug.Log("Die!");
+        animator.SetTrigger("isDead0");
+        animator.SetTrigger("isDead1");
+        Invoke("GameOver", 0.3f);
+    }
+
+    public void GameOver()
+    {
         gameStateManager.ChangeGameState(GameState.GameOver);
     }
 }
