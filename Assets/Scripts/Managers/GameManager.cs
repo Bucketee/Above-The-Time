@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TimeZoneManager TimeZoneManager { get; private set; }
     public TalkManager TalkManager { get; private set; }
     public TimeLockDurationUI TimeLockDurationUI { get; private set; }
+    public SoundManager SoundManager { get; private set; }
 
     private void Awake()
     {
@@ -28,5 +29,6 @@ public class GameManager : MonoBehaviour
         TimeZoneManager = GetComponentInChildren<TimeZoneManager>();
         TalkManager = GetComponentInChildren<TalkManager>();
         TimeLockDurationUI = GetComponentInChildren<TimeLockDurationUI>();
+        SoundManager = GetComponentInChildren<SoundManager>();
     }
 }
