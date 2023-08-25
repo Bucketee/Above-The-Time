@@ -111,13 +111,15 @@ public class TimeLockObject : MonoBehaviour
         if (timeLocked)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
-            if (timeAmount < 0)
+            if (timeAmount < 0 && GameManager.Instance.TimeManager.timeWindCost > 0)
             {
                 for (int i = 0; i < (0.2f * Time.deltaTime); i++) Rewind();
+                GameManager.Instance.TimeManager.timeWindCost -= 1f;
             }
-            else if (timeAmount > 0)
+            else if (timeAmount > 0 && GameManager.Instance.TimeManager.timeWindCost > 0)
             {
                 for (int i = 0; i < (0.2f * Time.deltaTime); i++) UnRewind();
+                GameManager.Instance.TimeManager.timeWindCost -= 1f;
             }
             return;
         }
