@@ -93,6 +93,8 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
                 spriteDict[t] = emptySprite;
             }
         }
+
+        Setting();
     }
 
     [Serializable]
