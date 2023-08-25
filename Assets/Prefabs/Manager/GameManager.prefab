@@ -343,5 +343,8 @@ MonoBehaviour:
   timeZoneText: {fileID: 0}
   nowYear: 0
   timeZoneChangeEvent: {fileID: 11400000, guid: aae2fc121e33e3a4b83549419230456e, type: 2}
+  ClockFrame: {fileID: 0}
+  Hourhand: {fileID: 0}
+  Minutehand: {fileID: 0}
   hourHandPlus: 0
   minuteHandPlus: 0
