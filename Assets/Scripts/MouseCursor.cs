@@ -31,6 +31,7 @@ public class MouseCursor : MonoBehaviour
     private void Update()
     {
         transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (gameStateManager.NowGameState != GameState.Playing)
         {
             return;

@@ -44,3 +44,6 @@ TagManager:
   - name: Timelockable
     uniqueID: 3025845747
     locked: 0
+  - name: Mouse
+    uniqueID: 636298087
+    locked: 0

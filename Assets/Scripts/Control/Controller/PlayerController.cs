@@ -223,6 +223,10 @@ public class PlayerController : MonoBehaviour
                 isJump = true;
                 currJumpTime = 0f;
             }
+            else if (isOnAir && !isJump )
+            {
+                speed.y = Mathf.MoveTowards(speed.y, maxFallSpeed, fallAcceleration * Time.fixedDeltaTime);
+            }
         }
         else if (input.RetrieveJumpUpInput())
         {
