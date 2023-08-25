@@ -15,13 +15,13 @@ TagManager:
   - Monster
   - Wall
   - WallFragment
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Tree
+  - CeilingDeco
+  - CeilingFrag
+  - Lever
+  - Mouse
+  - TimeLockObject
+  - Door
   - 
   - 
   - 
@@ -41,6 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: timelockable
+  - name: Timelockable
     uniqueID: 3025845747
     locked: 0
