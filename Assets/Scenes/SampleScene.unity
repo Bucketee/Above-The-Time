@@ -1800,6 +1800,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
+      propertyPath: dashAcceleration
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107804302082702327, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: stepableLayers.m_Bits
       value: 456
       objectReference: {fileID: 0}

@@ -340,3 +340,11 @@ MonoBehaviour:
   stepableLayers:
     serializedVersion: 2
     m_Bits: 192
+  collidingLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  dashUsed: 0
+  isDash: 0
+  dashSpeed: 10
+  dashTime: 0.4
+  dashAcceleration: 100
