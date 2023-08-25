@@ -62,7 +62,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -132,18 +132,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  cameraSpeed: 0.02
+  cameraSpeedX: 0.04
+  cameraSpeedY: 0.05
   borders:
-  - borderName: test1
-    minX: -100
-    minY: -100
-    maxX: 24
-    maxY: 8
-  - borderName: test2
-    minX: 24
-    minY: -100
-    maxX: 100
-    maxY: 0
+  - borderName: basic
+    minX: -20
+    minY: -5
+    maxX: 1000
+    maxY: 1000
   currentBorder:
     borderName: 
     minX: 0

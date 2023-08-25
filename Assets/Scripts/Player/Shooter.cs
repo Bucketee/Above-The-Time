@@ -10,10 +10,16 @@ public class Shooter : MonoBehaviour
     [Header("About Bullet")]
     [SerializeField] private float speed;
     [SerializeField] private float life;
+    [SerializeField] private bool isCool;
 
     private GameObject player;
     private Vector3 mousePoint;
     private GameStateManager gameStateManager;
+
+    private void Awake()
+    {
+        isCool = false;
+    }
 
     private void Start()
     {
@@ -29,13 +35,9 @@ public class Shooter : MonoBehaviour
         }
         PositionMove();
         bool[] mouseState = GetMouseInput();
-        if (mouseState[0])
+        if (mouseState[0] && !isCool)
         {
-            ShootBullet(0, GetDirection(), speed, life);
-        }
-        else
-        {
-
+            ShootBullet(0, GetDirection(), speed, life);            
         }
     }
 
@@ -67,8 +69,8 @@ public class Shooter : MonoBehaviour
     private bool[] GetMouseInput()
     {
         bool[] mouseState = new bool[2];
-        mouseState[0] = Input.GetMouseButtonDown(0);
-        mouseState[1] = Input.GetMouseButtonDown(1);
+        mouseState[0] = Input.GetMouseButton(0);
+        mouseState[1] = Input.GetMouseButton(1);
         return mouseState;
     }
 
@@ -81,8 +83,16 @@ public class Shooter : MonoBehaviour
     /// <param name="life">life time of bullet</param>
     private void ShootBullet(int bulletType, Vector2 dir, float speed, float life)
     {
+        StartCoroutine(BulletCool());
         GameObject bullet = Instantiate(bullets[bulletType], transform.position, Quaternion.identity);
         bullet.GetComponent<Bullet>().Init(bulletType, dir, speed, life);
+    }
+
+    private IEnumerator BulletCool()
+    {
+        isCool = true;
+        yield return new WaitForSeconds(0.5f);
+        isCool = false;
     }
     #endregion
 }

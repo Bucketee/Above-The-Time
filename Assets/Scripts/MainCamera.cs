@@ -6,7 +6,8 @@ using UnityEngine;
 public class MainCamera : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float cameraSpeed = 0.02f;
+    [SerializeField] private float cameraSpeedX = 0.04f;
+    [SerializeField] private float cameraSpeedY = 0.05f;
     private float cameraZ;
     private float width, height;
     [Tooltip("minX, minY, maxX, maxY")]
@@ -18,14 +19,14 @@ public class MainCamera : MonoBehaviour
     {
         cameraZ = transform.position.z;
 
-        Vector2 v = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 v = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)) - transform.position;
         width = v.x;
         height = v.y;
     }
 
     private void FixedUpdate()
     {
-        Vector3 targetPos = new Vector3(player.position.x, player.position.y, cameraZ);
+        Vector3 targetPos = new Vector3(player.position.x, player.position.y + 2, 0);
 
         if (!IsInBorder(currentBorder))
         {
@@ -49,7 +50,7 @@ public class MainCamera : MonoBehaviour
             targetPos.y = currentBorder.minY + height;
         }
 
-        transform.position = Vector3.Lerp(transform.position, targetPos, cameraSpeed);
+        transform.position = new Vector3(Mathf.Lerp(transform.position.x, targetPos.x, cameraSpeedX), Mathf.Lerp(transform.position.y, targetPos.y, cameraSpeedY), cameraZ);
     }
 
     private void FindBorder()
@@ -59,7 +60,7 @@ public class MainCamera : MonoBehaviour
             if (IsInBorder(border))
             {
                 currentBorder = border;
-                break;
+                return;
             }
         }
         Debug.LogWarning("Where are you?");
