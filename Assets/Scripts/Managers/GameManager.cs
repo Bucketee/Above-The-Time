@@ -12,9 +12,12 @@ public class GameManager : MonoBehaviour
     public TalkManager TalkManager { get; private set; }
     public TimeLockDurationUI TimeLockDurationUI { get; private set; }
     public SoundManager SoundManager { get; private set; }
+    public StoryManager StoryManager { get; private set; }
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -30,5 +33,6 @@ public class GameManager : MonoBehaviour
         TalkManager = GetComponentInChildren<TalkManager>();
         TimeLockDurationUI = GetComponentInChildren<TimeLockDurationUI>();
         SoundManager = GetComponentInChildren<SoundManager>();
+        StoryManager = GetComponentInChildren<StoryManager>();
     }
 }

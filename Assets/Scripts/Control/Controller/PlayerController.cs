@@ -28,12 +28,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxFallSpeed = -30f;
     [SerializeField] private LayerMask stepableLayers;
     [SerializeField] private LayerMask collidingLayers; //head
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private SoundManager soundManager;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -58,13 +62,19 @@ public class PlayerController : MonoBehaviour
     {
         float inputHor = input.RetrieveMoveInput();
         speed.x = inputHor * walkSpeed;
-        if (inputHor >= 0f)
+        if (inputHor > 0f)
         {
-            //right side help
+            spriteRenderer.flipX = false;
+            animator.SetBool("isMoving", true);
+        }
+        else if (inputHor < 0f)
+        {
+            spriteRenderer.flipX = true;
+            animator.SetBool("isMoving", true);
         }
         else
         {
-            //left side
+            animator.SetBool("isMoving", false);
         }
     }
     #endregion

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 using Unity.VisualScripting;
@@ -36,13 +37,21 @@ public class TimeZoneManager : MonoBehaviour
 
     [SerializeField] private GameEvent timeZoneChangeEvent;
 
+    [Header("Clock Operate")]
+    [SerializeField] private GameObject ClockFrame;
+    [SerializeField] private GameObject Hourhand;
+    [SerializeField] private GameObject Minutehand;
     [SerializeField] private int hourHandPlus, minuteHandPlus;
+    private RectTransform hourhandTransform;
+    private RectTransform minutehandTransform;
 
     private SoundManager soundManager;
     private void Start()
     {
         soundManager = GameManager.Instance.SoundManager;
         nowYear = 2000;
+        hourhandTransform = Hourhand.GetComponent<Image>().rectTransform;
+        minutehandTransform = Minutehand.GetComponent<Image>().rectTransform;
     }
 
     private void ChangeTime(TimeZone timeZone)
@@ -107,6 +116,27 @@ public class TimeZoneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ChangeTimeMoveBool(TimeZone.Future);
+        }
+
+        if (GameManager.Instance.GameStateManager.NowGameState == GameState.TimeChanging && ClockFrame.activeSelf == false)
+        {
+            ClockFrame.SetActive(true);
+            Hourhand.SetActive(true);
+            Minutehand.SetActive(true);
+            hourhandTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            minutehandTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else if (GameManager.Instance.GameStateManager.NowGameState != GameState.TimeChanging && ClockFrame.activeSelf == true)
+        {
+            ClockFrame.SetActive(false);
+            Hourhand.SetActive(false);
+            Minutehand.SetActive(false);
+        }
+
+        if(GameManager.Instance.GameStateManager.NowGameState == GameState.TimeChanging)
+        {
+            hourhandTransform.rotation = Quaternion.Euler(0f, 0f, -30f * hourHandPlus);
+            minutehandTransform.rotation = Quaternion.Euler(0f, 0f, -30f * minuteHandPlus);
         }
     }
 

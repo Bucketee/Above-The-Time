@@ -77,10 +77,15 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
         }
 
         spriteRenderer.sprite = spriteDict[timeZone]; 
-        polygonCollider2D.isTrigger = isTriggerDict[timeZone];   
-
+        polygonCollider2D.isTrigger = isTriggerDict[timeZone]; 
+        
+        thugController.enabled = !isTriggerDict[timeZone];
+        if (thugController.enabled)
+        {
+            thugController.ResetMove();  
+        }
         Collider2DExtensions.TryUpdateShapeToAttachedSprite(polygonCollider2D);    
-        thugController.ResetMove();
+        
     }
 
     public void Die(TimeZone timeZone)
@@ -93,6 +98,8 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
                 spriteDict[t] = emptySprite;
             }
         }
+
+        Setting();
     }
 
     [Serializable]

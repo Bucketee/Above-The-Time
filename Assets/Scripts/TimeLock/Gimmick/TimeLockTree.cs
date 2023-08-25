@@ -34,17 +34,19 @@ public class TimeLockTree : TimeLockObject
             return;
         }
 
-        if (timeLocked && canTransform)
+        if (timeLocked && canTransform && GameManager.Instance.TimeManager.timeWindCost > 20f)
         {
             var scroll = Input.GetAxis("Mouse ScrollWheel");
             if(scroll > 0.5f && (int)state < 2) 
-            { 
+            {
+                GameManager.Instance.TimeManager.timeWindCost -= 20f;
                 canTransform = false;
                 state = (TreeState)((int)state + 1);
                 StartCoroutine(TreeGrowMotion());
             }
             else if (scroll < -0.5f && (int)state > 0)
             {
+                GameManager.Instance.TimeManager.timeWindCost -= 20f;
                 canTransform = false;
                 state = (TreeState)((int)state - 1);
                 StartCoroutine(TreeReverseMotion());
