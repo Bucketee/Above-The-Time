@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1055545842931081309}
   - component: {fileID: 2101016391}
   - component: {fileID: 2101016392}
+  - component: {fileID: 921748707}
   m_Layer: 7
   m_Name: Thug
   m_TagString: Untagged
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7830189, g: 0.30040342, b: 0.30040342, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b3699bcd8cb26584fba3e96cdceacfc6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -200,11 +201,11 @@ MonoBehaviour:
     - timeZone: 0
       pos: {x: 5, y: -3.5, z: 0}
       isTriggered: 0
-      sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+      sprite: {fileID: 21300000, guid: b3699bcd8cb26584fba3e96cdceacfc6, type: 3}
     - timeZone: 1
       pos: {x: 5, y: -3.5, z: 0}
       isTriggered: 0
-      sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+      sprite: {fileID: 21300000, guid: b3699bcd8cb26584fba3e96cdceacfc6, type: 3}
     - timeZone: 2
       pos: {x: 5, y: -3.5, z: 0}
       isTriggered: 1
@@ -238,6 +239,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &921748707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055545842931081297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d690cc9d5d909f848a47d77dbd3f12bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1055545843072785659
 GameObject:
   m_ObjectHideFlags: 0
