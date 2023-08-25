@@ -213,14 +213,20 @@ public class ThugController : MonoBehaviour
     }
     private void SetVelocity()
     {
+        if (isAttacking)
+        {
+            return;
+        }
         horizontalDir = destinationX < transform.position.x ? -1f : 1f;
         if (horizontalDir >= 0f)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
+            attackCollider2D.offset = new Vector2(1f, 0f);
         }
         else
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
+            attackCollider2D.offset = new Vector2(0f, 0f);
         }
 
         if (isWalking)
