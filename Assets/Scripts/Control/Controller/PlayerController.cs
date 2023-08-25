@@ -28,10 +28,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxFallSpeed = -30f;
     [SerializeField] private LayerMask stepableLayers;
     [SerializeField] private LayerMask collidingLayers; //head
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
