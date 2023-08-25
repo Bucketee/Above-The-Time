@@ -245,7 +245,7 @@ public class ThugController : MonoBehaviour
         if (CheckPlayerInAttackCollider())
         {
             Debug.Log("GetAttacked");
-            // player.getAttack();
+            player.GetDamaged(10f);
         }
         if (resetting)
         {
