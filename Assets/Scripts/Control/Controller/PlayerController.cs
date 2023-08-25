@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashAcceleration;
     private bool dashInput;
 
+    private SoundManager soundManager;
+
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -46,6 +49,10 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        soundManager = GameManager.Instance.SoundManager;
+    }
     private void Update()
     {
         CheckOnAir();
