@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StoryManager : MonoBehaviour
 {
+    [SerializeField]
     public enum StoryProgress
     {
         Tutorial,
@@ -20,6 +21,7 @@ public class StoryManager : MonoBehaviour
         End,
     };
 
+    [SerializeField]
     public StoryProgress CurrentStory { get; private set; }
 
     public void NextStory()
