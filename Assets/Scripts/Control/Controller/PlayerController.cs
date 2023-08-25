@@ -29,11 +29,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask stepableLayers;
     [SerializeField] private LayerMask collidingLayers; //head
 
+    private SoundManager soundManager;
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        soundManager = GameManager.Instance.SoundManager;
+    }
     private void Update()
     {
         CheckOnAir();

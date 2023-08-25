@@ -637,6 +637,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 431636226}
     - target: {fileID: 2146587410564410563, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fe910c69bc76506478d9dabdf6c14076, type: 3}
+    - target: {fileID: 2146587410564410563, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: clockTickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fe910c69bc76506478d9dabdf6c14076, type: 3}
+    - target: {fileID: 2146587410564410563, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: backGroundMusic1
+      value: 
+      objectReference: {fileID: 8300000, guid: 808da4ea4cd9efc4b9e3ae8ab48248da, type: 3}
+    - target: {fileID: 2146587410564410563, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: effectAudioSource
       value: 
       objectReference: {fileID: 562549621}

@@ -22,6 +22,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip backGroundMusic2;
     private float pausedTime = 0f;
 
+    private void Start()
+    {
+        ChangeBGM1();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M)) { MuteBGM(); }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            if (backgroundAudioSource.isPlaying) { PauseBGM(); }
+            else { PlayBGM(); }
+        }
+    }
+
     #region BGM Methods
     public void PlayBGM()
     {
@@ -45,6 +59,13 @@ public class SoundManager : MonoBehaviour
         {
             pausedTime = 0f;
             backgroundAudioSource.Stop();
+        }
+    }
+    public void MuteBGM()
+    {
+        if(backgroundAudioSource.clip != null)
+        {
+            backgroundAudioSource.volume = 1f - backgroundAudioSource.volume;
         }
     }
     public void ChangeBGM1()
