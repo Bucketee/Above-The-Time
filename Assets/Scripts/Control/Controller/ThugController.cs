@@ -10,6 +10,7 @@ public class ThugController : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Collider2D playerDetectCollider2D;
     [SerializeField] private Collider2D attackCollider2D;
+    [HideInInspector] public SpriteRenderer attackColliderSpriteRenderer;
     private float attackBeforeWaitingTime = 1f;
     private float attackAfterWaitingTime = 0.3f;
 
@@ -51,6 +52,7 @@ public class ThugController : MonoBehaviour
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private LayerMask stepableLayers;
     private bool resetting = false;
+    private Thug thug;
 
     private void Awake()
     {
@@ -64,6 +66,9 @@ public class ThugController : MonoBehaviour
         chaseRangeRightX = nowPositionX + chaseRightX;
 
         detectDistanceX = playerDetectCollider2D.gameObject.transform.localScale.x/2f;
+        attackColliderSpriteRenderer = attackCollider2D.GetComponent<SpriteRenderer>();
+
+        thug = GetComponent<Thug>();
     }
 
     private void Update()
@@ -221,12 +226,12 @@ public class ThugController : MonoBehaviour
         if (horizontalDir >= 0f)
         {
             spriteRenderer.flipX = true;
-            attackCollider2D.offset = new Vector2(1f, 0f);
+            attackCollider2D.transform.localPosition = new Vector3(0.5f, 0f);
         }
         else
         {
             spriteRenderer.flipX = false;
-            attackCollider2D.offset = new Vector2(0f, 0f);
+            attackCollider2D.transform.localPosition = new Vector3(-0.5f, 0f);
         }
 
         if (isWalking)
@@ -243,8 +248,9 @@ public class ThugController : MonoBehaviour
     private IEnumerator AttackCo()
     {
         Debug.Log("Start Attack");
+        attackColliderSpriteRenderer.enabled = true;    
         yield return new WaitForSeconds(attackBeforeWaitingTime);
-        if (resetting)
+        if (resetting || thug.NowHP<0f)
         {
             yield break;
         }

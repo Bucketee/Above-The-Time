@@ -10,11 +10,15 @@ public class Thug : MonoBehaviour
     private GameStateManager gameStateManager;
     private Animator animator;
     private TimeZoneThug timeZoneThug;
+    private ThugController thugController;
+    private SpriteRenderer attackSpriteRenderer;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         timeZoneThug = GetComponent<TimeZoneThug>();
+        thugController = GetComponent<ThugController>();
+        attackSpriteRenderer = thugController.attackColliderSpriteRenderer;
     }
     private void Start()
     {
@@ -35,6 +39,7 @@ public class Thug : MonoBehaviour
     public void Die()
     {
         Debug.Log("Thug Die!");
+        attackSpriteRenderer.enabled = false;
         timeZoneThug.Die(GameManager.Instance.TimeZoneManager.NowTimeZone);
     }
 
