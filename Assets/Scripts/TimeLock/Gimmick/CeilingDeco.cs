@@ -20,11 +20,12 @@ public class CeilingDeco : Wall
 
     private void Update()
     {
-        if (timeLocked)
+        if (timeLocked && GameManager.Instance.TimeManager.timeWindCost > 0)
         {
             float timeAmount = Input.GetAxis("Mouse ScrollWheel");
             if (count * timeAmount > 0)
             {
+                GameManager.Instance.TimeManager.timeWindCost -= 3f;
                 Vibrating();
                 count += timeAmount;
             }
