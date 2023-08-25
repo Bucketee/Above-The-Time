@@ -45,8 +45,10 @@ public class TimeZoneManager : MonoBehaviour
     private RectTransform hourhandTransform;
     private RectTransform minutehandTransform;
 
+    private SoundManager soundManager;
     private void Start()
     {
+        soundManager = GameManager.Instance.SoundManager;
         nowYear = 2000;
         hourhandTransform = Hourhand.GetComponent<Image>().rectTransform;
         minutehandTransform = Minutehand.GetComponent<Image>().rectTransform;
@@ -145,10 +147,10 @@ public class TimeZoneManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         while (!Input.GetKeyDown(KeyCode.R))
         {
-            if (Input.GetKeyDown(KeyCode.I)) { hourHandPlus--; }
-            else if (Input.GetKeyDown(KeyCode.O)) { hourHandPlus++; }
-            else if (Input.GetKeyDown(KeyCode.K)) { minuteHandPlus--; }
-            else if (Input.GetKeyDown(KeyCode.L)) { minuteHandPlus++; }
+            if (Input.GetKeyDown(KeyCode.I)) { hourHandPlus--; soundManager.ClockTickSound(); }
+            else if (Input.GetKeyDown(KeyCode.O)) { hourHandPlus++; soundManager.ClockTickSound(); }
+            else if (Input.GetKeyDown(KeyCode.K)) { minuteHandPlus--; soundManager.ClockTickSound(); }
+            else if (Input.GetKeyDown(KeyCode.L)) { minuteHandPlus++; soundManager.ClockTickSound(); }
             yield return null;
         }
         int finalClockHandInput = hourHandPlus * 12 + minuteHandPlus;

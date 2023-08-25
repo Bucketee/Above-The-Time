@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
+    private SoundManager soundManager;
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -38,6 +40,10 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        soundManager = GameManager.Instance.SoundManager;
+    }
     private void Update()
     {
         CheckOnAir();
