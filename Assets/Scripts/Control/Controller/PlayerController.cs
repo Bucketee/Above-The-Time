@@ -31,7 +31,16 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
+    [Header("Dash")]
+    [SerializeField] private bool dashUsed = false; //dash used
+    [SerializeField] private bool isDash = false; //is dashing
+    [SerializeField] private float dashSpeed = 30f;
+    [SerializeField] private float dashTime;
+    [SerializeField] private float dashAcceleration;
+    private bool dashInput;
+
     private SoundManager soundManager;
+
 
     private void Awake()
     {
@@ -48,12 +57,20 @@ public class PlayerController : MonoBehaviour
     {
         CheckOnAir();
         CheckIsJump();
+        dashInput = input.RetrieveDashInput();
+        if (!isDash )
+        {
+            HandleDash();
+        }
     }
 
     private void FixedUpdate()
     {
-        HandleMove();
-        HandleJump();
+        if (!isDash)
+        {
+            HandleMove();
+            HandleJump();
+        }
         ApplyMovement();
     }
 
@@ -65,16 +82,16 @@ public class PlayerController : MonoBehaviour
         if (inputHor > 0f)
         {
             spriteRenderer.flipX = false;
-            animator.SetBool("isMoving", true);
+            //animator.SetBool("isMoving", true);
         }
         else if (inputHor < 0f)
         {
             spriteRenderer.flipX = true;
-            animator.SetBool("isMoving", true);
+            //animator.SetBool("isMoving", true);
         }
         else
         {
-            animator.SetBool("isMoving", false);
+            //animator.SetBool("isMoving", false);
         }
     }
     #endregion
@@ -83,8 +100,69 @@ public class PlayerController : MonoBehaviour
     private void HandleDash()
     {
         float inputHor = input.RetrieveMoveInput();
-        bool dashInput = input.RetrieveDashInput();
-        return; //help
+
+        if(inputHor != 0f && dashInput && !dashUsed) 
+        {
+            isDash = true;
+            dashUsed = true;
+            StartCoroutine(Dash(inputHor));
+        }
+    }
+
+    IEnumerator Dash(float inputHor)
+    {
+        float maxFallSpeedSet = maxFallSpeed;
+        maxFallSpeed = 0f;
+        speed.y = 0f;
+        if(inputHor > 0f)
+        {
+            speed.x = 0.1f;
+            while (speed.x < dashSpeed)
+            {
+                Debug.Log("Accelerating");
+                if (speed.x == 0f) { break; }
+                speed.x = Mathf.MoveTowards(speed.x, dashSpeed, dashAcceleration * Time.fixedDeltaTime);
+                speed.y = 0f;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        else if (inputHor < 0f)
+        {
+            speed.x = -0.1f;
+            while (speed.x > -dashSpeed)
+            {
+                Debug.Log("Accelerating");
+                if (speed.x == 0f) { break; }
+                speed.x = Mathf.MoveTowards(speed.x, -dashSpeed, dashAcceleration * Time.fixedDeltaTime);
+                speed.y = 0f;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        yield return new WaitForSeconds(dashTime);
+        if (inputHor > 0f)
+        {
+            while (speed.x > 0f)
+            {
+                Debug.Log("Decelerating");
+                speed.x = Mathf.MoveTowards(speed.x, 0f, dashAcceleration * Time.fixedDeltaTime);
+                speed.y = 0f;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        else if (inputHor < 0f)
+        {
+            while (speed.x < 0f)
+            {
+                Debug.Log("Decelerating");
+                speed.x = Mathf.MoveTowards(speed.x, 0f, dashAcceleration * Time.fixedDeltaTime);
+                speed.y = 0f;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        isDash = false;
+        maxFallSpeed = maxFallSpeedSet;
+        yield return null;
     }
     #endregion
 
@@ -112,6 +190,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            dashUsed = false;
             isOnAir = false;
         }
     }
