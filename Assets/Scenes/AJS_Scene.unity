@@ -829,6 +829,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 114459144}
     - target: {fileID: 6366005866324619018, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 738415240}
+    - target: {fileID: 6366005866324619018, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: timeZoneText
       value: 
       objectReference: {fileID: 870406966}
@@ -1353,6 +1357,11 @@ MonoBehaviour:
       rot: 0
       isTriggered: 0
       sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+--- !u!1 &738415240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6242846925699533165, guid: 6bc945b037aef784e98e54ea0d208558, type: 3}
+  m_PrefabInstance: {fileID: 1776934880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &759020976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5628346168963431785, guid: 7a7899fbb6e34c148a701bcf1dc53ea8, type: 3}
