@@ -30,7 +30,7 @@ public class TimeLockTree : TimeLockObject
         canTransform = true;
         timeManager = GameManager.Instance.TimeManager;
         gameStateManager = GameManager.Instance.GameStateManager;
-        if (GameManager.Instance.StoryManager.CurrentStory <= StoryManager.StoryProgress.PlantTree)
+        if (GameManager.Instance.StoryManager.CurrentStory <= StoryProgress.PlantTree)
         {
             Destroy(gameObject);
         }
@@ -111,7 +111,7 @@ public class TimeLockTree : TimeLockObject
 
     public void ChangeShape()
     {
-        if (GameManager.Instance.StoryManager.CurrentStory < StoryManager.StoryProgress.GoToFuture && GameManager.Instance.TimeZoneManager.NowTimeZone == TimeZone.Future)
+        if (GameManager.Instance.StoryManager.CurrentStory < StoryProgress.GoToFuture && GameManager.Instance.TimeZoneManager.NowTimeZone == TimeZone.Future)
         {
             spriteRenderer.sprite = null;
         }

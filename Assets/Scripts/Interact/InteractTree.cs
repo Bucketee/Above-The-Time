@@ -8,7 +8,7 @@ public class InteractTree : InteractionObject
 
     private void Start()
     {
-        if (GameManager.Instance.StoryManager.CurrentStory > StoryManager.StoryProgress.PlantTree)
+        if (GameManager.Instance.StoryManager.CurrentStory > StoryProgress.PlantTree)
         {
             Destroy(gameObject);
         }
@@ -16,7 +16,7 @@ public class InteractTree : InteractionObject
 
     public override void Interact()
     {
-        GameManager.Instance.StoryManager.SelectStory(StoryManager.StoryProgress.PresentSlum);
+        GameManager.Instance.StoryManager.SelectStory(StoryProgress.PresentSlum);
         Vector3 pos = transform.position;
         Instantiate(tree, pos, Quaternion.identity);
         Destroy(gameObject);

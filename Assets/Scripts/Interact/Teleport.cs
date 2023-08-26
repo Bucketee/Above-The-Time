@@ -10,9 +10,14 @@ public class Teleport : InteractionObject
 
     public override void Interact()
     {
+        if (GameManager.Instance.StoryManager.CurrentStory == StoryProgress.ChaseAxe)
+        {
+            available = true;
+        }
         if (available)
         {
             Debug.Log(sceneName);
+            GameManager.Instance.StoryManager.NextStory();
             SceneManager.LoadScene(sceneName);
         }
         else
