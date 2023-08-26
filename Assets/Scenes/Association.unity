@@ -1891,6 +1891,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bc945b037aef784e98e54ea0d208558, type: 3}
+--- !u!1001 &1044205844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.91002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.104557
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371597, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371599, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: available
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371599, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: sceneName
+      value: Slum
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371696, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_Name
+      value: Teleport (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371696, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
 --- !u!1 &1050048836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2586,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1436166452, guid: 518fcde3282406e40a42a3f975aba01c, type: 3}
+      propertyPath: timeZoneObjectInfo.timeZoneV3s.Array.data[0].leverState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436166452, guid: 518fcde3282406e40a42a3f975aba01c, type: 3}
+      propertyPath: timeZoneObjectInfo.timeZoneV3s.Array.data[2].leverState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8914664192871646593, guid: 518fcde3282406e40a42a3f975aba01c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2857,6 +2934,10 @@ PrefabInstance:
     - target: {fileID: 8126039710602371696, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
       propertyPath: m_Name
       value: Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371696, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
