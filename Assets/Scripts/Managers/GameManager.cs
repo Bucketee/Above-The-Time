@@ -16,15 +16,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
+        else
+        {
+            Instance = this;
+        }
 
-        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         GameStateManager = GetComponentInChildren<GameStateManager>();
         UIManager = GetComponentInChildren<UIManager>();

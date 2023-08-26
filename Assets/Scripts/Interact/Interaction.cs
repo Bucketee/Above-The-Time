@@ -33,11 +33,11 @@ public class Interaction : MonoBehaviour
                     interactObject = gameObject;
                 }
             }
-            if (interactObject.name.Contains("Lever"))
+            if (interactObject.gameObject.layer == LayerMask.NameToLayer("Lever"))
             {
                 uiManager.AddText("<color=black><size=36>" + "Press F to interact with </size>" + "<size=42><b>" + interactObject.name + "</b></size></color>");
             }
-            else if (interactObject.name.Contains("Teleport"))
+            else if (interactObject.gameObject.layer == LayerMask.NameToLayer("Teleport"))
             {
                 uiManager.AddText("<color=black><size=36>" + "Press F to go to </size>" + "<size=42><b>" + interactObject.GetComponent<Teleport>().sceneName + "</b></size></color>");
             }
