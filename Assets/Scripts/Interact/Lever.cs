@@ -35,7 +35,7 @@ public class Lever : InteractionObject
     private void Update()
     {
         if (!interactable) return;
-        spriteRenderer.sprite = sprites[(int)leverState * 2];
+        spriteRenderer.sprite = sprites[((int)leverState % 2) * 2];
     }
 
     public void LeverInitialize()
