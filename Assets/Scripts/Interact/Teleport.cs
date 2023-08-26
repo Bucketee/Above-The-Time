@@ -14,7 +14,6 @@ public class Teleport : InteractionObject
         if (available)
         {
             Debug.Log(sceneName);
-            GameManager.Instance.StoryManager.NextStory();
             SceneManager.LoadScene(sceneName);
         }
         else
