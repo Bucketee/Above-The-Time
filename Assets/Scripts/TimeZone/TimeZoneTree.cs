@@ -14,6 +14,7 @@ public class TimeZoneTree : MonoBehaviour, ITimeZoneInterface
     {
         TimeZone timeZone = GameManager.Instance.TimeZoneManager.NowTimeZone;
         timeLockTree.state = treeStateDict[timeZone];
+        timeLockTree.ChangeShape();
     }
 
     private void Awake()

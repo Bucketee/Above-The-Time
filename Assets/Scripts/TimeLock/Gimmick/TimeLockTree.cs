@@ -8,7 +8,7 @@ public class TimeLockTree : TimeLockObject
     {
         seed,
         sprout,
-        tree
+        tree,
     }
 
     [SerializeField] private Sprite[] treeSprites;
@@ -18,43 +18,71 @@ public class TimeLockTree : TimeLockObject
     private bool timeLocked => TimeLocked;
     private bool canTransform;
 
+    private void Awake()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        state = TreeState.seed;
+        //state = TreeState.seed;
         canTransform = true;
         timeManager = GameManager.Instance.TimeManager;
         gameStateManager = GameManager.Instance.GameStateManager;
+        if (GameManager.Instance.StoryManager.CurrentStory <= StoryProgress.PlantTree)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void Update()
-    {
-        if (gameStateManager.NowGameState != GameState.Playing)
-        {
-            return;
-        }
+    //private void Update()
+    //{
+    //    //if (gameStateManager.NowGameState != GameState.Playing)
+    //    //{
+    //    //    return;
+    //    //}
 
-        if (timeLocked && canTransform && GameManager.Instance.TimeManager.timeWindCost > 20f)
-        {
-            var scroll = Input.GetAxis("Mouse ScrollWheel");
-            if(scroll > 0.5f && (int)state < 2) 
-            {
-                GameManager.Instance.TimeManager.timeWindCost -= 20f;
-                canTransform = false;
-                state = (TreeState)((int)state + 1);
-                StartCoroutine(TreeGrowMotion());
-            }
-            else if (scroll < -0.5f && (int)state > 0)
-            {
-                GameManager.Instance.TimeManager.timeWindCost -= 20f;
-                canTransform = false;
-                state = (TreeState)((int)state - 1);
-                StartCoroutine(TreeReverseMotion());
-            }
-        }
+    //    //if (GameManager.Instance.StoryManager.CurrentStory == StoryManager.StoryProgress.BackToTree)
+    //    //{
+    //    //    this.enabled = true;
+    //    //}
+    //    //else
+    //    //{
+    //    //    this.enabled = false;
+    //    //}
+
+    //    //if (timeLocked && canTransform && GameManager.Instance.TimeManager.timeWindCost > 20f)
+    //    //{
+    //    //    var scroll = Input.GetAxis("Mouse ScrollWheel");
+    //    //    if (scroll > 0.5f && (int)state < 2)
+    //    //    {
+    //    //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
+    //    //        //canTransform = false;
+    //    //        state = (TreeState)((int)state + 1);
+    //    //        spriteRenderer.sprite = treeSprites[(int)state];
+    //    //        //StartCoroutine(TreeGrowMotion());
+    //    //    }
+    //    //    else if (scroll < -0.5f && (int)state > 0)
+    //    //    {
+    //    //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
+    //    //        //canTransform = false;
+    //    //        state = (TreeState)((int)state - 1);
+    //    //        spriteRenderer.sprite = treeSprites[(int)state];
+    //    //        //StartCoroutine(TreeReverseMotion());
+    //    //    }
+    //    //    if (scroll > 0.5f && (int)state == 1)
+    //    //    {
+    //    //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
+    //    //        //canTransform = false;
+    //    //        state = (TreeState) 2;
+    //    //        spriteRenderer.sprite = treeSprites[2];
+    //    //        //StartCoroutine(TreeGrowMotion());
+    //    //    }
+    //    //}
 
 
-    }
+    //}
 
 
     IEnumerator TreeGrowMotion()
@@ -79,5 +107,17 @@ public class TimeLockTree : TimeLockObject
         }
         spriteRenderer.sprite = treeSprites[(int)state];
         canTransform = true;
+    }
+
+    public void ChangeShape()
+    {
+        if (GameManager.Instance.StoryManager.CurrentStory < StoryProgress.GoToFuture && GameManager.Instance.TimeZoneManager.NowTimeZone == TimeZone.Future)
+        {
+            spriteRenderer.sprite = null;
+        }
+        else
+        {
+            spriteRenderer.sprite = treeSprites[(int)state];
+        }
     }
 }

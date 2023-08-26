@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0873511c2b681544b4377d71d8630f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentStory: 0
 --- !u!1 &1164381919661067630
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
   timeWindCostBar: {fileID: 0}
   timeWindCost: 100
   timeWindCostMax: 100
-  timeWindCostRegen: 0.05
+  timeWindCostRegen: 0.02
 --- !u!1 &6366005865632230210
 GameObject:
   m_ObjectHideFlags: 0
