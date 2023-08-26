@@ -35,8 +35,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.layer == 7)
             {
-                Debug.Log(1);
-                collision.gameObject.GetComponent<Thug>().GetDamaged(10f);
+                collision.gameObject.GetComponent<IEnemyInterface>().GetDamaged(10f);
             }
             Destroy(gameObject);
         }
