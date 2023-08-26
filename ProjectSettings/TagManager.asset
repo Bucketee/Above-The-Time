@@ -24,8 +24,8 @@ TagManager:
   - TimeLockObject
   - Door
   - Teleport
-  - 
-  - 
+  - Bullet
+  - Mover
   - 
   - 
   - 

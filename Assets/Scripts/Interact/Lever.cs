@@ -27,26 +27,22 @@ public class Lever : InteractionObject
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
-    {
-        LeverInitialize();
-    }
-
     private void Update()
     {
-        if (!interactable) return;
-        spriteRenderer.sprite = sprites[((int)leverState % 2) * 2];
+        //if (!interactable) return;
+        //spriteRenderer.sprite = sprites[((int)leverState % 2) * 2];
     }
 
     public void LeverInitialize()
     {
         if ((int)leverState <= 1)
         {
-
+            spriteRenderer.sprite = sprites[(int)leverState * 2];
         }
         else
         {
             timeLockLever.leverStates.AddLast(leverState - 2);
+            spriteRenderer.sprite = sprites[(int)leverState + 1];
         }
     }
 
@@ -78,7 +74,26 @@ public class Lever : InteractionObject
     public void OnStateChange()
     {
         timeZoneLever.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
-        if (spriteRenderer.sprite == sprites[((int)leverState % 2) * 2]) return;
+        if ((int)leverState == 0 && spriteRenderer.sprite == sprites[3])
+        {
+            spriteRenderer.sprite = sprites[0];
+            return;
+        }
+        else if ((int)leverState == 1 && spriteRenderer.sprite == sprites[4])
+        {
+            spriteRenderer.sprite = sprites[2];
+            return;
+        }
+        else if ((int)leverState == 2 && spriteRenderer.sprite == sprites[0])
+        {
+            spriteRenderer.sprite = sprites[3];
+            return;
+        }
+        else if ((int)leverState == 3 && spriteRenderer.sprite == sprites[1])
+        {
+            spriteRenderer.sprite = sprites[4];
+            return;
+        }
         interactable = false;
         timeLockLever.enabled = false;
         if (coroutine != null) StopCoroutine(coroutine);

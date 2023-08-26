@@ -14,7 +14,6 @@ public class Teleport : InteractionObject
         if (available)
         {
             Debug.Log(sceneName);
-            GameManager.Instance.StoryManager.NextStory();
             SceneManager.LoadScene(sceneName);
         }
         else
@@ -28,6 +27,7 @@ public class Teleport : InteractionObject
         if (gameObject.name.Equals("SlumToTower") && GameManager.Instance.StoryManager.CurrentStory >= StoryProgress.ChaseAxe)
         {
             available = true;
+            GameManager.Instance.StoryManager.SelectStory(StoryProgress.InTower);
             return;
         }
         if (gameObject.name.Equals("TowerToSlum") && GameManager.Instance.StoryManager.CurrentStory >= StoryProgress.BackToTree)

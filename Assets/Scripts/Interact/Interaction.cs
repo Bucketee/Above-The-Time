@@ -45,6 +45,10 @@ public class Interaction : MonoBehaviour
             {
                 uiManager.AddText("<color=black><size=36>" + "Press F to plant Tree</size></color>");
             }
+            else if (interactObject.gameObject.layer == LayerMask.NameToLayer("Mover"))
+            {
+                uiManager.AddText("<color=black><size=36>" + "Press F to go to Boss</size></color>");
+            }
         }
         else
         {

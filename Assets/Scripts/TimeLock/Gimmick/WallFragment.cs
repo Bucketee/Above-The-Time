@@ -120,9 +120,10 @@ public class WallFragment : TimeLockObject
         rewinding = true;
         rigidbody2D.velocity = new Vector2(0f, 0f);
         rigidbody2D.angularVelocity = 0f;
+        gameObject.layer = LayerMask.NameToLayer("Wall");
         while (positions.Count > 0)
         {
-            yield return new WaitForSeconds((positions.Last.Value.position - rigidbody2D.position).magnitude / (50 * rewindingSpeed * Time.deltaTime));
+            yield return new WaitForSeconds((positions.Last.Value.position - rigidbody2D.position).magnitude / (20 * rewindingSpeed * Time.deltaTime));
             Rewind();
             //Debug.Log("rewinding");
         }
@@ -130,7 +131,6 @@ public class WallFragment : TimeLockObject
         transform.rotation = Quaternion.Euler(0f, 0f, firstRot);
         speed = new Vector2(0f, 0f);
         angular = 0f;
-        gameObject.layer = LayerMask.NameToLayer("Wall");
         positions = new LinkedList<PositionInTime>();
         rewinding = false;
         wallObject.AddRewindCount();

@@ -7,17 +7,27 @@ public class Door : MonoBehaviour
     [SerializeField] List<Lever> levers = new();
     [Tooltip("off is 0, on is 1")]
     [SerializeField] private string password;
+    [SerializeField] private bool isHorizontal;
+    [SerializeField] private bool negativeDir;
+    [SerializeField] private float speed = 0.0008f;
 
     [SerializeField] private bool open;
     private Coroutine coroutine;
 
-    private float initY;
+    private float init;
     private Rigidbody2D rigidbody2D;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        initY = transform.position.y;
+        if (isHorizontal)
+        {
+            init = transform.position.x;
+        }
+        else
+        {
+            init = transform.position.y;
+        }
     }
 
     private void Update()
@@ -53,21 +63,30 @@ public class Door : MonoBehaviour
 
     private IEnumerator move()
     {
-        float targetY;
+        float target;
         if (open)
         {
-            targetY = initY + 1.8f;
+            target = init + 1.8f * transform.localScale.x * (negativeDir ? -1 : 1);
         }
         else
         {
-            targetY = initY;
+            target = init;
         }
 
         while (true)
         {
             yield return null;
-            rigidbody2D.position = new Vector2(rigidbody2D.position.x, Mathf.MoveTowards(rigidbody2D.position.y, targetY, 0.0008f));
-            if (rigidbody2D.position.y == targetY) break;
+            if (isHorizontal)
+            {
+                rigidbody2D.position = new Vector2(Mathf.MoveTowards(rigidbody2D.position.x, target, speed), rigidbody2D.position.y);
+                if (rigidbody2D.position.x == target) break;
+            }
+            else
+            {
+                rigidbody2D.position = new Vector2(rigidbody2D.position.x, Mathf.MoveTowards(rigidbody2D.position.y, target, speed));
+                if (rigidbody2D.position.y == target) break;
+            }
+            
         }
     }
 }
