@@ -38,7 +38,6 @@ public class TimeZoneManager : MonoBehaviour
     [SerializeField] private GameEvent timeZoneChangeEvent;
 
     [Header("Clock Operate")]
-    [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject ClockFrame;
     [SerializeField] private GameObject Hourhand;
     [SerializeField] private GameObject Minutehand;
@@ -140,9 +139,9 @@ public class TimeZoneManager : MonoBehaviour
             Minutehand.transform.rotation = Quaternion.Euler(0f, 0f, -30f * minuteHandPlus);
         }
 
-        ClockFrame.transform.position = mainCamera.transform.position + new Vector3(0f, 0f, 10f);
-        Hourhand.transform.position = mainCamera.transform.position + new Vector3(0f, 0f, 10f);
-        Minutehand.transform.position = mainCamera.transform.position + new Vector3(0f, 0f, 10f);
+        ClockFrame.transform.position = Camera.main.transform.position + new Vector3(0f, 0f, 10f);
+        Hourhand.transform.position = Camera.main.transform.position + new Vector3(0f, 0f, 10f);
+        Minutehand.transform.position = Camera.main.transform.position + new Vector3(0f, 0f, 10f);
     }
 
     private IEnumerator TimeClockOperate()
