@@ -26,7 +26,7 @@ public class GameStateManager : MonoBehaviour
         {GameState.Loading, 1f},
         {GameState.GameOver, 0f},
         {GameState.Talking, 0f},
-        {GameState.TimeChanging, 0f}
+        {GameState.TimeChanging, 1f}
     };
 
 

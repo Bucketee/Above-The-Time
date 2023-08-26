@@ -38,18 +38,16 @@ public class TimeZoneManager : MonoBehaviour
     [SerializeField] private GameEvent timeZoneChangeEvent;
 
     [Header("Clock Operate")]
+    [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject ClockFrame;
     [SerializeField] private GameObject Hourhand;
     [SerializeField] private GameObject Minutehand;
-    [SerializeField] private int hourHandPlus, minuteHandPlus;
-    private RectTransform hourhandTransform;
-    private RectTransform minutehandTransform;
+    [SerializeField] public GameObject Operatinghand = null;
+    [SerializeField] public int hourHandPlus, minuteHandPlus;
 
     private void Start()
     {
         nowYear = 2000;
-        hourhandTransform = Hourhand.GetComponent<Image>().rectTransform;
-        minutehandTransform = Minutehand.GetComponent<Image>().rectTransform;
     }
 
     private void ChangeTime(TimeZone timeZone)
@@ -82,6 +80,11 @@ public class TimeZoneManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Operatinghand = null;
+        }
+
         if (Input.GetKeyDown(KeyCode.R) && GameManager.Instance.GameStateManager.NowGameState == GameState.Playing)
         {
             GameManager.Instance.GameStateManager.ChangeGameState(GameState.TimeChanging);
@@ -121,8 +124,8 @@ public class TimeZoneManager : MonoBehaviour
             ClockFrame.SetActive(true);
             Hourhand.SetActive(true);
             Minutehand.SetActive(true);
-            hourhandTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            minutehandTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            Hourhand.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            Minutehand.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else if (GameManager.Instance.GameStateManager.NowGameState != GameState.TimeChanging && ClockFrame.activeSelf == true)
         {
@@ -133,9 +136,13 @@ public class TimeZoneManager : MonoBehaviour
 
         if(GameManager.Instance.GameStateManager.NowGameState == GameState.TimeChanging)
         {
-            hourhandTransform.rotation = Quaternion.Euler(0f, 0f, -30f * hourHandPlus);
-            minutehandTransform.rotation = Quaternion.Euler(0f, 0f, -30f * minuteHandPlus);
+            Hourhand.transform.rotation = Quaternion.Euler(0f, 0f, -30f * hourHandPlus);
+            Minutehand.transform.rotation = Quaternion.Euler(0f, 0f, -30f * minuteHandPlus);
         }
+
+        ClockFrame.transform.position = mainCamera.transform.position + new Vector3(0f, 0f, 10f);
+        Hourhand.transform.position = mainCamera.transform.position + new Vector3(0f, 0f, 10f);
+        Minutehand.transform.position = mainCamera.transform.position + new Vector3(0f, 0f, 10f);
     }
 
     private IEnumerator TimeClockOperate()
@@ -145,10 +152,6 @@ public class TimeZoneManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         while (!Input.GetKeyDown(KeyCode.R))
         {
-            if (Input.GetKeyDown(KeyCode.I)) { hourHandPlus--; }
-            else if (Input.GetKeyDown(KeyCode.O)) { hourHandPlus++; }
-            else if (Input.GetKeyDown(KeyCode.K)) { minuteHandPlus--; }
-            else if (Input.GetKeyDown(KeyCode.L)) { minuteHandPlus++; }
             yield return null;
         }
         int finalClockHandInput = hourHandPlus * 12 + minuteHandPlus;
