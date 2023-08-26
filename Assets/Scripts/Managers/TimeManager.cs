@@ -10,6 +10,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] public float timeWindCost = 100f;
     [SerializeField] public float timeWindCostMax = 100f;
     [SerializeField] public float timeWindCostRegen = 0.1f;
+    private float timeWindCostRegenByAttack = 1f;
     private Image costBarImage;
 
     private TimeLockObject nowTimeLockedObject = null;
@@ -24,6 +25,12 @@ public class TimeManager : MonoBehaviour
     {
         if(timeWindCost < timeWindCostMax) { timeWindCost += timeWindCostRegen; }
         costBarImage.fillAmount = timeWindCost / timeWindCostMax;
+    }
+
+    public void TimeWindCostCharge()
+    {
+        timeWindCost += timeWindCostRegenByAttack;
+        timeWindCost = Mathf.Min(timeWindCost, timeWindCostMax);
     }
 
     public void SetNowTimeLockedObject(TimeLockObject timeLockObject)
