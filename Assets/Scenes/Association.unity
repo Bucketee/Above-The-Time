@@ -2850,6 +2850,10 @@ PrefabInstance:
       propertyPath: available
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8126039710602371599, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
+      propertyPath: sceneName
+      value: Slum
+      objectReference: {fileID: 0}
     - target: {fileID: 8126039710602371696, guid: 11b40ea3b9882194b9fca51ab55c469a, type: 3}
       propertyPath: m_Name
       value: Teleport
