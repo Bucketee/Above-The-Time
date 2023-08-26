@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public enum StoryProgress
 
 public class StoryManager : MonoBehaviour
 {
-    public StoryProgress CurrentStory { get; private set; }
+    public StoryProgress CurrentStory;
     private DataManager dataManager;
 
     private void Start()
