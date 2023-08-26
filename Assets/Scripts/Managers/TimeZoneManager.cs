@@ -17,7 +17,7 @@ public enum TimeZone
 public class TimeZoneManager : MonoBehaviour
 {
 
-    [SerializeField] private TimeZone nowTimeZone = TimeZone.Present;
+    [SerializeField] private TimeZone nowTimeZone = TimeZone.Future;
     public TimeZone NowTimeZone => nowTimeZone;
     [SerializeField] private TMP_Text timeZoneText; //temp
     private Dictionary<TimeZone, bool> canTimeMoveDict = new() //Set by ChangeTimeMoveBool() method
