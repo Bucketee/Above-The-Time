@@ -1320,6 +1320,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2549205864342282527, guid: 44735afd35cc3b2478e0047239ba8e0a, type: 3}
   m_PrefabInstance: {fileID: 1613436336}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &514064522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3833959178681070733, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+  m_PrefabInstance: {fileID: 862624376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &520055858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,6 +1560,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527067640}
   m_CullTransparentMesh: 1
+--- !u!1 &772638159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3833959179459969559, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+  m_PrefabInstance: {fileID: 862624376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &825497142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1617,6 +1627,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8430426259580238782, guid: 3c7ee97e48c50044c8e7d51a661470ba, type: 3}
   m_PrefabInstance: {fileID: 825497142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &862624376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3833959178567311988, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Name
+      value: Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178567311991, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070833, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: mouseCursor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969563, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: mouseCursor
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
 --- !u!1001 &932220567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1932,6 +2007,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2290a908d9d3c41a572f8d541beb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1238590252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3833959179144755982, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+  m_PrefabInstance: {fileID: 862624376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1276603014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,15 +2372,15 @@ PrefabInstance:
     - target: {fileID: 6366005866324619018, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: Hourhand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 772638159}
     - target: {fileID: 6366005866324619018, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: ClockFrame
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1238590252}
     - target: {fileID: 6366005866324619018, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: Minutehand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 514064522}
     - target: {fileID: 6366005866324619018, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: timeZoneText
       value: 
