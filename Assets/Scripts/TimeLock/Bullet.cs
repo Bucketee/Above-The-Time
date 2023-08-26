@@ -36,6 +36,7 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
                 collision.gameObject.GetComponent<IEnemyInterface>().GetDamaged(10f);
+                GameManager.Instance.TimeManager.TimeWindCostCharge();
             }
             Destroy(gameObject);
         }
