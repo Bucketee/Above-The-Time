@@ -102,7 +102,7 @@ public class TimeZoneObject : MonoBehaviour
         {
             Record(timeZoneManager.NowTimeZone);
             transform.hasChanged = false;
-            Debug.Log(1);
+            //Debug.Log(1);
         }
     }
 

@@ -15,7 +15,12 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
     private SpriteRenderer spriteRenderer;
     private PolygonCollider2D polygonCollider2D;
     private ThugController thugController;
+    private Animator animator;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     private void Start()
     {
         timeZoneManager = GameManager.Instance.TimeZoneManager;
@@ -83,6 +88,12 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
         if (thugController.enabled)
         {
             thugController.ResetMove();  
+            animator.enabled = true;
+        }
+        else
+        {
+            animator.enabled = false;
+            spriteRenderer.sprite = spriteDict[timeZone]; 
         }
         Collider2DExtensions.TryUpdateShapeToAttachedSprite(polygonCollider2D);    
         
