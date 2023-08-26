@@ -30,7 +30,6 @@ public class Minutehand : MonoBehaviour
         {
             mouseDirection = mouseCursor.transform.position - Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2f, Screen.height / 2f));
             angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
 
             timeAngle = (90f - angle);
             if(timeAngle < 0f) { timeAngle += 360f; }
@@ -41,6 +40,8 @@ public class Minutehand : MonoBehaviour
 
             if (Mathf.Abs(timeAngle - minuteHandAngleNext) < 1f) { GameManager.Instance.TimeZoneManager.minuteHandPlus += 1; }
             if (Mathf.Abs(timeAngle - minuteHandAnglePre) < 1f) { GameManager.Instance.TimeZoneManager.minuteHandPlus -= 1; }
+
+            transform.rotation = Quaternion.Euler(0f, 0f, -minuteHandAngle);
             //Debug.Log(mouseDirection);
             //Debug.Log(angle);
         }
