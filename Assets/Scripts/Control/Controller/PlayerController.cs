@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        soundManager = GameManager.Instance.SoundManager;
+        soundManager = SoundManager.Instance;
     }
     private void Update()
     {

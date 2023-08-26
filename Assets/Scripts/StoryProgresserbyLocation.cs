@@ -5,7 +5,7 @@ using UnityEngine;
 public class StoryProgresserbyLocation : MonoBehaviour
 {
     [Tooltip("Go to this story when triggered")]
-    [SerializeField] private StoryManager.StoryProgress nextStory;
+    [SerializeField] private StoryProgress nextStory;
     private StoryManager storyManager;
 
     private void Start()
