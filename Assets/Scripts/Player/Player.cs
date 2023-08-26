@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float NowHP => nowHP;
     private GameStateManager gameStateManager;
     private Animator animator;
+    [SerializeField] private bool isInvincible = false;
+
 
     private void Awake()
     {
@@ -22,12 +24,26 @@ public class Player : MonoBehaviour
 
     public void GetDamaged(float damage)
     {
-        nowHP -= damage;
-        DataManager.Instance.SetPlayerHP(nowHP);
-        if (nowHP <= 0)
+        if (!isInvincible)
         {
-            Die();
+            nowHP -= damage;
+            DataManager.Instance.SetPlayerHP(nowHP);
+            if (nowHP <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                StartCoroutine(InvincibleCo());
+            }
         }
+    }
+
+    private IEnumerator InvincibleCo()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(0.1f);
+        isInvincible = false;
     }
 
     public void Die()
