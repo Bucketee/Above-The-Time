@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thug : MonoBehaviour
+public class Thug : MonoBehaviour, IEnemyInterface
 {
     private float maxHP = 20f;
     private float nowHP;
@@ -42,5 +42,4 @@ public class Thug : MonoBehaviour
         attackSpriteRenderer.enabled = false;
         timeZoneThug.Die(GameManager.Instance.TimeZoneManager.NowTimeZone);
     }
-
 }
