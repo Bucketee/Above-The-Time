@@ -17,14 +17,13 @@ public class Player : MonoBehaviour
     private void Start()
     {
         gameStateManager = GameManager.Instance.GameStateManager;
-        nowHP = maxHP; //temp
-        // nowHP will be set by DataManger
+        nowHP = DataManager.Instance.NowPlayerHP;
     }
 
     public void GetDamaged(float damage)
     {
         nowHP -= damage;
-
+        DataManager.Instance.SetPlayerHP(nowHP);
         if (nowHP <= 0)
         {
             Die();
