@@ -29,7 +29,6 @@ public class Hourhand : MonoBehaviour
         {
             mouseDirection = mouseCursor.transform.position - Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2f, Screen.height / 2f));
             angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
 
             timeAngle = (90f - angle);
             if (timeAngle < 0f) { timeAngle += 360f; }
@@ -40,6 +39,8 @@ public class Hourhand : MonoBehaviour
 
             if (Mathf.Abs(timeAngle - hourHandAngleNext) < 1f) { GameManager.Instance.TimeZoneManager.hourHandPlus += 1; }
             if (Mathf.Abs(timeAngle - hourHandAnglePre) < 1f) { GameManager.Instance.TimeZoneManager.hourHandPlus -= 1; }
+
+            transform.rotation = Quaternion.Euler(0f, 0f, -hourHandAngle);
             //Debug.Log(mouseDirection);
             //Debug.Log(angle);
         }
