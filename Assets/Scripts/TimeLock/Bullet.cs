@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.otherCollider)
         {
-            if (collision.gameObject.layer == 7)
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
                 collision.gameObject.GetComponent<IEnemyInterface>().GetDamaged(10f);
             }

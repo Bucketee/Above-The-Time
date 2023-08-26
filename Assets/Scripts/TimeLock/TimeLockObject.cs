@@ -33,6 +33,9 @@ public class TimeLockObject : MonoBehaviour
     public float maxDuration, currentDuration;
     protected GameStateManager gameStateManager;
 
+    [Header("Time Lock Cost")]
+    [SerializeField] private float cost = 1f;
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -114,12 +117,12 @@ public class TimeLockObject : MonoBehaviour
             if (timeAmount < 0 && GameManager.Instance.TimeManager.timeWindCost > 0)
             {
                 for (int i = 0; i < (0.2f * Time.deltaTime); i++) Rewind();
-                GameManager.Instance.TimeManager.timeWindCost -= 1f;
+                GameManager.Instance.TimeManager.timeWindCost -= cost;
             }
             else if (timeAmount > 0 && GameManager.Instance.TimeManager.timeWindCost > 0)
             {
                 for (int i = 0; i < (0.2f * Time.deltaTime); i++) UnRewind();
-                GameManager.Instance.TimeManager.timeWindCost -= 1f;
+                GameManager.Instance.TimeManager.timeWindCost -= cost;
             }
             return;
         }
