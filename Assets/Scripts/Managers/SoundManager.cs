@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance { get; private set; }
+
     [Header("Audio Source")]
     [SerializeField] private AudioSource effectAudioSource;
     [SerializeField] private AudioSource backgroundAudioSource;
@@ -21,6 +23,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip backGroundMusic1;
     [SerializeField] private AudioClip backGroundMusic2;
     private float pausedTime = 0f;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void Start()
     {
