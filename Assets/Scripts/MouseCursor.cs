@@ -40,15 +40,8 @@ public class MouseCursor : MonoBehaviour
         {
             if (timeLocks.Count > 0)
             {
-                try
-                {
-                    TimeLockObject timelockObject = timeLocks[0].GetComponent<TimeLockObject>();
-                    doTimelock(timelockObject);
-                }
-                catch
-                {
-                    Debug.Log("wtf?");
-                }
+                TimeLockObject timelockObject = timeLocks[0].GetComponent<TimeLockObject>();
+                doTimelock(timelockObject);
             }
         }
     }

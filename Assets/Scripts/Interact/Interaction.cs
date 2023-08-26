@@ -35,11 +35,15 @@ public class Interaction : MonoBehaviour
             }
             if (interactObject.gameObject.layer == LayerMask.NameToLayer("Lever"))
             {
-                uiManager.AddText("<color=black><size=36>" + "Press F to interact with </size>" + "<size=42><b>" + interactObject.name + "</b></size></color>");
+                uiManager.AddText("<color=black><size=36>" + "Press F to interact with Lever</size></color>");
             }
             else if (interactObject.gameObject.layer == LayerMask.NameToLayer("Teleport"))
             {
                 uiManager.AddText("<color=black><size=36>" + "Press F to go to </size>" + "<size=42><b>" + interactObject.GetComponent<Teleport>().sceneName + "</b></size></color>");
+            }
+            else if (interactObject.gameObject.layer == LayerMask.NameToLayer("Tree") && GameManager.Instance.TimeZoneManager.NowTimeZone == TimeZone.Past)
+            {
+                uiManager.AddText("<color=black><size=36>" + "Press F to plant Tree</size></color>");
             }
         }
         else

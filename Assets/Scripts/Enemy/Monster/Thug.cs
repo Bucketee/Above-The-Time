@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Thug : MonoBehaviour, IEnemyInterface
 {
+    [SerializeField]
     private float maxHP = 20f;
     private float nowHP;
     public float NowHP => nowHP;
