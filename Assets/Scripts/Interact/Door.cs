@@ -41,13 +41,13 @@ public class Door : MonoBehaviour
 
     private void OnOpen()
     {
-        if (coroutine != null) coroutine = null;
+        if (coroutine != null) StopCoroutine(coroutine);
         StartCoroutine(move());
     }
 
     private void OnClose()
     {
-        if (coroutine != null) coroutine = null;
+        if (coroutine != null) StopCoroutine(coroutine);
         StartCoroutine(move());
     }
 
@@ -66,7 +66,7 @@ public class Door : MonoBehaviour
         while (true)
         {
             yield return null;
-            rigidbody2D.position = new Vector2(rigidbody2D.position.x, Mathf.MoveTowards(rigidbody2D.position.y, targetY, 0.002f));
+            rigidbody2D.position = new Vector2(rigidbody2D.position.x, Mathf.MoveTowards(rigidbody2D.position.y, targetY, 0.0008f));
             if (rigidbody2D.position.y == targetY) break;
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CeilingDecoFrag : WallFragment
 {
     public FixedJoint2D joint2D;
+    public LayerMask initLayer;
 
     private void Awake()
     {
@@ -13,6 +14,7 @@ public class CeilingDecoFrag : WallFragment
         firstPos = rigidbody2D.position;
         firstRot = rigidbody2D.rotation;
         joint2D = GetComponent<FixedJoint2D>();
+        initLayer = gameObject.layer;
     }
 
     protected override void Record()

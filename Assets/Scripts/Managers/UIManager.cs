@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        //statusText.text = frameText;
+        statusText.text = frameText;
         frameText = "";
     }
 

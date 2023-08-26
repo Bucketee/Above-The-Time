@@ -54,6 +54,7 @@ public class CeilingDeco : Wall
         {
             fragment.GetComponent<CeilingDecoFrag>().joint2D.enabled = false;
             fragment.ExplosionEffect(explosionLoc, power);
+            fragment.gameObject.layer = LayerMask.NameToLayer("CeilingDeco");
         }
     }
 
@@ -64,6 +65,7 @@ public class CeilingDeco : Wall
         {
             fragment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             fragment.GoToFirstPos();
+            fragment.gameObject.layer = fragment.GetComponent<CeilingDecoFrag>().initLayer;
         }
         rewindCount = 0;
         rewinding = true;

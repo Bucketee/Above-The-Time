@@ -77,10 +77,11 @@ public class Lever : InteractionObject
     
     public void OnStateChange()
     {
+        timeZoneLever.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
+        if (spriteRenderer.sprite == sprites[((int)leverState % 2) * 2]) return;
         interactable = false;
         timeLockLever.enabled = false;
-        timeZoneLever.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
-        if (coroutine != null) coroutine = null;
+        if (coroutine != null) StopCoroutine(coroutine);
         coroutine = StartCoroutine(ChangeStateAnimation(leverState));
     }
 
@@ -89,7 +90,7 @@ public class Lever : InteractionObject
         yield return new WaitForSeconds(0.15f);
         spriteRenderer.sprite = sprites[1];
         yield return new WaitForSeconds(0.15f);
-        spriteRenderer.sprite = sprites[(int)leverState * 2];
+        spriteRenderer.sprite = sprites[((int)leverState % 2) * 2];
         interactable = true;
         timeLockLever.enabled = true;
     }

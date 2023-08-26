@@ -198,6 +198,7 @@ public class TimeLockObject : MonoBehaviour
         else
         {
             Debug.Log("no more past");
+            GameManager.Instance.UIManager.AddText("<color=#EC591A>No more past exists!</color>", 3);
         }
     }
 
@@ -215,6 +216,7 @@ public class TimeLockObject : MonoBehaviour
         else
         {
             Debug.Log("no more future");
+            GameManager.Instance.UIManager.AddText("<color=#EC591A>No more future exists!</color>", 3);
         }
     }
 
