@@ -11,7 +11,7 @@ public class ThugController : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Collider2D playerDetectCollider2D;
     [SerializeField] private Collider2D attackCollider2D;
-    [HideInInspector] public SpriteRenderer attackColliderSpriteRenderer;
+    public SpriteRenderer attackColliderSpriteRenderer;
     private float attackBeforeWaitingTime = 1f;
     private float attackAfterWaitingTime = 0.3f;
 
@@ -67,7 +67,6 @@ public class ThugController : MonoBehaviour
         chaseRangeRightX = nowPositionX + chaseRightX;
 
         detectDistanceX = playerDetectCollider2D.gameObject.transform.localScale.x/2f;
-        attackColliderSpriteRenderer = attackCollider2D.GetComponent<SpriteRenderer>();
 
         thug = GetComponent<Thug>();
         animator = GetComponent<Animator>();

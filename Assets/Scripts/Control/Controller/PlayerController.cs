@@ -82,16 +82,16 @@ public class PlayerController : MonoBehaviour
         if (inputHor > 0f)
         {
             spriteRenderer.flipX = false;
-            //animator.SetBool("isMoving", true);
+            animator.SetBool("isMoving", true);
         }
         else if (inputHor < 0f)
         {
             spriteRenderer.flipX = true;
-            //animator.SetBool("isMoving", true);
+            animator.SetBool("isMoving", true);
         }
         else
         {
-            //animator.SetBool("isMoving", false);
+            animator.SetBool("isMoving", false);
         }
     }
     #endregion
