@@ -306,7 +306,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.25, y: 1.6}
   m_EdgeRadius: 0
 --- !u!1 &6867484223147920413
 GameObject:
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895246f32f1296148a0191c8b66ed87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider2D: {fileID: 339367451555509614}
   speed: {x: 0, y: 0}
   isOnAir: 0
   input: {fileID: 11400000, guid: 8fb3d76fef94431458e9778259fcd6e8, type: 2}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private new Rigidbody2D rigidbody2D;
+    [SerializeField] private BoxCollider2D boxCollider2D;
 
     [Header("State")]
     [SerializeField] private Vector2 speed;
@@ -266,8 +267,8 @@ public class PlayerController : MonoBehaviour
     #region Floor
     private bool CheckFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, stepableLayers);
-        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.green, 0.1f);
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x * boxCollider2D.size.x / 2, rigidbody2D.transform.localScale.y * boxCollider2D.size.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x * boxCollider2D.size.x, stepableLayers);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x * boxCollider2D.size.x / 2, rigidbody2D.transform.localScale.y * boxCollider2D.size.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x * boxCollider2D.size.x, Color.green, 0.1f);
         return hit.collider;
     }
 
@@ -281,8 +282,8 @@ public class PlayerController : MonoBehaviour
     #region Head
     private bool CheckHead()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, -rigidbody2D.transform.localScale.y / 2 - 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, collidingLayers);
-        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, -rigidbody2D.transform.localScale.y / 2 - 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.red, 0.1f);
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x * boxCollider2D.size.x / 2, -rigidbody2D.transform.localScale.y * boxCollider2D.size.y / 2 - 0.05f), Vector2.right, rigidbody2D.transform.localScale.x * boxCollider2D.size.x, collidingLayers);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x * boxCollider2D.size.x / 2, -rigidbody2D.transform.localScale.y * boxCollider2D.size.y / 2 - 0.05f), Vector2.right * rigidbody2D.transform.localScale.x * boxCollider2D.size.x, Color.red, 0.1f);
         return hit.collider;
     }
     #endregion
