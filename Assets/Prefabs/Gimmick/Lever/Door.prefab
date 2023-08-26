@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8665795224232516807}
   - component: {fileID: 8665795224232516806}
   - component: {fileID: 8665795224232516805}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3583590a0f84f1a4ba1d456ff7a37ec2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,7 +125,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.9322034, y: 2.0762713}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -133,10 +133,20 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: 0.40677965, y: 1.0127119}
+      - {x: -0.44067797, y: 1.0127119}
+      - {x: -0.44067797, y: -1.0127119}
+      - {x: 0.3983051, y: -1.0127119}
+      - {x: 0.44067797, y: -0.970339}
+      - {x: 0.44067797, y: 0.9533898}
+    - - {x: -0.059322033, y: 0.7161017}
+      - {x: -0.06779661, y: 0.7161017}
+      - {x: -0.06779661, y: -0.7161017}
+      - {x: -0.059322033, y: -0.7161017}
+    - - {x: 0.11016949, y: 0.7161017}
+      - {x: 0.10169491, y: 0.7161017}
+      - {x: 0.10169491, y: -0.7161017}
+      - {x: 0.11016949, y: -0.7161017}
 --- !u!114 &8665795224232516805
 MonoBehaviour:
   m_ObjectHideFlags: 0

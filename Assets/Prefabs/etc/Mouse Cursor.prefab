@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4061118603832812934}
   - component: {fileID: 2731688908782109142}
   - component: {fileID: 4061118603832812933}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Mouse Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
