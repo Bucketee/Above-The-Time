@@ -122,8 +122,8 @@ MonoBehaviour:
   movingCool: 0
   normalLeftX: 3
   normalRightX: 3
-  chaseLeftX: 7
-  chaseRightX: 7
+  chaseLeftX: 10
+  chaseRightX: 10
   destinationX: 0
   hasDestination: 0
   horizontalDir: 0
@@ -201,15 +201,15 @@ MonoBehaviour:
   timeZoneObjectInfo:
     timeZoneV3s:
     - timeZone: 0
-      pos: {x: 5, y: -3.5, z: 0}
+      pos: {x: 33.4, y: -3.2, z: 0}
       isTriggered: 0
       sprite: {fileID: 21300000, guid: b3699bcd8cb26584fba3e96cdceacfc6, type: 3}
     - timeZone: 1
-      pos: {x: 5, y: -3.5, z: 0}
+      pos: {x: 33.4, y: -3.2, z: 0}
       isTriggered: 0
       sprite: {fileID: 21300000, guid: b3699bcd8cb26584fba3e96cdceacfc6, type: 3}
     - timeZone: 2
-      pos: {x: 5, y: -3.5, z: 0}
+      pos: {x: 33.4, y: -3.2, z: 0}
       isTriggered: 0
       sprite: {fileID: 21300000, guid: b3699bcd8cb26584fba3e96cdceacfc6, type: 3}
   emptySprite: {fileID: 21300000, guid: 8812738f00e09c445aeb8b4a80b9b516, type: 3}
