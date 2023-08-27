@@ -13,7 +13,7 @@ public class StoryProgresserbyLocation : MonoBehaviour
         storyManager = GameManager.Instance.StoryManager;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Player")) return;
         if (timezone == 0 || (timezone != 0 && timezone == 1 + (int)GameManager.Instance.TimeZoneManager.NowTimeZone))

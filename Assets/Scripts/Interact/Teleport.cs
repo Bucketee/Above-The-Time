@@ -27,13 +27,13 @@ public class Teleport : InteractionObject
         if (gameObject.name.Equals("AssociationToSlum") && GameManager.Instance.StoryManager.CurrentStory == StoryProgress.Tutorial)
         {
             available = true;
-            GameManager.Instance.StoryManager.SelectStory(StoryProgress.StartSlum);
+            //GameManager.Instance.StoryManager.SelectStory(StoryProgress.StartSlum);
             return;
         }
         if (gameObject.name.Equals("SlumToTower") && GameManager.Instance.StoryManager.CurrentStory >= StoryProgress.ChaseAxe)
         {
             available = true;
-            GameManager.Instance.StoryManager.SelectStory(StoryProgress.InTower);
+            //GameManager.Instance.StoryManager.SelectStory(StoryProgress.InTower);
             return;
         }
         if (gameObject.name.Equals("TowerToSlum") && GameManager.Instance.StoryManager.CurrentStory >= StoryProgress.BackToTree)

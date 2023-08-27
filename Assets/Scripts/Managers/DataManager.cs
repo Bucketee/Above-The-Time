@@ -20,7 +20,7 @@ public class DataManager : MonoBehaviour
 
     private Dictionary<StoryProgress, bool[]> storyTimeZoneCanMoveDict = new()
     {
-        {StoryProgress.Tutorial, new bool[3]{false, false, false } },
+        {StoryProgress.Tutorial, new bool[3]{true, true, true } },
         {StoryProgress.StartSlum, new bool[3]{ false, false, false } },
         {StoryProgress.FirstPastSlum, new bool[3]{ true, false, false } },
         {StoryProgress.PlantTree, new bool[3]{ false, false, false } },

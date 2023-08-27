@@ -22,21 +22,9 @@ public class Talker : MonoBehaviour
         storyManager = GameManager.Instance.StoryManager;
     }
 
-    private void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (storyManager.CurrentStory != availablestory)
-        {
-            boxCollider2D.enabled = false;
-        }
-        else
-        {
-            boxCollider2D.enabled = true;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Player") || storyManager.CurrentStory != availablestory) return;
         if (timezone == 0 || (timezone != 0 && timezone == 1 + (int)GameManager.Instance.TimeZoneManager.NowTimeZone))
         {
             GameManager.Instance.TalkManager.StartTalk(talkNum);

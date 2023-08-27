@@ -16,7 +16,7 @@ public class InteractTree : InteractionObject
 
     public override void Interact()
     {
-        GameManager.Instance.StoryManager.SelectStory(StoryProgress.PresentSlum);
+        //GameManager.Instance.StoryManager.SelectStory(StoryProgress.PresentSlum);
         Vector3 pos = transform.position;
         Instantiate(tree, pos, Quaternion.identity);
         Destroy(gameObject);
