@@ -31,7 +31,7 @@ public class BossController : MonoBehaviour
     private float bombSpeed = 5f;
     private new Rigidbody2D rigidbody2D;
     private (float minX, float maxX) mapSizeX = new(-20f, 0f);
-    private float rockHeight = 5f;
+    private float rockHeight = 7f;
     private Animator animator;
     private float startPosY;
     private PolygonCollider2D polygonCollider2D;
@@ -128,9 +128,11 @@ public class BossController : MonoBehaviour
 
     private IEnumerator ShockWaveCo()
     {
+        animator.SetTrigger("attackReady");
+        yield return new WaitForSeconds(0.7f);
         animator.SetTrigger("attack");
         yield return new WaitForSeconds(0.1f);
-        GameObject shockWaveObj = Instantiate<GameObject>(shockWavePrefab, transform.position + Vector3.down * 0.5f, Quaternion.identity);
+        GameObject shockWaveObj = Instantiate<GameObject>(shockWavePrefab, transform.position + Vector3.down * 1.25f, Quaternion.identity);
         shockWaveObj.GetComponent<ShockWave>().Launch(sightDirection);
         yield return null;
         StartPattern(BossPattern.Wait, 5f);
@@ -138,6 +140,8 @@ public class BossController : MonoBehaviour
 
     private IEnumerator DropRockCo()
     {
+        animator.SetTrigger("attackReady");
+        yield return new WaitForSeconds(0.7f);
         animator.SetTrigger("attack");
         yield return new WaitForSeconds(0.1f);
         (float x1, float x2) rockPosX = SelectRockPosX();

@@ -152,7 +152,7 @@ MonoBehaviour:
   timeLocked: 0
   timeLockCoolDown: 0
   duration: 10
-  maxRecordSize: 20
+  maxRecordSize: 1000
   maxDuration: 0
   currentDuration: 0
   cost: 1
