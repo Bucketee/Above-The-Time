@@ -1023,6 +1023,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Time Zone Loading UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1122020982587982370, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122020982587982370, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
 --- !u!1 &255665489 stripped
