@@ -4470,14 +4470,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7524684150712849552, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
-    - target: {fileID: 7524684150712849552, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7524684150984226227, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4565,14 +4557,6 @@ PrefabInstance:
     - target: {fileID: 7524684150984226231, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
       propertyPath: m_Name
       value: TalkCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524684151402686132, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
-    - target: {fileID: 7524684151402686132, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7524684151811760679, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
