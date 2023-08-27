@@ -24,12 +24,6 @@ public class TimeZoneLever : MonoBehaviour, ITimeZoneInterface
     {
         lever = GetComponent<Lever>();
         timeLockLever = GetComponent<TimeLockLever>();
-    }
-
-    private void Start()
-    {
-        timeZoneManager = GameManager.Instance.TimeZoneManager;
-
         foreach (TimeZoneV3Active t in timeZoneObjectInfo.timeZoneV3s)
         {
             if (!leverStateDict.ContainsKey(t.timeZone))
@@ -37,7 +31,11 @@ public class TimeZoneLever : MonoBehaviour, ITimeZoneInterface
                 leverStateDict.Add(t.timeZone, t.leverState);
             }
         }
-        Setting();
+    }
+
+    private void Start()
+    {
+        timeZoneManager = GameManager.Instance.TimeZoneManager;
     }
 
     public void Record(TimeZone timeZone)

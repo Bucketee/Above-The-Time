@@ -7,6 +7,7 @@ public class ThugController : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private BoxCollider2D boxCollider2D;
 
     [SerializeField] private Player player;
     [SerializeField] private Collider2D playerDetectCollider2D;
@@ -59,6 +60,7 @@ public class ThugController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
     
         float nowPositionX = transform.position.x;
         normalRangeLeftX = nowPositionX - normalLeftX;
@@ -258,8 +260,11 @@ public class ThugController : MonoBehaviour
     private IEnumerator AttackCo()
     {
         Debug.Log("Start Attack");
+        animator.SetTrigger("attackReady");
         attackColliderSpriteRenderer.enabled = true;    
-        yield return new WaitForSeconds(attackBeforeWaitingTime);
+        yield return new WaitForSeconds(attackBeforeWaitingTime - 0.1f);
+        animator.SetTrigger("attack");
+        yield return new WaitForSeconds(0.1f);
         if (resetting || thug.NowHP<0f)
         {
             attackColliderSpriteRenderer.enabled = false; 
@@ -365,17 +370,17 @@ public class ThugController : MonoBehaviour
     #region Floor
     private bool CheckFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x, stepableLayers);
-        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2, rigidbody2D.transform.localScale.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x, Color.green, 0.1f);
+        var hit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x *  boxCollider2D.size.x / 2, rigidbody2D.transform.localScale.y *  boxCollider2D.size.y / 2 + 0.05f), Vector2.right, rigidbody2D.transform.localScale.x *  boxCollider2D.size.x, stepableLayers);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x *  boxCollider2D.size.x / 2, rigidbody2D.transform.localScale.y *  boxCollider2D.size.y / 2 + 0.05f), Vector2.right * rigidbody2D.transform.localScale.x *  boxCollider2D.size.x, Color.green, 0.1f);
         return hit.collider;
     }
 
     private bool CheckCliff()
     {
-        var leftHit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2 - 0.01f, rigidbody2D.transform.localScale.y / 2  + 0.02f), Vector2.down, 0.08f, stepableLayers);
-        var righttHit = Physics2D.Raycast(rigidbody2D.position - new Vector2(- rigidbody2D.transform.localScale.x / 2 + 0.01f, rigidbody2D.transform.localScale.y / 2 + 0.02f), Vector2.down, 0.08f, stepableLayers);
-        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x / 2 - 0.01f, rigidbody2D.transform.localScale.y / 2 - 0.02f), Vector2.down * 0.08f, Color.green, 0.1f);
-        Debug.DrawRay(rigidbody2D.position - new Vector2(- rigidbody2D.transform.localScale.x / 2 + 0.01f, rigidbody2D.transform.localScale.y / 2 - 0.02f), Vector2.down * 0.08f, Color.green, 0.1f);
+        var leftHit = Physics2D.Raycast(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x *  boxCollider2D.size.x / 2 - 0.01f, rigidbody2D.transform.localScale.y *  boxCollider2D.size.y / 2  + 0.02f), Vector2.down, 0.08f, stepableLayers);
+        var righttHit = Physics2D.Raycast(rigidbody2D.position - new Vector2(- rigidbody2D.transform.localScale.x *  boxCollider2D.size.x / 2 + 0.01f, rigidbody2D.transform.localScale.y *  boxCollider2D.size.y / 2 + 0.02f), Vector2.down, 0.08f, stepableLayers);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(rigidbody2D.transform.localScale.x *  boxCollider2D.size.x / 2 - 0.01f, rigidbody2D.transform.localScale.y *  boxCollider2D.size.y / 2 - 0.02f), Vector2.down * 0.08f, Color.green, 0.1f);
+        Debug.DrawRay(rigidbody2D.position - new Vector2(- rigidbody2D.transform.localScale.x *  boxCollider2D.size.x / 2 + 0.01f, rigidbody2D.transform.localScale.y *  boxCollider2D.size.y / 2 - 0.02f), Vector2.down * 0.08f, Color.green, 0.1f);
         bool leftBool = leftHit.collider;
         bool rightBool = righttHit.collider;
         if (horizontalDir >= 0f)
@@ -392,7 +397,7 @@ public class ThugController : MonoBehaviour
 
     private GameObject GetFloor()
     {
-        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y / 2, stepableLayers); //need revise to use
+        var hit = Physics2D.Raycast(rigidbody2D.position, Vector2.down, 0.05f + rigidbody2D.transform.localScale.y *  boxCollider2D.size.y / 2, stepableLayers); //need revise to use
         return hit.collider.gameObject;
     }
     #endregion
