@@ -50,8 +50,8 @@ MonoBehaviour:
   backgroundAudioSource: {fileID: 159669256012360692}
   jumpSound: {fileID: 8300000, guid: 4e19120ac0634694f930503c8cb34ecf, type: 3}
   dashSound: {fileID: 0}
-  leverSound: {fileID: 0}
-  doorSound: {fileID: 0}
+  rockBreakSound: {fileID: 8300000, guid: fcc884bd3581d754486ef5c7fde074d9, type: 3}
+  rockReverseSound: {fileID: 8300000, guid: 219d0792334ca8149813da2674ba276a, type: 3}
   timeLockSound: {fileID: 8300000, guid: aa45ad6b6e45afa4ba2e54587246398b, type: 3}
   timeUnlockSound: {fileID: 8300000, guid: fa14908e86e268440abfee4d165fa4fe, type: 3}
   timeTravelSound: {fileID: 0}
