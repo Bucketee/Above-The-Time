@@ -8,13 +8,30 @@ public class TimeLockDurationUI : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject timeLockDurationBar;
     [SerializeField] private GameObject timeLockedIcon;
+    private TimeManager timeManager;
     private Image barImage;
 
 
     private void Awake()
     {
         barImage = timeLockDurationBar.GetComponent<Image>();
-        TimeLockObject.TimeLockDurationSend += TimeLockDurationUIHandle;
+    }
+
+    private void Start()
+    {
+        timeManager = GameManager.Instance.TimeManager;
+    }
+
+    private void Update()
+    {
+        if (timeManager?.NowTimeLockedObject)
+        {
+            TimeLockDurationUIHandle(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
+        }
+        else
+        {
+            TimeLockDurationUIHandle(0f, 0f);
+        }
     }
 
     private void TimeLockDurationUIHandle(float mDuration, float cDuration)
