@@ -108,14 +108,45 @@ public class Words : ScriptableObject
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //15
         {
-            (Character.Player, Character.Empty, "나", true, "아무래도 도끼는 이 타워로 들어간 것 같은데..."),
+            (Character.Player, Character.Empty, "나", true, "아무래도 도끼는 이 타워로 들어간 것 같은데...\n따라가보자!"),
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //16
         {
+            (Character.Player, Character.Empty, "나", true, "도끼는 위쪽으로 올라간 건가? 근데 어떻게 올라가지..."),
+            (Character.Player, Character.Empty, "나", true, "앗 바로 위에 약한 벽이 있는 것 같은데?\n저걸 미래로 돌리면..?"),
+        },
+        new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //17
+        {
+            (Character.Player, Character.Empty, "나", true, "레버에 팔이 안닿는데 멀리서 조정할 수 없을까?"),
+        },
+        new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //18
+        {
+            (Character.Player, Character.Empty, "나", true, "위에서 철골들이 떨어진 것 같다.\n잘 이용하면 올라갈 수 있을 것 같은데?"),
+        },
+        new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //19
+        {
             (Character.Player, Character.Boss, "보스", false, "누구냐!?"),
+            (Character.Player, Character.Boss, "나", true, "너가 나무를 밴 녀석이냐?"),
             (Character.Player, Character.Boss, "나", true, "정의의 이름으로 널 용서하지 않겠다!"),
             (Character.Player, Character.Boss, "보스", false, "이곳에 왔다는 건 다 알고 온건가."),
-            (Character.Player, Character.Boss, "보스", false, "죽어라!"),
+            (Character.Player, Character.Boss, "보스", false, "어쩔 수 없군... 죽어라!"),
+        },
+        new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //20
+        {
+            (Character.Player, Character.Boss, "보스", false, "으으.."),
+            (Character.Player, Character.Boss, "나", true, "하..하... 힘들다... 일단 타워를 나가자."),
+        },
+        new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //21
+        {
+            (Character.Player, Character.Empty, "나", true, "후... 이제 45년 뒤 현재로 가볼까?"),
+        },
+        new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //22
+        {
+            (Character.Player, Character.Empty, "나", true, "다시 나무로 돌아가보자."),
+        },
+        new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //23
+        {
+            (Character.Player, Character.Empty, "나", true, "와아~ 나무다~"),
         },
     };
 }

@@ -16,7 +16,7 @@ public class StoryProgresserbyLocation : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-        if (timezone == 0 || (timezone != 0 && timezone == (int)GameManager.Instance.TimeZoneManager.NowTimeZone))
+        if (timezone == 0 || (timezone != 0 && timezone == 1 + (int)GameManager.Instance.TimeZoneManager.NowTimeZone))
         {
             storyManager.NextStory();
             Destroy(gameObject);
