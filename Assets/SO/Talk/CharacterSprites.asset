@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89063e0dd1fb5ea44920219e6f9b4e02, type: 3}
   m_Name: CharacterSprites
   m_EditorClassIdentifier: 
-  playerSprite: {fileID: 21300000, guid: 43ad51e043491b94d8f6c62d55ac5ede, type: 3}
-  emptySprite: {fileID: 21300000, guid: 7ee48c5fba4919649a8a6094cbead669, type: 3}
+  playerSprite: {fileID: 21300000, guid: 0388f74dff273274abaa786ee8947495, type: 3}
+  emptySprite: {fileID: 21300000, guid: 465e8f4169bcc3645a2c9456406f63b4, type: 3}
+  senior: {fileID: 21300000, guid: ce2b0cdb29a9e6b46979cfbe33cb0e47, type: 3}
+  boss: {fileID: 21300000, guid: 666a1b9be21e3d34d920e415c9eb04bc, type: 3}

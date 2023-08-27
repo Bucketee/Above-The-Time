@@ -6,6 +6,6 @@ public class InteractTalk : InteractionObject
 {
     public override void Interact()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("asd");
     }
 }
