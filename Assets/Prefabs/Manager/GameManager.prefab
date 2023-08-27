@@ -369,4 +369,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   loadingImage: {fileID: 0}
-  fadeTime: 2
+  fadeTime: 1

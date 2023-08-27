@@ -7,7 +7,7 @@ public class TimeZoneLoading : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject loadingImage;
-    [SerializeField] private float fadeTime = 1f;
+    [SerializeField] private float fadeTime = 2f;
     private Image image;
     private Color tempColor;
     private Vector2 tempSpeed;
@@ -53,6 +53,12 @@ public class TimeZoneLoading : MonoBehaviour
     }
     private IEnumerator FadeOut()
     {
+        yield return new WaitForSeconds(fadeTime);
+
+        player.GetComponent<PlayerController>().timeChanging = false;
+        player.GetComponent<PlayerController>().speed = tempSpeed;
+        player.GetComponentInChildren<Shooter>().isCool = false;
+
         for (int i = 0; i < 100; i++)
         {
             tempColor = image.color;
@@ -62,8 +68,5 @@ public class TimeZoneLoading : MonoBehaviour
             yield return new WaitForSeconds(fadeTime / 100);
         }
 
-        player.GetComponent<PlayerController>().timeChanging = false;
-        player.GetComponent<PlayerController>().speed = tempSpeed;
-        player.GetComponentInChildren<Shooter>().isCool = false;
     }
 }

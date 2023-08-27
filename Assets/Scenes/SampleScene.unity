@@ -3213,6 +3213,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 296901731}
     - target: {fileID: 1735287318, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: fadeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735287318, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: loadingImage
       value: 
       objectReference: {fileID: 1447325334}
