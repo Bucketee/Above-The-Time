@@ -66,9 +66,17 @@ public class TimeLockObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!timeLocked && !(collision.gameObject.layer == LayerMask.NameToLayer("Mouse"))) return;
-        collision.GetComponent<MouseCursor>()?.AddThisObject(gameObject);
-        SetSortingLayer("Timelockable");
+        if (GameManager.Instance.GameStateManager.NowGameState == GameState.TimeChanging)
+        {
+            SetSortingLayer("Default");
+            collision.GetComponent<MouseCursor>()?.RemoveThisObject(gameObject);
+        }
+        else
+        {
+            if (!timeLocked && !(collision.gameObject.layer == LayerMask.NameToLayer("Mouse"))) return;
+            collision.GetComponent<MouseCursor>()?.AddThisObject(gameObject);
+            SetSortingLayer("Timelockable");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
