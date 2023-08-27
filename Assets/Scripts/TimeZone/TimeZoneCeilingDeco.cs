@@ -21,11 +21,8 @@ public class TimeZoneCeilingDeco : MonoBehaviour, ITimeZoneInterface
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        timeZoneManager = GameManager.Instance.TimeZoneManager;
-        ceilingDeco = GetComponent<CeilingDeco>();
-
         foreach (TimeZoneV3Active t in timeZoneObjectInfo.timeZoneV3s)
         {
             if (!isBrokenDict.ContainsKey(t.timeZone))
@@ -33,7 +30,12 @@ public class TimeZoneCeilingDeco : MonoBehaviour, ITimeZoneInterface
                 isBrokenDict.Add(t.timeZone, t.isBroken);
             }
         }
-        Setting();
+        ceilingDeco = GetComponent<CeilingDeco>();
+    }
+
+    private void Start()
+    {
+        timeZoneManager = GameManager.Instance.TimeZoneManager;
     }
 
     public void Record(TimeZone timeZone)
