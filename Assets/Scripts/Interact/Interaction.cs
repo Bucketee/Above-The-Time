@@ -47,7 +47,7 @@ public class Interaction : MonoBehaviour
             }
             else if (interactObject.gameObject.layer == LayerMask.NameToLayer("Mover"))
             {
-                uiManager.AddText("<color=black><size=36>" + "Press F to go to Boss</size></color>");
+                uiManager.AddText("<color=black><size=36>" + "Press F to go to Move</size></color>");
             }
             else if (interactObject.gameObject.layer == LayerMask.NameToLayer("Senior"))
             {
