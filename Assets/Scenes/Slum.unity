@@ -3852,14 +3852,82 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070734, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Size.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070734, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Size.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070734, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070734, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070734, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070734, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070734, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959178681070735, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5bea5400b5dad94bab2639287f34d89, type: 3}
     - target: {fileID: 3833959178681070833, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
       propertyPath: mouseCursor
       value: 
+      objectReference: {fileID: 1727475503}
+    - target: {fileID: 3833959179144756080, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08d15d18550be7c42a12d04d9ff062ca, type: 3}
+    - target: {fileID: 3833959179459969560, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Size.x
+      value: 0.45
       objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969560, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Size.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969560, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.725
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969560, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969560, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969560, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969560, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833959179459969561, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dc390dbdc10ba00409acd6d7d907e1e7, type: 3}
     - target: {fileID: 3833959179459969563, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
       propertyPath: mouseCursor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1727475503}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
 --- !u!1 &1130550890 stripped
@@ -5436,6 +5504,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1727475503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4061118603832812932, guid: 729f1b61b17521e4aa31f3a6e40ef932, type: 3}
+  m_PrefabInstance: {fileID: 333853765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1788817896
 PrefabInstance:
   m_ObjectHideFlags: 0

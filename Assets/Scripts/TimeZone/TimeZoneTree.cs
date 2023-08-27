@@ -20,12 +20,6 @@ public class TimeZoneTree : MonoBehaviour, ITimeZoneInterface
     private void Awake()
     {
         timeLockTree = GetComponent<TimeLockTree>();
-    }
-
-    private void Start()
-    {
-        timeZoneManager = GameManager.Instance.TimeZoneManager;
-
         foreach (TimeZoneV3Active t in timeZoneObjectInfo.timeZoneV3s)
         {
             if (!treeStateDict.ContainsKey(t.timeZone))
@@ -33,7 +27,11 @@ public class TimeZoneTree : MonoBehaviour, ITimeZoneInterface
                 treeStateDict.Add(t.timeZone, t.treeState);
             }
         }
-        Setting();
+    }
+
+    private void Start()
+    {
+        timeZoneManager = GameManager.Instance.TimeZoneManager;
     }
 
     public void Record(TimeZone timeZone)

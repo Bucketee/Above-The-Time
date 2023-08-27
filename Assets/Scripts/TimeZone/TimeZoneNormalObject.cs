@@ -44,10 +44,8 @@ public class TimeZoneNormalObject : MonoBehaviour, ITimeZoneInterface
         Collider2DExtensions.TryUpdateShapeToAttachedSprite(polygonCollider2D); //모든 Collider가 PolyGon이라 가정
     }
 
-    private void Start()
+    private void Awake()
     {
-        timeZoneManager = GameManager.Instance.TimeZoneManager;
-        
         foreach(TimeZoneV3Active t in timeZoneObjectInfo.timeZoneV3s)
         {
             if (!posDict.ContainsKey(t.timeZone))
@@ -72,7 +70,11 @@ public class TimeZoneNormalObject : MonoBehaviour, ITimeZoneInterface
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
         polygonCollider2D = GetComponent<PolygonCollider2D>();
-        Setting();
+
+    }
+    private void Start()
+    {
+        timeZoneManager = GameManager.Instance.TimeZoneManager;
     }
 
     private void Record(TimeZone timeZone)
@@ -85,7 +87,6 @@ public class TimeZoneNormalObject : MonoBehaviour, ITimeZoneInterface
                 rotDict[t] = transform.rotation.eulerAngles.z;
             }
         }
-        //isTrigger, Sprite는 매번 기록할 필요 X
     }
 
     private void Update()

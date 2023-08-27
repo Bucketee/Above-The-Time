@@ -21,9 +21,8 @@ public class TimeZoneWall : MonoBehaviour, ITimeZoneInterface
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        timeZoneManager = GameManager.Instance.TimeZoneManager;
         wall = GetComponent<Wall>();
 
         foreach (TimeZoneV3Active t in timeZoneObjectInfo.timeZoneV3s)
@@ -33,7 +32,11 @@ public class TimeZoneWall : MonoBehaviour, ITimeZoneInterface
                 isBrokenDict.Add(t.timeZone, t.isBroken);
             }
         }
-        Setting();
+    }
+
+    private void Start()
+    {
+        timeZoneManager = GameManager.Instance.TimeZoneManager;
     }
 
     public void Record(TimeZone timeZone)

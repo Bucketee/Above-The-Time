@@ -13,17 +13,16 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
     [SerializeField] private TimeZoneObjectInfo timeZoneObjectInfo;
     [SerializeField] private Sprite emptySprite;
     private SpriteRenderer spriteRenderer;
-    private PolygonCollider2D polygonCollider2D;
+    private BoxCollider2D boxCollider2D;
     private ThugController thugController;
     private Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-    }
-    private void Start()
-    {
-        timeZoneManager = GameManager.Instance.TimeZoneManager;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
+        thugController = GetComponent<ThugController>();
 
         foreach(TimeZoneV3Active t in timeZoneObjectInfo.timeZoneV3s)
         {
@@ -42,10 +41,10 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
                 spriteDict.Add(t.timeZone, t.sprite);
             }
         }
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        polygonCollider2D = GetComponent<PolygonCollider2D>();
-        thugController = GetComponent<ThugController>();
-        Setting();
+    }
+    private void Start()
+    {
+        timeZoneManager = GameManager.Instance.TimeZoneManager;
     }
 
     private void Update()
@@ -82,7 +81,7 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
         }
 
         spriteRenderer.sprite = spriteDict[timeZone]; 
-        polygonCollider2D.isTrigger = isTriggerDict[timeZone]; 
+        boxCollider2D.isTrigger = isTriggerDict[timeZone]; 
         
         thugController.enabled = !isTriggerDict[timeZone];
         if (thugController.enabled)
@@ -95,8 +94,6 @@ public class TimeZoneThug : MonoBehaviour, ITimeZoneInterface
             animator.enabled = false;
             spriteRenderer.sprite = spriteDict[timeZone]; 
         }
-        Collider2DExtensions.TryUpdateShapeToAttachedSprite(polygonCollider2D);    
-        
     }
 
     public void Die(TimeZone timeZone)
