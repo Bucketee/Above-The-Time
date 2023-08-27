@@ -8,4 +8,6 @@ public class CharacterSprites : ScriptableObject
 {
     public Sprite playerSprite;
     public Sprite emptySprite;
+    public Sprite senior;
+    public Sprite boss;
 }

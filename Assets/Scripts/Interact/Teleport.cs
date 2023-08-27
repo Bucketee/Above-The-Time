@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Teleport : InteractionObject
 {
     public string sceneName;
-    [SerializeField] private bool available;
+    private bool available = false;
 
     public override void Interact()
     {
@@ -24,6 +24,12 @@ public class Teleport : InteractionObject
 
     private void Checkavailable()
     {
+        if (gameObject.name.Equals("AssociationToSlum") && GameManager.Instance.StoryManager.CurrentStory == StoryProgress.Tutorial)
+        {
+            available = true;
+            GameManager.Instance.StoryManager.SelectStory(StoryProgress.StartSlum);
+            return;
+        }
         if (gameObject.name.Equals("SlumToTower") && GameManager.Instance.StoryManager.CurrentStory >= StoryProgress.ChaseAxe)
         {
             available = true;
