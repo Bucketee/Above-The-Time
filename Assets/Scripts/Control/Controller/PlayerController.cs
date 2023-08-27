@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
             speed.x = 0.1f;
             while (speed.x < dashSpeed)
             {
-                Debug.Log("Accelerating");
+                //Debug.Log("Accelerating");
                 if (speed.x == 0f) { break; }
                 speed.x = Mathf.MoveTowards(speed.x, dashSpeed, dashAcceleration * Time.fixedDeltaTime);
                 speed.y = 0f;
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
             speed.x = -0.1f;
             while (speed.x > -dashSpeed)
             {
-                Debug.Log("Accelerating");
+                //Debug.Log("Accelerating");
                 if (speed.x == 0f) { break; }
                 speed.x = Mathf.MoveTowards(speed.x, -dashSpeed, dashAcceleration * Time.fixedDeltaTime);
                 speed.y = 0f;
@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         {
             while (speed.x > 0f)
             {
-                Debug.Log("Decelerating");
+                //Debug.Log("Decelerating");
                 speed.x = Mathf.MoveTowards(speed.x, 0f, dashAcceleration * Time.fixedDeltaTime);
                 speed.y = 0f;
                 yield return new WaitForFixedUpdate();
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         {
             while (speed.x < 0f)
             {
-                Debug.Log("Decelerating");
+                //Debug.Log("Decelerating");
                 speed.x = Mathf.MoveTowards(speed.x, 0f, dashAcceleration * Time.fixedDeltaTime);
                 speed.y = 0f;
                 yield return new WaitForFixedUpdate();

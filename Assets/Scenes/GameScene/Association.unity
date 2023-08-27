@@ -2570,22 +2570,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1681026617, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
-    - target: {fileID: 1681026617, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -1041437054310103805, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
-    - target: {fileID: 1874571780, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
-    - target: {fileID: 1874571780, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -1041437054310103805, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
     - target: {fileID: 3833959178567311988, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
       propertyPath: m_Name
       value: Clock
