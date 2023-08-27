@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider2D;
 
     [Header("State")]
-    [SerializeField] private Vector2 speed;
+    [SerializeField] public Vector2 speed;
     [SerializeField] private bool isOnAir = false;
 
     [Header("Input")]
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private bool dashInput;
 
     private SoundManager soundManager;
-
+    public bool timeChanging = false;
 
     private void Awake()
     {
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         CheckOnAir();
         CheckIsJump();
         dashInput = input.RetrieveDashInput();
-        if (!isDash )
+        if (!isDash && !timeChanging)
         {
             HandleDash();
         }
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isDash)
+        if (!isDash && !timeChanging)
         {
             HandleMove();
             HandleJump();
@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
         float maxFallSpeedSet = maxFallSpeed;
         maxFallSpeed = 0f;
         speed.y = 0f;
+        SoundManager.Instance.DashSound();
         if(inputHor > 0f)
         {
             speed.x = 0.1f;
@@ -221,6 +222,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (!isOnAir && !isJump)
             {
+                SoundManager.Instance.JumpSound();
                 speed.y = jumpPower;
                 isJump = true;
                 currJumpTime = 0f;

@@ -35,12 +35,14 @@ public class TimeManager : MonoBehaviour
 
     public void SetNowTimeLockedObject(TimeLockObject timeLockObject)
     {
+        SoundManager.Instance.TimeLockSound();
         nowTimeLockedObject?.GetTimeUnLocked();
         nowTimeLockedObject = timeLockObject;
     }
 
     public void UnSetNowTimeLockedObject()
     {
+        if(nowTimeLockedObject != null) SoundManager.Instance.TimeUnlockSound();
         nowTimeLockedObject = null;
     }
 }

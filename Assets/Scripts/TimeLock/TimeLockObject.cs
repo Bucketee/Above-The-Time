@@ -161,6 +161,7 @@ public class TimeLockObject : MonoBehaviour
 
     public virtual void GetTimeLocked()
     {
+        SoundManager.Instance.TimeLockSound();
         GameManager.Instance.TimeManager.SetNowTimeLockedObject(this);
         timeLocked = true;
         rigidbody2D.velocity = new Vector2(0, 0);
@@ -171,6 +172,7 @@ public class TimeLockObject : MonoBehaviour
 
     public virtual void GetTimeUnLocked()
     {
+        SoundManager.Instance.TimeUnlockSound();
         maxDuration = 0f;
         currentDuration = 0f;
         GameManager.Instance.TimeManager.UnSetNowTimeLockedObject();

@@ -310,6 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6366005866324619013}
   - component: {fileID: 6366005866324619018}
+  - component: {fileID: 1735287318}
   m_Layer: 0
   m_Name: TimeZoneManager
   m_TagString: Untagged
@@ -346,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowTimeZone: 2
   timeZoneText: {fileID: 0}
-  nowYear: 0
+  nowYear: 2000
   timeZoneChangeEvent: {fileID: 11400000, guid: aae2fc121e33e3a4b83549419230456e, type: 2}
   ClockFrame: {fileID: 0}
   Hourhand: {fileID: 0}
@@ -354,3 +355,18 @@ MonoBehaviour:
   Operatinghand: {fileID: 0}
   hourHandPlus: 0
   minuteHandPlus: 0
+--- !u!114 &1735287318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366005866324619012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04691e54df9e02343a342578a6289dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  loadingImage: {fileID: 0}
+  fadeTime: 1

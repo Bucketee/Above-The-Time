@@ -61,6 +61,7 @@ public class Wall : MonoBehaviour
             }
             if (broken && count < -amount)
             {
+                SoundManager.Instance.RockReverseSound();
                 StopVibrating();
                 broken = false;
                 timeZoneWall.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
@@ -68,6 +69,7 @@ public class Wall : MonoBehaviour
             }
             else if (!broken && count > amount)
             {
+                SoundManager.Instance.RockBreakSound();
                 StopVibrating();
                 broken = true;
                 timeZoneWall.Record(GameManager.Instance.TimeZoneManager.NowTimeZone);
