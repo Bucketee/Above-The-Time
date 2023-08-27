@@ -53,7 +53,7 @@ public class TimeZoneLoading : MonoBehaviour
     }
     private IEnumerator FadeOut()
     {
-        yield return new WaitForSeconds(fadeTime);
+        yield return new WaitForSecondsRealtime(fadeTime);
 
         player.GetComponent<PlayerController>().timeChanging = false;
         player.GetComponent<PlayerController>().speed = tempSpeed;
@@ -65,7 +65,7 @@ public class TimeZoneLoading : MonoBehaviour
             tempColor.a -= 0.01f;
             image.color = tempColor;
 
-            yield return new WaitForSeconds(fadeTime / 100);
+            yield return new WaitForSecondsRealtime(fadeTime / 100);
         }
 
     }
