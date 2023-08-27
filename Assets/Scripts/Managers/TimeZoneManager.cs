@@ -87,13 +87,18 @@ public class TimeZoneManager : MonoBehaviour
                 break;
         }
 
+        UpdateCanMove();
+
+        timeZoneChangeEvent.Raise(this, null);
+    }
+
+    public void UpdateCanMove()
+    {
         bool[] CanMoves = DataManager.Instance.TimeZoneCanMoves;
         for(int i=0; i<CanMoves.Length; i++)
         {
             ChangeTimeMoveBool((TimeZone) i, CanMoves[i]);
         }
-
-        timeZoneChangeEvent.Raise(this, null);
     }
 
     private void Update()

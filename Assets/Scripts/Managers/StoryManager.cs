@@ -34,6 +34,7 @@ public class StoryManager : MonoBehaviour
     {
         CurrentStory += 1;
         dataManager.SetStoryProgress(CurrentStory);
+        GameManager.Instance.TimeZoneManager.UpdateCanMove();
         Debug.Log("Changed story to " + CurrentStory);
     }
 
@@ -41,6 +42,7 @@ public class StoryManager : MonoBehaviour
     {
         CurrentStory = storyProgress;
         dataManager.SetStoryProgress(CurrentStory);
+        GameManager.Instance.TimeZoneManager.UpdateCanMove();
         Debug.Log("Changed story to " + CurrentStory);
     }
 }
