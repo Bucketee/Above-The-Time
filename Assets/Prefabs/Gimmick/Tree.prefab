@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e5d1f211e6e75c0478521f6aeb1a81d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6507b6d0c6d10724fa7a7b3a6b426627, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,8 +105,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -114,10 +114,23 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: 0.08, y: 0.44}
+      - {x: 0.38, y: 0.76}
+      - {x: 0.57, y: 1.04}
+      - {x: 0.57, y: 1.3199999}
+      - {x: 0.26, y: 1.3199999}
+      - {x: 0, y: 1.15}
+      - {x: -0.08, y: 1}
+      - {x: -0.57, y: 1.29}
+      - {x: -0.57, y: 0.85999995}
+      - {x: -0.45999998, y: 0.65999997}
+      - {x: -0.26999998, y: 0.68}
+      - {x: -0.37, y: 0.22999999}
+      - {x: -0.47, y: 0.099999994}
+      - {x: -0.47, y: 0}
+      - {x: 0.37, y: 0}
+      - {x: 0.37, y: 0.16}
+      - {x: 0.21, y: 0.44}
 --- !u!50 &2242700652250834643
 Rigidbody2D:
   serializedVersion: 4
@@ -138,7 +151,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 7
 --- !u!114 &2242700652250834642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,10 +170,11 @@ MonoBehaviour:
   maxRecordSize: 20
   maxDuration: 0
   currentDuration: 0
+  cost: 1
   treeSprites:
-  - {fileID: 21300000, guid: e5d1f211e6e75c0478521f6aeb1a81d5, type: 3}
-  - {fileID: 21300000, guid: 540db55c40096b846a4da691e1838803, type: 3}
-  - {fileID: 21300000, guid: d0d506dfd2eee0b4a87ed4e31a42069d, type: 3}
+  - {fileID: 21300000, guid: 6507b6d0c6d10724fa7a7b3a6b426627, type: 3}
+  - {fileID: 21300000, guid: f110e07f698299749b7e1ef96f38b531, type: 3}
+  - {fileID: 21300000, guid: a604607feac3b304ba5b11d2b70adc0e, type: 3}
   state: 0
 --- !u!114 &2784574712166796105
 MonoBehaviour:

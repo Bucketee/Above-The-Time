@@ -36,53 +36,57 @@ public class TimeLockTree : TimeLockObject
         }
     }
 
-    //private void Update()
-    //{
-    //    //if (gameStateManager.NowGameState != GameState.Playing)
-    //    //{
-    //    //    return;
-    //    //}
+    private void Update()
+    {
+        if (state == TreeState.tree && GameManager.Instance.StoryManager.CurrentStory < StoryProgress.TopTower && GameManager.Instance.TimeZoneManager.NowTimeZone == TimeZone.Future)
+        {
+            spriteRenderer.sprite = null;
+        }
+        //if (gameStateManager.NowGameState != GameState.Playing)
+        //{
+        //    return;
+        //}
 
-    //    //if (GameManager.Instance.StoryManager.CurrentStory == StoryManager.StoryProgress.BackToTree)
-    //    //{
-    //    //    this.enabled = true;
-    //    //}
-    //    //else
-    //    //{
-    //    //    this.enabled = false;
-    //    //}
+        //if (GameManager.Instance.StoryManager.CurrentStory == StoryManager.StoryProgress.BackToTree)
+        //{
+        //    this.enabled = true;
+        //}
+        //else
+        //{
+        //    this.enabled = false;
+        //}
 
-    //    //if (timeLocked && canTransform && GameManager.Instance.TimeManager.timeWindCost > 20f)
-    //    //{
-    //    //    var scroll = Input.GetAxis("Mouse ScrollWheel");
-    //    //    if (scroll > 0.5f && (int)state < 2)
-    //    //    {
-    //    //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
-    //    //        //canTransform = false;
-    //    //        state = (TreeState)((int)state + 1);
-    //    //        spriteRenderer.sprite = treeSprites[(int)state];
-    //    //        //StartCoroutine(TreeGrowMotion());
-    //    //    }
-    //    //    else if (scroll < -0.5f && (int)state > 0)
-    //    //    {
-    //    //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
-    //    //        //canTransform = false;
-    //    //        state = (TreeState)((int)state - 1);
-    //    //        spriteRenderer.sprite = treeSprites[(int)state];
-    //    //        //StartCoroutine(TreeReverseMotion());
-    //    //    }
-    //    //    if (scroll > 0.5f && (int)state == 1)
-    //    //    {
-    //    //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
-    //    //        //canTransform = false;
-    //    //        state = (TreeState) 2;
-    //    //        spriteRenderer.sprite = treeSprites[2];
-    //    //        //StartCoroutine(TreeGrowMotion());
-    //    //    }
-    //    //}
+        //if (timeLocked && canTransform && GameManager.Instance.TimeManager.timeWindCost > 20f)
+        //{
+        //    var scroll = Input.GetAxis("Mouse ScrollWheel");
+        //    if (scroll > 0.5f && (int)state < 2)
+        //    {
+        //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
+        //        //canTransform = false;
+        //        state = (TreeState)((int)state + 1);
+        //        spriteRenderer.sprite = treeSprites[(int)state];
+        //        //StartCoroutine(TreeGrowMotion());
+        //    }
+        //    else if (scroll < -0.5f && (int)state > 0)
+        //    {
+        //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
+        //        //canTransform = false;
+        //        state = (TreeState)((int)state - 1);
+        //        spriteRenderer.sprite = treeSprites[(int)state];
+        //        //StartCoroutine(TreeReverseMotion());
+        //    }
+        //    if (scroll > 0.5f && (int)state == 1)
+        //    {
+        //        GameManager.Instance.TimeManager.timeWindCost -= 20f;
+        //        //canTransform = false;
+        //        state = (TreeState) 2;
+        //        spriteRenderer.sprite = treeSprites[2];
+        //        //StartCoroutine(TreeGrowMotion());
+        //    }
+        //}
 
 
-    //}
+    }
 
 
     IEnumerator TreeGrowMotion()
