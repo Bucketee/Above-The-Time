@@ -204,7 +204,6 @@ public class PlayerController : MonoBehaviour
         {
             if (!isOnAir)
             {
-                SoundManager.Instance.JumpSound();
                 speed.y = jumpPower;
                 isJump = true;
                 currJumpTime = 0f;
