@@ -17,7 +17,6 @@ public class MouseCursor : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         timelockLayers = ~ (1 << LayerMask.NameToLayer("Mouse") | (1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("UI")) | (1 << LayerMask.NameToLayer("Floor")) | (1 << LayerMask.NameToLayer("Default")));
     }

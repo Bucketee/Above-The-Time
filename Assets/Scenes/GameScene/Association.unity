@@ -935,6 +935,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1122020982406968928, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122020982406968928, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122020982406968928, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 1122020982406968930, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1022,14 +1034,6 @@ PrefabInstance:
     - target: {fileID: 1122020982406968934, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
       propertyPath: m_Name
       value: Time Zone Loading UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122020982587982370, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 1122020982587982370, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 868006c8fc0256e44a5b93f33ffff9c7, type: 3}
@@ -1964,6 +1968,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1681026617, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
+    - target: {fileID: 1681026617, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -1041437054310103805, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
+    - target: {fileID: 1874571780, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
+    - target: {fileID: 1874571780, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -1041437054310103805, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
     - target: {fileID: 3833959178567311988, guid: f745c7ecbb7c7d24ca3087ca67c4bde1, type: 3}
       propertyPath: m_Name
       value: Clock
@@ -3449,6 +3469,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7524684150712849552, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
+    - target: {fileID: 7524684150712849552, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7524684150984226227, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3536,6 +3564,14 @@ PrefabInstance:
     - target: {fileID: 7524684150984226231, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
       propertyPath: m_Name
       value: TalkCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524684151402686132, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
+    - target: {fileID: 7524684151402686132, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7524684151811760679, guid: afcea1c225231bf48ba25530fbd3926b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
