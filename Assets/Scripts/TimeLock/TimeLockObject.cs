@@ -78,7 +78,7 @@ public class TimeLockObject : MonoBehaviour
         SetSortingLayer("Default");
     }
 
-    public void SetSortingLayer(string layer)
+    public virtual void SetSortingLayer(string layer)
     {
         GetComponent<SpriteRenderer>().sortingLayerName = layer;
     }
