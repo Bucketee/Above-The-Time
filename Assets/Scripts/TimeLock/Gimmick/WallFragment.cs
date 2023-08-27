@@ -111,6 +111,7 @@ public class WallFragment : TimeLockObject
 
     public void GoToFirstPos()
     {
+        SetSortingLayer("Default");
         StartCoroutine(GoToFirstPosCo());
         //Debug.Log("go to first");
     }

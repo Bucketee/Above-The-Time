@@ -135,7 +135,7 @@ MonoBehaviour:
   maxFallSpeed: -30
   stepableLayers:
     serializedVersion: 2
-    m_Bits: 200
+    m_Bits: 100808
 --- !u!50 &1055545842931081309
 Rigidbody2D:
   serializedVersion: 4
