@@ -342,7 +342,7 @@ MonoBehaviour:
   - {fileID: 6383022994940815578, guid: d561c27a96ccf3140b7a35fc3e8112be, type: 3}
   - {fileID: 6383022994940815578, guid: e73bbdc55a9cc6741880cab3f085e91a, type: 3}
   speed: 80
-  life: 2
+  life: 1.5
   isCool: 0
 --- !u!1 &2450518167624469767
 GameObject:
@@ -415,7 +415,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!1 &6386106235442131198
 GameObject:
@@ -612,7 +612,7 @@ MonoBehaviour:
   speed: {x: 0, y: 0}
   isOnAir: 0
   input: {fileID: 11400000, guid: 8fb3d76fef94431458e9778259fcd6e8, type: 2}
-  walkSpeed: 6
+  walkSpeed: 5
   dashDistance: 10
   jumpPower: 12
   currJumpTime: 0
@@ -622,10 +622,10 @@ MonoBehaviour:
   maxFallSpeed: -30
   stepableLayers:
     serializedVersion: 2
-    m_Bits: 103881
+    m_Bits: 103880
   collidingLayers:
     serializedVersion: 2
-    m_Bits: 103881
+    m_Bits: 103880
   dashUsed: 0
   isDash: 0
   dashSpeed: 10
