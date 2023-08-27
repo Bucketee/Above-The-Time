@@ -9,4 +9,12 @@ public class AutoFocus : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(gameObject);
     }
+
+    private void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject != this.gameObject)
+        {
+            EventSystem.current.SetSelectedGameObject(gameObject);
+        }
+    }
 }
