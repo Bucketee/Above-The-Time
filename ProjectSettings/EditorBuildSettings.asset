@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/AJS_Scene.unity
     guid: 7174476bc315f0640967358cd0e84a0c
   - enabled: 1
-    path: Assets/Scenes/Association.unity
+    path: Assets/Scenes/GameScene/Association.unity
     guid: 3f3f29744e04db24fa268f94920d5b4d
   - enabled: 1
-    path: Assets/Scenes/Slum.unity
+    path: Assets/Scenes/GameScene/Slum.unity
     guid: 65d9a43a88319024aa70246fa4908679
   - enabled: 1
-    path: Assets/Scenes/Tower.unity
+    path: Assets/Scenes/GameScene/Tower.unity
     guid: e6fac532c57f6b44186422594d936724
   m_configObjects: {}

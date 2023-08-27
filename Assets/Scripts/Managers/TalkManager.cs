@@ -8,7 +8,9 @@ using Unity.VisualScripting;
 public enum Character
 {
     Player,
-    Empty
+    Empty,
+    Senior,
+    Boss
 }
 
 public class TalkManager : MonoBehaviour
@@ -34,18 +36,20 @@ public class TalkManager : MonoBehaviour
         SetCharacterSpriteDict();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartTalk(0);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.T))
+    //    {
+    //        StartTalk(0);
+    //    }
+    //}
 
     private void SetCharacterSpriteDict()
     {
         characterSpriteDict.Add(Character.Player, characterSprites.playerSprite);
         characterSpriteDict.Add(Character.Empty, characterSprites.emptySprite);
+        characterSpriteDict.Add(Character.Senior, characterSprites.senior);
+        characterSpriteDict.Add(Character.Boss, characterSprites.boss); 
     }
 
     public void StartTalk(int talkNum)

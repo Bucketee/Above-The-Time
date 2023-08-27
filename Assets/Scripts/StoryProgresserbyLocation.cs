@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StoryProgresserbyLocation : MonoBehaviour
 {
-    [Tooltip("Go to this story when triggered")]
-    [SerializeField] private StoryProgress nextStory;
+    [SerializeField] private StoryProgress current;
+    [SerializeField] private float timezone;
     private StoryManager storyManager;
 
     private void Start()
@@ -16,10 +16,10 @@ public class StoryProgresserbyLocation : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-        if (storyManager.CurrentStory < nextStory)
+        if (timezone == 0 || (timezone != 0 && timezone == 1 + (int)GameManager.Instance.TimeZoneManager.NowTimeZone))
         {
-            storyManager.SelectStory(nextStory);
+            storyManager.NextStory();
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

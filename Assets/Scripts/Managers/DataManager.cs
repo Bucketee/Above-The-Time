@@ -20,18 +20,18 @@ public class DataManager : MonoBehaviour
 
     private Dictionary<StoryProgress, bool[]> storyTimeZoneCanMoveDict = new()
     {
-        {StoryProgress.Tutorial, new bool[3]{true, false, true}},
-        {StoryProgress.StartSlum, new bool[3]{true, false, true}},
-        {StoryProgress.FirstPastSlum, new bool[3]{true, false, true}},
-        {StoryProgress.PlantTree, new bool[3]{true, false, true}},
-        {StoryProgress.PresentSlum, new bool[3]{true, false, true}},
-        {StoryProgress.SecondPastSlum, new bool[3]{true, false, true}},
-        {StoryProgress.ChaseAxe, new bool[3]{true, false, true}},
-        {StoryProgress.InTower, new bool[3]{true, false, true}},
-        {StoryProgress.TopTower, new bool[3]{true, false, true}},
-        {StoryProgress.BackToTree, new bool[3]{true, false, true}},
-        {StoryProgress.GoToFuture, new bool[3]{true, false, true}},
-        {StoryProgress.End, new bool[3]{true, false, true}},  
+        {StoryProgress.Tutorial, new bool[3]{false, false, false } },
+        {StoryProgress.StartSlum, new bool[3]{ false, false, false } },
+        {StoryProgress.FirstPastSlum, new bool[3]{ true, false, false } },
+        {StoryProgress.PlantTree, new bool[3]{ false, false, false } },
+        {StoryProgress.PresentSlum, new bool[3]{ false, false, false } },
+        {StoryProgress.SecondPastSlum, new bool[3]{ false, false, true } },
+        {StoryProgress.ChaseAxe, new bool[3]{ false, true, false } },
+        {StoryProgress.InTower, new bool[3]{ false, false, false } },
+        {StoryProgress.TopTower, new bool[3]{ false, false, false } },
+        {StoryProgress.BackToTree, new bool[3]{ false, false, false } },
+        {StoryProgress.GoToFuture, new bool[3]{ false, false, true } },
+        {StoryProgress.End, new bool[3]{ false, false, false } },  
     };
 
     private void Awake()
