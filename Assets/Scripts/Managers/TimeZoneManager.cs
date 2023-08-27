@@ -17,7 +17,7 @@ public enum TimeZone
 public class TimeZoneManager : MonoBehaviour
 {
 
-    [SerializeField] private TimeZone nowTimeZone = TimeZone.Future;
+    [SerializeField] private TimeZone nowTimeZone;
     public TimeZone NowTimeZone => nowTimeZone;
     [SerializeField] private TMP_Text timeZoneText; //temp
     private Dictionary<TimeZone, bool> canTimeMoveDict = new() //Set by ChangeTimeMoveBool() method
@@ -34,6 +34,12 @@ public class TimeZoneManager : MonoBehaviour
         {1955, TimeZone.Present},
         {2000, TimeZone.Future}
     };
+    private Dictionary<TimeZone, int> timeZoneYearDict = new()
+    {
+        {TimeZone.Past, 1950},
+        {TimeZone.Present, 1955},
+        {TimeZone.Future, 2000}
+    };
 
     [SerializeField] private GameEvent timeZoneChangeEvent;
 
@@ -46,7 +52,10 @@ public class TimeZoneManager : MonoBehaviour
 
     private void Start()
     {
-        nowYear = 2000;
+        nowTimeZone = DataManager.Instance.NowTimeZone;
+        nowYear = timeZoneYearDict[nowTimeZone];
+
+        ChangeTime(nowTimeZone);
     }
 
     private void ChangeTime(TimeZone timeZone)
