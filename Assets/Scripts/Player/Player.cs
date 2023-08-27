@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float maxHP = 10f;
+    private float maxHP = 100f;
     private float nowHP;
     public float NowHP => nowHP;
     private GameStateManager gameStateManager;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         if (!isInvincible)
         {
             nowHP -= damage;
+            Debug.Log(nowHP);
             DataManager.Instance.SetPlayerHP(nowHP);
             if (nowHP <= 0)
             {
