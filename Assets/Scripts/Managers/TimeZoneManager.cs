@@ -86,8 +86,9 @@ public class TimeZoneManager : MonoBehaviour
                 new ArgumentException("Abnormal TimeZone");
                 break;
         }
-
+        DataManager.Instance.SetTimeZone(nowTimeZone);
         UpdateCanMove();
+        
 
         timeZoneChangeEvent.Raise(this, null);
     }
