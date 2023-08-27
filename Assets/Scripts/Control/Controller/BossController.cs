@@ -30,8 +30,8 @@ public class BossController : MonoBehaviour
     private float rushSpeed = 5f;
     private float bombSpeed = 5f;
     private new Rigidbody2D rigidbody2D;
-    private (float minX, float maxX) mapSizeX = new(-20f, 0f);
-    [SerializeField] private float rockHeight = 100f;
+    private (float minX, float maxX) mapSizeX = new(-20f, 18f);
+    [SerializeField] private float rockHeight = 104f;
     private Animator animator;
     private float startPosY;
     private PolygonCollider2D polygonCollider2D;
