@@ -352,6 +352,11 @@ MonoBehaviour:
   ClockFrame: {fileID: 0}
   Hourhand: {fileID: 0}
   Minutehand: {fileID: 0}
+  descriptions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nowYearText: {fileID: 0}
   Operatinghand: {fileID: 0}
   hourHandPlus: 0
   minuteHandPlus: 0
