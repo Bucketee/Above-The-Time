@@ -102,17 +102,17 @@ public class TimeLockObject : MonoBehaviour
             GetComponent<SpriteRenderer>().sortingLayerName = "Default";
         }
     }
-    private void FixedUpdate()
-    {
-        if (timeManager?.NowTimeLockedObject)
-        {
-            TimeLockDurationSend(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
-        }
-        else
-        {
-            TimeLockDurationSend(0f, 0f); 
-        }
-    }
+    // private void FixedUpdate()
+    // {
+    //     if (timeManager?.NowTimeLockedObject)
+    //     {
+    //         TimeLockDurationSend(timeManager.NowTimeLockedObject.maxDuration, timeManager.NowTimeLockedObject.currentDuration);
+    //     }
+    //     else
+    //     {
+    //         TimeLockDurationSend(0f, 0f); 
+    //     }
+    // }
     private void Update()
     {
         if (gameStateManager.NowGameState != GameState.Playing)
