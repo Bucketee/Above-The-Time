@@ -112,7 +112,7 @@ public class SoundManager : MonoBehaviour
     #region Sound Methods
     public void JumpSound()
     {
-        effectAudioSource.volume = 0.4f;
+        effectAudioSource.volume = 0.25f;
         if (jumpSound != null) { effectAudioSource.PlayOneShot(jumpSound); }
     }
     public void DashSound()

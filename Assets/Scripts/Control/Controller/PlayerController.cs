@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
         float maxFallSpeedSet = maxFallSpeed;
         maxFallSpeed = 0f;
         speed.y = 0f;
+        SoundManager.Instance.DashSound();
         if(inputHor > 0f)
         {
             speed.x = 0.1f;

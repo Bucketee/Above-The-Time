@@ -2460,14 +2460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 159669256012360694, guid: 8900d2f25b102fb4b884640ad238da5a, type: 3}
-      propertyPath: rockBreakSound
-      value: 
-      objectReference: {fileID: 8300000, guid: fcc884bd3581d754486ef5c7fde074d9, type: 3}
-    - target: {fileID: 159669256012360694, guid: 8900d2f25b102fb4b884640ad238da5a, type: 3}
-      propertyPath: rockReverseSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 219d0792334ca8149813da2674ba276a, type: 3}
     - target: {fileID: 159669256012360697, guid: 8900d2f25b102fb4b884640ad238da5a, type: 3}
       propertyPath: m_RootOrder
       value: 22
