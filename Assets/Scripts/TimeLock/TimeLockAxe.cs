@@ -12,7 +12,7 @@ public class TimeLockAxe : TimeLockObject
         while (pos.x <= target.x)
         {
             positions.AddFirst(new PositionInTime(pos, Quaternion.identity, Vector2.zero, 0));
-            pos = pos + new Vector3(0.1f, 0, 0);
+            pos = pos + new Vector3(0.3f, 0, 0);
         }
     }
 
