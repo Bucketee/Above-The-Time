@@ -54,6 +54,7 @@ public class Boss : MonoBehaviour, IEnemyInterface
     private void Die()
     {
         Debug.Log("Boss Destroyed");
+        GameManager.Instance.StoryManager.SelectStory(StoryProgress.BackToTree);
         bossController.StartPattern(BossPattern.Die);
     }
     
