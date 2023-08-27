@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour, IEnemyInterface
     private float nowSliderValue = 1f;
     [SerializeField] private Slider bossHPSlider;
     private bool sliderChanging = false;
+    private bool isDead = false;
 
     private BossController bossController;
 
@@ -30,8 +31,9 @@ public class Boss : MonoBehaviour, IEnemyInterface
         {
             StartCoroutine(HPSliderCo());
         }
-        if (nowHP <= 0)
+        if (nowHP <= 0 && !isDead)
         {
+            isDead = true;
             Die();
         }
     }

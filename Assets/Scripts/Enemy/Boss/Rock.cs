@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rock : TimeLockObject
 {
-    private bool isOnAir = true;
     private float life = 5f;
     private Coroutine countDownCoroutine;
 
