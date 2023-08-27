@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
     private TimeZone nowTimeZone = TimeZone.Future;
     public TimeZone NowTimeZone => nowTimeZone;
 
-    private bool[] timeZoneCanMoves = new bool[3]{true, false, true};
+    private bool[] timeZoneCanMoves = new bool[3]{true, true, true};
     public bool[] TimeZoneCanMoves => timeZoneCanMoves;
 
     public static DataManager Instance { get; private set; }

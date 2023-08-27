@@ -67,7 +67,7 @@ public class TimeZoneManager : MonoBehaviour
         {
             return;
         }
-        GameManager.Instance.TimeZoneLoading.LoadingFadeIn();
+        if(fadein) GameManager.Instance.TimeZoneLoading.LoadingFadeIn();
         nowTimeZone = timeZone;
         GameManager.Instance.TimeManager.NowTimeLockedObject?.GetTimeUnLocked();
         SceneInitialize();
