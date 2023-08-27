@@ -612,7 +612,7 @@ MonoBehaviour:
   speed: {x: 0, y: 0}
   isOnAir: 0
   input: {fileID: 11400000, guid: 8fb3d76fef94431458e9778259fcd6e8, type: 2}
-  walkSpeed: 4
+  walkSpeed: 5
   dashDistance: 10
   jumpPower: 12
   currJumpTime: 0
@@ -622,10 +622,10 @@ MonoBehaviour:
   maxFallSpeed: -30
   stepableLayers:
     serializedVersion: 2
-    m_Bits: 102856
+    m_Bits: 103880
   collidingLayers:
     serializedVersion: 2
-    m_Bits: 102856
+    m_Bits: 103880
   dashUsed: 0
   isDash: 0
   dashSpeed: 10
