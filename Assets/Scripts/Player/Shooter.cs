@@ -83,6 +83,7 @@ public class Shooter : MonoBehaviour
     /// <param name="life">life time of bullet</param>
     private void ShootBullet(int bulletType, Vector2 dir, float speed, float life)
     {
+        SoundManager.Instance.ShootingSound();
         StartCoroutine(BulletCool());
         GameObject bullet = Instantiate(bullets[bulletType], transform.position, Quaternion.identity);
         bullet.GetComponent<Bullet>().Init(bulletType, dir, speed, life);

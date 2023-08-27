@@ -13,11 +13,14 @@ public class SoundManager : MonoBehaviour
     [Header("Sound Clip")]
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip dashSound;
-    [SerializeField] private AudioClip leverSound;
-    [SerializeField] private AudioClip doorSound;
-    [SerializeField] private AudioClip clockTickSound;
-    [SerializeField] private AudioClip timeWindSound;
+    [SerializeField] private AudioClip rockBreakSound;
+    [SerializeField] private AudioClip rockReverseSound;
+    [SerializeField] private AudioClip timeLockSound;
+    [SerializeField] private AudioClip timeUnlockSound;
     [SerializeField] private AudioClip timeTravelSound;
+    [SerializeField] private AudioClip shootingSound;
+    private bool nowSound = false;
+
 
     [Header("Background Music")]
     [SerializeField] private AudioClip backGroundMusic1;
@@ -109,31 +112,42 @@ public class SoundManager : MonoBehaviour
     #region Sound Methods
     public void JumpSound()
     {
+        effectAudioSource.volume = 0.4f;
         if (jumpSound != null) { effectAudioSource.PlayOneShot(jumpSound); }
     }
     public void DashSound()
     {
-        if (jumpSound != null) { effectAudioSource.PlayOneShot(dashSound); }
+        effectAudioSource.volume = 0.5f;
+        if (dashSound != null) { effectAudioSource.PlayOneShot(dashSound); }
     }
-    public void LeverSound()
+    public void RockBreakSound()
     {
-        if (jumpSound != null) { effectAudioSource.PlayOneShot(leverSound); }
+        effectAudioSource.volume = 1f;
+        if (rockBreakSound != null) { effectAudioSource.PlayOneShot(rockBreakSound); }
     }
-    public void DoorSound()
+    public void RockReverseSound()
     {
-        if (jumpSound != null) { effectAudioSource.PlayOneShot(doorSound); }
+        effectAudioSource.volume = 1f;
+        if (rockReverseSound != null) { effectAudioSource.PlayOneShot(rockReverseSound); }
     }
-    public void ClockTickSound()
+    public void TimeLockSound()
     {
-        if (jumpSound != null) { effectAudioSource.PlayOneShot(clockTickSound); }
+        effectAudioSource.volume = 0.5f;
+        if (timeLockSound != null) { effectAudioSource.PlayOneShot(timeLockSound); }
     }
-    public void TimeWindSound()
+    public void TimeUnlockSound()
     {
-        if (jumpSound != null) { effectAudioSource.PlayOneShot(timeWindSound); }
+        effectAudioSource.volume = 0.3f;
+        if (timeUnlockSound != null) { effectAudioSource.PlayOneShot(timeUnlockSound); }
     }
     public void TimeTravelSound()
     {
-        if (jumpSound != null) { effectAudioSource.PlayOneShot(timeTravelSound); }
+        if (timeTravelSound != null) { effectAudioSource.PlayOneShot(timeTravelSound); }
+    }
+    public void ShootingSound()
+    {
+        effectAudioSource.volume = 0.4f;
+        if (shootingSound != null) { effectAudioSource.PlayOneShot(shootingSound); }
     }
     #endregion
 }

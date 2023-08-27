@@ -203,6 +203,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isOnAir)
             {
+                SoundManager.Instance.JumpSound();
                 speed.y = jumpPower;
                 isJump = true;
                 currJumpTime = 0f;
@@ -221,6 +222,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (!isOnAir && !isJump)
             {
+                SoundManager.Instance.JumpSound();
                 speed.y = jumpPower;
                 isJump = true;
                 currJumpTime = 0f;
