@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 
 public class Boss : MonoBehaviour, IEnemyInterface
 {
-    private float maxHP = 100f;
+    private float maxHP = 1000f;
     private float nowHP;
     public float NowHP => nowHP;
+    private float targetSliderValue = 1f;
+    private float nowSliderValue = 1f;
+    [SerializeField] private Slider bossHPSlider;
+    private bool sliderChanging = false;
 
     private BossController bossController;
 
@@ -21,11 +25,28 @@ public class Boss : MonoBehaviour, IEnemyInterface
     public void GetDamaged(float damage)
     {
         nowHP -= damage;
-
+        targetSliderValue = nowHP/maxHP;
+        if (!sliderChanging)
+        {
+            StartCoroutine(HPSliderCo());
+        }
         if (nowHP <= 0)
         {
             Die();
         }
+    }
+
+    private IEnumerator HPSliderCo()
+    {
+        sliderChanging = true;
+        while((targetSliderValue - nowSliderValue > 0.001f))
+        {
+            nowSliderValue = Mathf.Lerp(nowSliderValue, targetSliderValue, Time.deltaTime);
+            bossHPSlider.value = nowSliderValue;
+            yield return null;
+        }
+        bossHPSlider.value = targetSliderValue;
+        sliderChanging = false;
     }
 
     private void Die()
