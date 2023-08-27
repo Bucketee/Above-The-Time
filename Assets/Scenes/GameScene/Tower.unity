@@ -247,6 +247,10 @@ PrefabInstance:
       propertyPath: statusText
       value: 
       objectReference: {fileID: 328939727}
+    - target: {fileID: 3853565810786203154, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: CurrentStory
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6366005864850524640, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: timeWindCostBar
       value: 
@@ -1414,7 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2196202609116395477, guid: 6430080f0708fcd4cbe10abab293f7b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.34
+      value: -11.19
       objectReference: {fileID: 0}
     - target: {fileID: 2196202609116395477, guid: 6430080f0708fcd4cbe10abab293f7b3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3087,7 +3091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1371126652627405043, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.9
+      value: -19.08
       objectReference: {fileID: 0}
     - target: {fileID: 1371126652627405043, guid: 78bba161b68999f439882f4e6a04d3fc, type: 3}
       propertyPath: m_LocalPosition.y
