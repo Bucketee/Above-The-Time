@@ -32,28 +32,35 @@ public class BossController : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     private (float minX, float maxX) mapSizeX = new(-20f, 0f);
     private float rockHeight = 5f;
+    private Animator animator;
+    private float startPosY;
+    private PolygonCollider2D polygonCollider2D;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        polygonCollider2D = GetComponent<PolygonCollider2D>();
     }
     
     private void Start()
     {
-        StartPattern(BossPattern.Wait, 3f);
+        startPosY = transform.position.y;
+        StartPattern(BossPattern.Wait, 5f);
     }
 
     private void SeePlayer()
     {
         if (player.transform.position.x > transform.position.x)
         {
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
             sightDirection = Vector2.right;
         }
         else
         {
             spriteRenderer.flipX = false;
+            transform.localScale = new Vector3(1f, 1f, 1f);
             sightDirection = Vector2.left;
         }
     }
@@ -107,8 +114,10 @@ public class BossController : MonoBehaviour
 
     private IEnumerator ThrowBombCo()
     {
-        // Do Motion
-        // yield return new Waitforseconds
+        animator.SetTrigger("throw");
+        transform.position += Vector3.down * 0.15f;
+        yield return new WaitForSeconds(0.1f);
+        transform.position += Vector3.up * 0.15f;
         float nowPlayerPosX = player.transform.position.x;
         Vector2 dir = new Vector2(bombSpeed * sightDirection.x, Mathf.Abs(nowPlayerPosX - transform.position.x) / bombSpeed * 2.5f);
         GameObject bombObj = Instantiate<GameObject>(bombPrefab, transform.position, Quaternion.identity);
@@ -119,8 +128,8 @@ public class BossController : MonoBehaviour
 
     private IEnumerator ShockWaveCo()
     {
-        // Do Motion
-        // yield return new Waitforseconds
+        animator.SetTrigger("attack");
+        yield return new WaitForSeconds(0.1f);
         GameObject shockWaveObj = Instantiate<GameObject>(shockWavePrefab, transform.position + Vector3.down * 0.5f, Quaternion.identity);
         shockWaveObj.GetComponent<ShockWave>().Launch(sightDirection);
         yield return null;
@@ -129,8 +138,8 @@ public class BossController : MonoBehaviour
 
     private IEnumerator DropRockCo()
     {
-        // Do Motion
-        // yield return new Waitforseconds
+        animator.SetTrigger("attack");
+        yield return new WaitForSeconds(0.1f);
         (float x1, float x2) rockPosX = SelectRockPosX();
         GameObject rockObj1 = Instantiate<GameObject>(rockPrefab, new Vector3(rockPosX.x1, rockHeight, 0f), Quaternion.identity);
         rockObj1.GetComponent<Rock>().CountDown();
@@ -157,8 +166,9 @@ public class BossController : MonoBehaviour
 
     private IEnumerator RushCo()
     {
-        // Do Motion
-        // yield return new Waitforseconds
+        animator.SetBool("isRush", true);
+        transform.position += Vector3.down * 0.25f;
+        yield return new WaitForSeconds(0.1f);
         float nowPlayerPosX = player.transform.position.x;
         bool bigger = (transform.position.x - nowPlayerPosX) > 0f;
         Debug.Log(nowPlayerPosX);
@@ -183,6 +193,8 @@ public class BossController : MonoBehaviour
             }
             yield return null;
         }
+        animator.SetBool("isRush", false);
+        transform.position += Vector3.up * 0.25f;
         isRushing = false;
         rigidbody2D.velocity = new Vector2(0f, 0f);
         StartPattern(BossPattern.Wait, 5f);
@@ -190,6 +202,9 @@ public class BossController : MonoBehaviour
 
     private IEnumerator DieCo()
     {
+        transform.position += Vector3.down * 0.5f;
+        animator.SetTrigger("isDead0");
+        animator.SetTrigger("isDead1");
         Debug.Log("Die");
         yield return null;
     }
@@ -207,6 +222,8 @@ public class BossController : MonoBehaviour
         {
             player.GetDamaged(40f);
             isRushing = false;
+            animator.SetBool("isRush", false);
+            transform.position += Vector3.up * 0.25f;
             rigidbody2D.velocity = new Vector2(0f, 0f);
             StartPattern(BossPattern.Wait, 5f, true);
         }
