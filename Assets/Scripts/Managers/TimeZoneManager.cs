@@ -47,6 +47,8 @@ public class TimeZoneManager : MonoBehaviour
     [SerializeField] private GameObject ClockFrame;
     [SerializeField] private GameObject Hourhand;
     [SerializeField] private GameObject Minutehand;
+    [SerializeField] private GameObject[] descriptions;
+    [SerializeField] private TMP_Text nowYearText;
     [SerializeField] public GameObject Operatinghand = null;
     [SerializeField] public int hourHandPlus, minuteHandPlus;
 
@@ -54,11 +56,12 @@ public class TimeZoneManager : MonoBehaviour
     {
         nowTimeZone = DataManager.Instance.NowTimeZone;
         nowYear = timeZoneYearDict[nowTimeZone];
+        foreach(var desc in descriptions) { desc.SetActive(false); }
 
-        ChangeTime(nowTimeZone);
+        ChangeTime(nowTimeZone, false);
     }
 
-    private void ChangeTime(TimeZone timeZone)
+    private void ChangeTime(TimeZone timeZone, bool fadein)
     {
         if (!canTimeMoveDict[timeZone]) 
         {
@@ -108,15 +111,15 @@ public class TimeZoneManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ChangeTime(TimeZone.Past);
+            ChangeTime(TimeZone.Past, true);
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            ChangeTime(TimeZone.Present);
+            ChangeTime(TimeZone.Present, true);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            ChangeTime(TimeZone.Future);
+            ChangeTime(TimeZone.Future, true);
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -149,11 +152,14 @@ public class TimeZoneManager : MonoBehaviour
             Minutehand.SetActive(false);
         }
 
-        if(GameManager.Instance.GameStateManager.NowGameState == GameState.TimeChanging)
+        if (GameManager.Instance.GameStateManager.NowGameState == GameState.TimeChanging)
         {
             Hourhand.transform.rotation = Quaternion.Euler(0f, 0f, -30f * hourHandPlus);
             Minutehand.transform.rotation = Quaternion.Euler(0f, 0f, -30f * minuteHandPlus);
+            foreach(var desc in descriptions) { desc.SetActive(true); }
+            nowYearText.text = "You are in " + nowYear.ToString();
         }
+        else { foreach (var desc in descriptions) { desc.SetActive(false); } }
 
         ClockFrame.transform.position = Camera.main.transform.position + new Vector3(0f, 0f, 10f);
         Hourhand.transform.position = Camera.main.transform.position + new Vector3(0f, 0f, 10f);
@@ -172,10 +178,10 @@ public class TimeZoneManager : MonoBehaviour
         int finalClockHandInput = hourHandPlus * 12 + minuteHandPlus;
         if (yearTimeZoneDict.ContainsKey(nowYear + finalClockHandInput))
         {
-            if (canTimeMoveDict[yearTimeZoneDict[nowYear + finalClockHandInput]])
+            if (canTimeMoveDict[yearTimeZoneDict[nowYear + finalClockHandInput]] && finalClockHandInput != 0)
             {
                 nowYear += finalClockHandInput;
-                ChangeTime(yearTimeZoneDict[nowYear]);
+                ChangeTime(yearTimeZoneDict[nowYear], true);
                 Debug.Log("Time Travel Successed!");
             }
             else { Debug.Log("Time Travel Failed!"); }
