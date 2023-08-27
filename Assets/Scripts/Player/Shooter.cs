@@ -10,7 +10,7 @@ public class Shooter : MonoBehaviour
     [Header("About Bullet")]
     [SerializeField] private float speed;
     [SerializeField] private float life;
-    [SerializeField] private bool isCool;
+    [SerializeField] public bool isCool;
 
     private GameObject player;
     private Vector3 mousePoint;
