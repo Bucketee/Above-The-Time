@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip timeUnlockSound;
     [SerializeField] private AudioClip timeTravelSound;
     [SerializeField] private AudioClip shootingSound;
+    [SerializeField] private AudioClip leverSound;
     private bool nowSound = false;
 
 
@@ -148,6 +149,10 @@ public class SoundManager : MonoBehaviour
     {
         effectAudioSource.volume = 0.4f;
         if (shootingSound != null) { effectAudioSource.PlayOneShot(shootingSound); }
+    }
+    public void LeverSound()
+    {
+        if (leverSound!= null) { effectAudioSource.PlayOneShot(leverSound); }
     }
     #endregion
 }

@@ -22,14 +22,14 @@ public class Words : ScriptableObject
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //2
         {
             (Character.Player, Character.Empty, "나", true, "(얼마 전에 이곳에 온 나는 시간 경찰이다.)"),
-            (Character.Player, Character.Empty, "나", true, "(무려 시간을 조정하여 각종 문제들을 해결하는 슈퍼 히어로같은 직업이라고 할 수 있다.)"),
+            (Character.Player, Character.Empty, "나", true, "(무려 시간을 조종하여 각종 문제들을 해결하는 슈퍼 히어로같은 직업이라고 할 수 있다.)"),
             (Character.Player, Character.Empty, "나", true, "(이곳의 다양한 장치에 매번 즐겁다. 시간 여행이 가능하다니!)"),
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //3
         {
             (Character.Player, Character.Senior, "나", true, "안녕하세요 선배!"),
             (Character.Player, Character.Senior, "선배", false, "그래! 어서 임무에 갈 준비를 해!"),
-            (Character.Player, Character.Senior, "나", true, "오늘은 무슨 입무인가요?"),
+            (Character.Player, Character.Senior, "나", true, "오늘은 무슨 임무인가요?"),
             (Character.Player, Character.Senior, "선배", false, "뒤쪽에 있는 슬럼가 알지?\n그곳에 나무를 심어 슬럼가를 없애는 게 이번 임무의 목표다."),
             (Character.Player, Character.Senior, "나", true, "아..알겠습니다!"),
             (Character.Player, Character.Senior, "나", true, "(근데 나무 심는 걸로 슬럼가가 사라지나?)"),
@@ -37,9 +37,9 @@ public class Words : ScriptableObject
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //4
         {
             (Character.Player, Character.Senior, "나", true, "선배 나무는 어디에 심을까요?"),
-            (Character.Player, Character.Senior, "선배", false, "일단 저 앞에 있는 도적 두 마리부터 잡자."),
+            (Character.Player, Character.Senior, "선배", false, "그 전에 일단 저 앞에 있는 도적 두 마리부터 잡자."),
             (Character.Player, Character.Senior, "나", true, "제...제가요??"),
-            (Character.Player, Character.Senior, "선배", false, "그래."),
+            (Character.Player, Character.Senior, "선배", false, "그래. 너가."),
             (Character.Player, Character.Senior, "나", true, "(마우스 왼쪽 클릭을 통해 총을 쏠 수 있다.\n앞의 도적을 빨리 잡자!)"),
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //5
@@ -47,7 +47,9 @@ public class Words : ScriptableObject
             (Character.Player, Character.Senior, "나", true, "선배 다 잡았어요!!"),
             (Character.Player, Character.Senior, "선배", false, "좋아. 그럼 우리는 과거로 간다.\n과거로 가는 법은 기억하고 있겠지?"),
             (Character.Player, Character.Senior, "나", true, "..."),
-            (Character.Player, Character.Senior, "선배", false, "하... R을 누르면 시계가 뜬다. 시계의 시침과 분침을 시계, 반시계 방향으로 돌리면 \n미래, 과거로 갈 수 있다. 시침은 한칸당 12년, 분침은 한칸당 1년을 뜻한다. \n시침, 분침을 돌리고 다시 R을 누르면 시간을 여행할 수 있다. \n50년 전이면 시침과 분침을 얼마나 돌려야 하는지는 알겠지?"),
+            (Character.Player, Character.Senior, "선배", false, "하... R을 누르면 시계가 뜬다. 시계의 시침과 분침을 시계, 반시계 방향으로 돌리면 \n미래, 과거로 갈 수 있다. 시침은 한칸당 12년, 분침은 한칸당 1년을 뜻한다. \n시침, 분침을 돌리고 다시 R을 누르면 시간을 여행할 수 있다."),
+            (Character.Player, Character.Senior, "선배", false, "그럼 50년 전이면 시침과 분침을 얼마나 돌려야 하는지는 알겠지?"),
+
             (Character.Player, Character.Senior, "나", true, "넵!"),
             (Character.Player, Character.Senior, "나", true, "(어서 50년 전으로 가자! 시침을 4칸, 분침을 2칸 옮기면 되겠지?)"),
         },
@@ -58,7 +60,7 @@ public class Words : ScriptableObject
             (Character.Player, Character.Senior, "나", true, "그럼 저희는 뭘 하면 되나요?"),
             (Character.Player, Character.Senior, "선배", false, "이 묘목을 심으면 주위의 나무에 백신이 퍼져나가 나무들이 죽지 않게될 거야.\n그러니 어서 심고 와."),
             (Character.Player, Character.Senior, "나", true, "제...제가요?"),
-            (Character.Player, Character.Senior, "선배", false, "그래."),
+            (Character.Player, Character.Senior, "선배", false, "그래. 너가."),
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //7
         {
@@ -69,7 +71,7 @@ public class Words : ScriptableObject
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //8
         {
-            (Character.Player, Character.Empty, "나", true, "뭐야 이 바위는? 흠.. 미래로 돌려 부술 수 있을까?"),
+            (Character.Player, Character.Empty, "나", true, "뭐야 이 바위는? 흠.. 그러고보니 예전에 여기 커다란 바위가 있었는데 부숴버렸다 했지. \n미래로 돌려 부술 수 있을까?"),
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //9
         {
@@ -81,7 +83,7 @@ public class Words : ScriptableObject
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //11
         {
-            (Character.Player, Character.Empty, "나", true, "좋아! 이제 돌아가자."),
+            (Character.Player, Character.Empty, "나", true, "좋아! 이제 선배한테 돌아가서 보고하자."),
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //12
         {
@@ -96,7 +98,7 @@ public class Words : ScriptableObject
             (Character.Player, Character.Senior, "선배", false, "이게 무슨 일이지?!\n흠... 아무래도 그 사이에 무슨 일이 생긴 것 같군."),
             (Character.Player, Character.Senior, "선배", false, "넌 45년 전으로 돌아가 이 일을 조사해봐.\n난 위에 보고하러 가지."),
             (Character.Player, Character.Senior, "나", true, "저 혼자 가라고요? 제...제가요?"),
-            (Character.Player, Character.Senior, "선배", false, "그래."),
+            (Character.Player, Character.Senior, "선배", false, "그래. 너만."),
             (Character.Player, Character.Senior, "나", true, "...."),
             (Character.Player, Character.Senior, "나", true, "(45년 전으로 돌아가 나무를 조사해보자.)"),
         },
@@ -126,7 +128,7 @@ public class Words : ScriptableObject
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //19
         {
             (Character.Player, Character.Boss, "보스", false, "누구냐!?"),
-            (Character.Player, Character.Boss, "나", true, "너가 나무를 밴 녀석이냐?"),
+            (Character.Player, Character.Boss, "나", true, "나는 시간 경찰이다! 너가 나무를 벤 녀석이냐?"),
             (Character.Player, Character.Boss, "나", true, "정의의 이름으로 널 용서하지 않겠다!"),
             (Character.Player, Character.Boss, "보스", false, "이곳에 왔다는 건 다 알고 온건가."),
             (Character.Player, Character.Boss, "보스", false, "어쩔 수 없군... 죽어라!"),
@@ -142,11 +144,12 @@ public class Words : ScriptableObject
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //22
         {
-            (Character.Player, Character.Empty, "나", true, "다시 나무로 돌아가보자."),
+            (Character.Player, Character.Empty, "나", true, "다시 나무가 있던 곳으로 돌아가보자."),
         },
         new List<(Character leftCharacter, Character rightCharacter, string tellerName, bool leftIsTeller, string words)>() //23
         {
             (Character.Player, Character.Empty, "나", true, "와아~ 나무다~"),
+            (Character.Player, Character.Empty, "나", true, "이제 슬럼가가 없어지고 마을이 평화로워졌겠지?"),
         },
     };
 }
