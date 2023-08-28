@@ -115,33 +115,33 @@ public class TimeZoneManager : MonoBehaviour
             StartCoroutine(TimeClockOperate());
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ChangeTime(TimeZone.Past, true);
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            ChangeTime(TimeZone.Present, true);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            ChangeTime(TimeZone.Future, true);
-        }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     ChangeTime(TimeZone.Past, true);
+        // }
+        // else if (Input.GetKeyDown(KeyCode.W))
+        // {
+        //     ChangeTime(TimeZone.Present, true);
+        // }
+        // else if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     ChangeTime(TimeZone.Future, true);
+        // }
         
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeTimeMoveBool(TimeZone.Past);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     ChangeTimeMoveBool(TimeZone.Past);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeTimeMoveBool(TimeZone.Present);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     ChangeTimeMoveBool(TimeZone.Present);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeTimeMoveBool(TimeZone.Future);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha3))
+        // {
+        //     ChangeTimeMoveBool(TimeZone.Future);
+        // }
 
         if (GameManager.Instance.GameStateManager.NowGameState == GameState.TimeChanging && ClockFrame.activeSelf == false)
         {
@@ -176,6 +176,8 @@ public class TimeZoneManager : MonoBehaviour
     {
         hourHandPlus = 0;
         minuteHandPlus = 0;
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         while (!Input.GetKeyDown(KeyCode.R))
         {

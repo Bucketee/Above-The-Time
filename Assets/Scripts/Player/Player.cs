@@ -24,6 +24,18 @@ public class Player : MonoBehaviour
         playerHPSlider.value = nowHP;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && gameStateManager.NowGameState == GameState.GameOver)
+        {
+            nowHP = 100f;
+            DataManager.Instance.SetPlayerHP(100f);
+            playerHPSlider.value = nowHP;
+            gameStateManager.ChangeGameState(GameState.Playing);
+            animator.SetTrigger("reLive");
+        }
+    }
+
     public void GetDamaged(float damage)
     {
         if (!isInvincible)

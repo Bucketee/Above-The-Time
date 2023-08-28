@@ -56,6 +56,7 @@ MonoBehaviour:
   timeUnlockSound: {fileID: 8300000, guid: fa14908e86e268440abfee4d165fa4fe, type: 3}
   timeTravelSound: {fileID: 0}
   shootingSound: {fileID: 8300000, guid: 9b8cf423eabad214d826e6a5411379ba, type: 3}
+  leverSound: {fileID: 8300000, guid: c665110f71ad38641a3e621a8bf89bda, type: 3}
   backGroundMusic1: {fileID: 8300000, guid: 808da4ea4cd9efc4b9e3ae8ab48248da, type: 3}
   backGroundMusic2: {fileID: 0}
 --- !u!82 &159669256012360695

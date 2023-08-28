@@ -68,6 +68,14 @@ public class Lever : InteractionObject
 
     public void SetLeverState(LeverState state)
     {
+        if (leverState == LeverState.Off && state == LeverState.On)
+        {
+            SoundManager.Instance.LeverSound();
+        }
+        else if (leverState == LeverState.On && state == LeverState.Off)
+        {
+            SoundManager.Instance.LeverSound();
+        }
         leverState = state;
     }
     

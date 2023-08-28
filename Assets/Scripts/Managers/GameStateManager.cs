@@ -19,6 +19,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameState nowGameState = GameState.Playing; //temp
     public GameState NowGameState => nowGameState;
 
+
     private Dictionary<GameState, float> gameStateTimeScaleDict = new()
     {
         {GameState.Playing, 1f},
@@ -28,6 +29,21 @@ public class GameStateManager : MonoBehaviour
         {GameState.Talking, 0f},
         {GameState.TimeChanging, 1f}
     };
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (nowGameState == GameState.Pause)
+            {
+                RedoGameState();
+            }
+            else if (nowGameState == GameState.Playing)
+            {
+                ChangeGameState(GameState.Pause);
+            }
+        }
+    }
 
 
     public void ChangeGameState(GameState gameState)

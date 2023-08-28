@@ -596,6 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
+  playerHPSlider: {fileID: 0}
 --- !u!114 &1107804302082702327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,10 +623,10 @@ MonoBehaviour:
   maxFallSpeed: -30
   stepableLayers:
     serializedVersion: 2
-    m_Bits: 103880
+    m_Bits: 1152456
   collidingLayers:
     serializedVersion: 2
-    m_Bits: 103880
+    m_Bits: 1152456
   dashUsed: 0
   isDash: 0
   dashSpeed: 10
