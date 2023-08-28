@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private float maxHP = 100f;
@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private GameStateManager gameStateManager;
     private Animator animator;
     [SerializeField] private bool isInvincible = false;
+    [SerializeField] private Slider playerHPSlider;
 
 
     private void Awake()
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     {
         gameStateManager = GameManager.Instance.GameStateManager;
         nowHP = DataManager.Instance.NowPlayerHP;
+        playerHPSlider.value = nowHP;
     }
 
     public void GetDamaged(float damage)
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
         if (!isInvincible)
         {
             nowHP -= damage;
-            Debug.Log(nowHP);
+            playerHPSlider.value = nowHP/maxHP;
             DataManager.Instance.SetPlayerHP(nowHP);
             if (nowHP <= 0)
             {
