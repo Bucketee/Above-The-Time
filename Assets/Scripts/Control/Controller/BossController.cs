@@ -130,7 +130,7 @@ public class BossController : MonoBehaviour
         GameObject bombObj = Instantiate<GameObject>(bombPrefab, transform.position, Quaternion.identity);
         bombObj.GetComponent<Bomb>().Launch(dir);
         yield return null;
-        StartPattern(BossPattern.Wait, 5f);
+        StartPattern(BossPattern.Wait, 3f);
     }
 
     private IEnumerator ShockWaveCo()
@@ -142,7 +142,7 @@ public class BossController : MonoBehaviour
         GameObject shockWaveObj = Instantiate<GameObject>(shockWavePrefab, transform.position + Vector3.down * 1.25f, Quaternion.identity);
         shockWaveObj.GetComponent<ShockWave>().Launch(sightDirection);
         yield return null;
-        StartPattern(BossPattern.Wait, 5f);
+        StartPattern(BossPattern.Wait, 3f);
     }
 
     private IEnumerator DropRockCo()
@@ -157,7 +157,7 @@ public class BossController : MonoBehaviour
         GameObject rockObj2 = Instantiate<GameObject>(rockPrefab, new Vector3(rockPosX.x2, rockHeight, 0f), Quaternion.identity);
         rockObj2.GetComponent<Rock>().CountDown();
         yield return null;
-        StartPattern(BossPattern.Wait, 10f);
+        StartPattern(BossPattern.Wait, 6f);
     }
 
     private (float x1, float x2) SelectRockPosX()
@@ -208,7 +208,7 @@ public class BossController : MonoBehaviour
         transform.position += Vector3.up * 0.25f;
         isRushing = false;
         rigidbody2D.velocity = new Vector2(0f, 0f);
-        StartPattern(BossPattern.Wait, 5f);
+        StartPattern(BossPattern.Wait, 3f);
     }
 
     private IEnumerator DieCo()
@@ -222,8 +222,28 @@ public class BossController : MonoBehaviour
 
     private BossPattern RandomAttackPattern()
     {
+        //ThrowBomb,
+        //ShockWave,
+        //DropRock,
+        //Rush,
         System.Random random = new();
-        int randomNum = random.Next(1, 5);
+        int randomNum = random.Next(1, 20);
+        if (randomNum < 5)
+        {
+            randomNum = 1;
+        }
+        else if (randomNum < 7)
+        {
+            randomNum = 2;
+        }
+        else if (randomNum < 13)
+        {
+            randomNum = 3;
+        }
+        else if (randomNum < 21)
+        {
+            randomNum = 4;
+        }
         return ((BossPattern) randomNum);
     }
 
