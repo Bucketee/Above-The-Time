@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -52,7 +53,15 @@ public class DataManager : MonoBehaviour
     public void SetStoryProgress(StoryProgress storyProgress)
     {
         nowStoryProgress = storyProgress;
-        timeZoneCanMoves = storyTimeZoneCanMoveDict[nowStoryProgress];
+        try
+        {
+            timeZoneCanMoves = storyTimeZoneCanMoveDict[nowStoryProgress];
+        }
+        catch
+        {
+            
+        }
+        
     }
 
     public void SetPlayerHP(float playerHP)
