@@ -24,7 +24,7 @@ public class Talker : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("Player") || storyManager.CurrentStory != availablestory) return;
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Player") || (storyManager.CurrentStory != availablestory && (int)storyManager.CurrentStory <= 11)) return;
         if (timezone == 0 || (timezone != 0 && timezone == 1 + (int)GameManager.Instance.TimeZoneManager.NowTimeZone))
         {
             GameManager.Instance.TalkManager.StartTalk(talkNum);
