@@ -411,7 +411,7 @@ MonoBehaviour:
   m_text: "\uD604\uC7AC \uCCB4\uB825"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
-  m_sharedMaterial: {fileID: 2312884500574363512, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
+  m_sharedMaterial: {fileID: 7138108212505933912, guid: 5a37b954a15cb904888948d3f33d12dd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
