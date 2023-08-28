@@ -8,6 +8,7 @@ public class Mover : InteractionObject
     public Vector3 location;
     [SerializeField] private bool available;
     [SerializeField] Player player;
+    [SerializeField] BossController boss;
 
     public override void Interact()
     {
@@ -28,6 +29,7 @@ public class Mover : InteractionObject
         {
             available = true;
             GameManager.Instance.StoryManager.SelectStory(StoryProgress.TopTower);
+            boss.Activation();
             return;
         }
         if (gameObject.name.Equals("ToButtomTower") && GameManager.Instance.StoryManager.CurrentStory >= StoryProgress.BackToTree)

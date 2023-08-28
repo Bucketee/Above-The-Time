@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: timeWindCostBar
       value: 
       objectReference: {fileID: 1423818241}
+    - target: {fileID: 6366005864850524640, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
+      propertyPath: timeWindCostRegen
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6366005865632230208, guid: 8ade9ad3bb6497247ab7e6d4c59b3b39, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -821,7 +825,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -958,7 +962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &287990453
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2904,6 +2908,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -449316086590958729, guid: ee18b6cf5695f5340821efe8dee42882, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1384077969}
+    - target: {fileID: -449316086590958729, guid: ee18b6cf5695f5340821efe8dee42882, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1101840579}
@@ -4312,6 +4320,8 @@ MonoBehaviour:
   bombPrefab: {fileID: 8992709754340894780, guid: 1e8c1b73f816a644499759737821566a, type: 3}
   rockPrefab: {fileID: 274397111444374334, guid: 03dd718d82e46f54abd4d1cc107de741, type: 3}
   player: {fileID: 1101840579}
+  rockHeight: 104
+  bossUI: {fileID: 287990452}
 --- !u!114 &1384077970
 MonoBehaviour:
   m_ObjectHideFlags: 0
